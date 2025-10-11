@@ -10,6 +10,18 @@ import pandas as pd
 import altair as alt
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler
 from sklearn.compose import ColumnTransformer
+import nltk
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.corpus import stopwords
+from nltk import word_tokenize # tokenizacion
+from nltk import pos_tag #lematizacion
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
+
+lemmatizer = WordNetLemmatizer()
+
+nltk.download('stopwords') # necessary for removal of stop words
+nltk.download('wordnet')
 ```
 
 
@@ -42,3 +54,11 @@ tweets['autor_verificado'] = LabelEncoder().fit_transform(tweets['authorVerified
 tweets['tiene_foto'] = LabelEncoder().fit_transform(tweets['has_profile_picture'])
 tweets.head()
 ```
+
+
+# CountVectorizer
+```{python}
+stop_words = stopwords.words('english')
+vectorizer = CountVectorizer(stop_words=stop_words)
+```
+

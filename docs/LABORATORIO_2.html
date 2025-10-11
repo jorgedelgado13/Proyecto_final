@@ -182,6 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#porcentaje-de-missing-values-por-columna" id="toc-porcentaje-de-missing-values-por-columna" class="nav-link" data-scroll-target="#porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</a></li>
   </ul></li>
   <li><a href="#asignar-nueva-columna" id="toc-asignar-nueva-columna" class="nav-link" data-scroll-target="#asignar-nueva-columna">Asignar nueva columna</a></li>
+  <li><a href="#countvectorizer" id="toc-countvectorizer" class="nav-link" data-scroll-target="#countvectorizer">CountVectorizer</a></li>
   </ul>
 </nav>
     </div>
@@ -209,23 +210,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="593c32cb" class="cell" data-execution_count="1">
+<div id="735a7ddb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk <span class="im">import</span> word_tokenize <span class="co"># tokenizacion</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk <span class="im">import</span> pos_tag <span class="co">#lematizacion</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> WordNetLemmatizer</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> wordnet</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>lemmatizer <span class="op">=</span> WordNetLemmatizer()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>) <span class="co"># necessary for removal of stop words</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'wordnet'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\delga\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\delga\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>True</code></pre>
+</div>
 </div>
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="59a6f598" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.head)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.info)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.shape)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="61d6cc16" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.head)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.info)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.shape)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;bound method NDFrame.head of                     tweetId  \
 0       1877190873579950336   
@@ -470,11 +494,11 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="e090f702" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="7db532dd" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>hashtags               92.19
 replyTo                 0.54
 mentions                0.22
@@ -508,10 +532,12 @@ dtype: float64</code></pre>
 </section>
 <section id="asignar-nueva-columna" class="level1">
 <h1>Asignar nueva columna</h1>
-<div id="3717a2cd" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'label_encoded'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'authorVerified'</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tweets.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="abf5d3d3" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'es_respuesta'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'isReply'</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'autor_verificado'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'authorVerified'</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'tiene_foto'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'has_profile_picture'</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tweets.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -530,8 +556,6 @@ dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">authorUsername</th>
 <th data-quarto-table-cell-role="th">authorVerified</th>
 <th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">inReplyToId</th>
-<th data-quarto-table-cell-role="th">Date</th>
 <th data-quarto-table-cell-role="th">time_response</th>
 <th data-quarto-table-cell-role="th">account_age_days</th>
 <th data-quarto-table-cell-role="th">mentions_count</th>
@@ -539,7 +563,9 @@ dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">content_length</th>
 <th data-quarto-table-cell-role="th">has_profile_picture</th>
 <th data-quarto-table-cell-role="th">sentiment_polarity</th>
-<th data-quarto-table-cell-role="th">label_encoded</th>
+<th data-quarto-table-cell-role="th">es_respuesta</th>
+<th data-quarto-table-cell-role="th">autor_verificado</th>
+<th data-quarto-table-cell-role="th">tiene_foto</th>
 </tr>
 </thead>
 <tbody>
@@ -556,8 +582,6 @@ dtype: float64</code></pre>
 <td>hectorjalonm</td>
 <td>False</td>
 <td>...</td>
-<td>1877188297551650816</td>
-<td>2025-01-08 22:10:30</td>
 <td>298.5</td>
 <td>1151</td>
 <td>3</td>
@@ -566,6 +590,8 @@ dtype: float64</code></pre>
 <td>True</td>
 <td>0.0</td>
 <td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
@@ -580,8 +606,6 @@ dtype: float64</code></pre>
 <td>DiegoPonguill10</td>
 <td>False</td>
 <td>...</td>
-<td>1877123519743451648</td>
-<td>2025-01-08 22:10:30</td>
 <td>288.5</td>
 <td>883</td>
 <td>3</td>
@@ -590,6 +614,8 @@ dtype: float64</code></pre>
 <td>True</td>
 <td>0.0</td>
 <td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
@@ -604,8 +630,6 @@ dtype: float64</code></pre>
 <td>ekuador_593</td>
 <td>False</td>
 <td>...</td>
-<td>1877122565782576896</td>
-<td>2025-01-08 22:10:30</td>
 <td>279.5</td>
 <td>1153</td>
 <td>3</td>
@@ -614,6 +638,8 @@ dtype: float64</code></pre>
 <td>True</td>
 <td>0.0</td>
 <td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
@@ -628,8 +654,6 @@ dtype: float64</code></pre>
 <td>JRamirez2O24</td>
 <td>False</td>
 <td>...</td>
-<td>1877159202646315264</td>
-<td>2025-01-08 22:10:30</td>
 <td>208.5</td>
 <td>321</td>
 <td>2</td>
@@ -638,6 +662,8 @@ dtype: float64</code></pre>
 <td>True</td>
 <td>0.0</td>
 <td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
@@ -652,8 +678,6 @@ dtype: float64</code></pre>
 <td>jdiegol2010</td>
 <td>False</td>
 <td>...</td>
-<td>1877130145938481152</td>
-<td>2025-01-08 22:10:30</td>
 <td>172.5</td>
 <td>5343</td>
 <td>2</td>
@@ -662,13 +686,22 @@ dtype: float64</code></pre>
 <td>True</td>
 <td>0.0</td>
 <td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 27 columns</p>
+<p>5 rows × 29 columns</p>
 </div>
 </div>
+</div>
+</section>
+<section id="countvectorizer" class="level1">
+<h1>CountVectorizer</h1>
+<div id="e5c07c3a" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> stopwords.words(<span class="st">'english'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer(stop_words<span class="op">=</span>stop_words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

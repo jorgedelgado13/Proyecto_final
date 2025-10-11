@@ -60,12 +60,13 @@ tweets.head()
 ```{python}
 stop_words = stopwords.words('english')
 vectorizer = CountVectorizer(stop_words=stop_words)
+#vectorizer = TfidfVectorizer(stop_words=stop_words)
 ```
 
 
 ## fit: Aprende el vocabulari
 ```{python}
-X = vectorizer.fit_transform(tweets[content])
+X = vectorizer.fit_transform(tweets)
 ```
 
 ```{python}
@@ -84,3 +85,5 @@ X.toarray()
 df = pd.DataFrame(X.toarray(), columns=vectorizer.get_feature_names_out())
 print(df)
 ```
+
+

@@ -187,6 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#fit_transform" id="toc-fit_transform" class="nav-link" data-scroll-target="#fit_transform">Fit_transform</a></li>
   <li><a href="#obtener-las-palabras-finales" id="toc-obtener-las-palabras-finales" class="nav-link" data-scroll-target="#obtener-las-palabras-finales">Obtener las palabras finales</a></li>
   </ul></li>
+  <li><a href="#crear-nueva-columna-objetivo" id="toc-crear-nueva-columna-objetivo" class="nav-link" data-scroll-target="#crear-nueva-columna-objetivo">Crear nueva columna objetivo</a></li>
   <li><a href="#cargar-el-dataset" id="toc-cargar-el-dataset" class="nav-link" data-scroll-target="#cargar-el-dataset">Cargar el dataset</a></li>
   <li><a href="#features-y-target" id="toc-features-y-target" class="nav-link" data-scroll-target="#features-y-target">Features y target</a></li>
   </ul>
@@ -216,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="ea022305" class="cell" data-execution_count="1">
+<div id="4449605c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Importar librerías ======</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unicodedata</span>
@@ -471,7 +472,7 @@ dtype: object</code></pre>
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="c758fced" class="cell" data-execution_count="2">
+<div id="b3c20032" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
@@ -723,12 +724,12 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="4d3d5b2e" class="cell" data-execution_count="3">
+<div id="0041319b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Porcentaje de Missing Values por Columna ======</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>hashtags               92.19
 replyTo                 0.54
 mentions                0.22
@@ -762,12 +763,12 @@ dtype: float64</code></pre>
 </section>
 <section id="llenar-celdas-vacias" class="level1">
 <h1>Llenar celdas vacias</h1>
-<div id="1220e1f9" class="cell" data-execution_count="4">
+<div id="8eaec550" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>texts_raw <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).astype(<span class="bu">str</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="función-de-limpieza" class="level2">
 <h2 class="anchored" data-anchor-id="función-de-limpieza">Función de limpieza</h2>
-<div id="0b780b25" class="cell" data-execution_count="5">
+<div id="76e349c9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Función de limpieza (conserva 'ñ', quita tildes) ======</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># En lugar de NFD (que rompería la ñ), mapeamos tildes explícitamente.</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>_TILDE_MAP <span class="op">=</span> <span class="bu">str</span>.maketrans({</span>
@@ -794,7 +795,7 @@ dtype: float64</code></pre>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"clean_text"</span>] <span class="op">=</span> texts_raw.<span class="bu">apply</span>(normalize_text)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"content"</span>, <span class="st">"clean_text"</span>]].head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -842,18 +843,18 @@ dtype: float64</code></pre>
 <section id="fit_transform" class="level2">
 <h2 class="anchored" data-anchor-id="fit_transform">Fit_transform</h2>
 <p>Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words</p>
-<div id="2df74da9" class="cell" data-execution_count="6">
+<div id="7e6417a3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stop_es <span class="op">=</span> stopwords.words(<span class="st">"spanish"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_es)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#vectorizer = CountVectorizer(stop_words=stop_es) </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="77a69995" class="cell" data-execution_count="7">
+<div id="2d1b8d61" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(tweets[<span class="st">"clean_text"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="obtener-las-palabras-finales" class="level2">
 <h2 class="anchored" data-anchor-id="obtener-las-palabras-finales">Obtener las palabras finales</h2>
-<div id="b718ea82" class="cell" data-execution_count="8">
+<div id="8c582592" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matriz X:"</span>, X.shape)      <span class="co"># (n_docs, n_terms)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> vectorizer.get_feature_names_out()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primeras 20 palabras:"</span>, vocab[:<span class="dv">20</span>])</span>
@@ -872,7 +873,7 @@ Primeras 20 palabras: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' '
  'aaaaajajajajaajajajajajajajajaajajajajajajaajajajajajajajaajajajajajajaajajajajajajaja'
  'aaaah' 'aaaahh' 'aaaahhhajajajajajajajajajajaj' 'aaaahhhh' 'aaaajjjaaa']</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -1141,20 +1142,26 @@ Primeras 20 palabras: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' '
 </div>
 </section>
 </section>
+<section id="crear-nueva-columna-objetivo" class="level1">
+<h1>Crear nueva columna objetivo</h1>
+<div id="77cf1a59" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"asco"</span>] <span class="op">=</span> preview_df[<span class="st">"asco"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="cargar-el-dataset" class="level1">
 <h1>Cargar el dataset</h1>
-<div id="4fefb44f" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#categorias = ['comp.graphics','comp.sys.mac.hardware','rec.sport.baseball','talk.politics.misc']</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#newsgroups = fetch_20newsgroups(subset='train', remove=('headers','footers','quotes'))</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(newsgroups.target_names)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="460fc37d" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#revisar = ['isReply','has_profile_picture','authorVerified']</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#newsgroups = fetch_20newsgroups(subset='train', remove=('headers','footers','quotes'))</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(newsgroups.target_names)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="features-y-target" class="level1">
 <h1>Features y target</h1>
-<div id="263f4326" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#X_text = newsgroups.data #features</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y = newsgroups.target #target</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0ee700ac" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#X_text = newsgroups.data #features</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y = newsgroups.target #target</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>```</p>
 

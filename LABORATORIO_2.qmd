@@ -128,10 +128,16 @@ preview_df.iloc[:, :20]
 ```
 
 
+# Crear nueva columna objetivo 
+
+```{python}
+tweets["asco"] = preview_df["asco"]
+```
+
 # Cargar el dataset
 
 ```{python}
-#categorias = ['comp.graphics','comp.sys.mac.hardware','rec.sport.baseball','talk.politics.misc']
+#revisar = ['isReply','has_profile_picture','authorVerified']
 
 #newsgroups = fetch_20newsgroups(subset='train', remove=('headers','footers','quotes'))
 #print(newsgroups.target_names)

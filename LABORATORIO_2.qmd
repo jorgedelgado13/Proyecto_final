@@ -8,7 +8,8 @@ code-fold: false
 ```{python}
 import pandas as pd
 import altair as alt
-
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler
+from sklearn.compose import ColumnTransformer
 ```
 
 
@@ -33,18 +34,9 @@ nan_percent_sorted = nan_percent.sort_values(ascending=False).round(2)
 nan_percent_sorted
 ```
 
-### Reshaping de la Data para Visualización
-
-To visualize missing values with Altair, we need to reshape the data into a long format where each missing value is a row:
-
-```{python}
-tweets_nans = tweets.isna().reset_index().melt(
-    id_vars='index',
-    var_name='column',
-    value_name="NaN"
-)
-tweets_nans
-```
-
 
 # Asignar nueva columna 
+```{python}
+tweets['label_encoded'] = LabelEncoder().fit_transform(tweets['authorVerified'])
+tweets.head()
+```

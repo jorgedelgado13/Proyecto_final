@@ -180,7 +180,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cargar-data" id="toc-cargar-data" class="nav-link" data-scroll-target="#cargar-data">Cargar data</a>
   <ul class="collapse">
   <li><a href="#porcentaje-de-missing-values-por-columna" id="toc-porcentaje-de-missing-values-por-columna" class="nav-link" data-scroll-target="#porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</a></li>
-  <li><a href="#reshaping-de-la-data-para-visualización" id="toc-reshaping-de-la-data-para-visualización" class="nav-link" data-scroll-target="#reshaping-de-la-data-para-visualización">Reshaping de la Data para Visualización</a></li>
   </ul></li>
   <li><a href="#asignar-nueva-columna" id="toc-asignar-nueva-columna" class="nav-link" data-scroll-target="#asignar-nueva-columna">Asignar nueva columna</a></li>
   </ul>
@@ -210,14 +209,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="cd931a52" class="cell" data-execution_count="1">
+<div id="593c32cb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="d02a70c3" class="cell" data-execution_count="2">
+<div id="59a6f598" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
@@ -469,11 +470,11 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="bab1981b" class="cell" data-execution_count="3">
+<div id="e090f702" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>hashtags               92.19
 replyTo                 0.54
 mentions                0.22
@@ -504,17 +505,13 @@ dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="reshaping-de-la-data-para-visualización" class="level3">
-<h3 class="anchored" data-anchor-id="reshaping-de-la-data-para-visualización">Reshaping de la Data para Visualización</h3>
-<p>To visualize missing values with Altair, we need to reshape the data into a long format where each missing value is a row:</p>
-<div id="8409e412" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tweets_nans <span class="op">=</span> tweets.isna().reset_index().melt(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">'index'</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'column'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">"NaN"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>tweets_nans</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+</section>
+<section id="asignar-nueva-columna" class="level1">
+<h1>Asignar nueva columna</h1>
+<div id="3717a2cd" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'label_encoded'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'authorVerified'</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tweets.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -522,89 +519,157 @@ dtype: float64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">index</th>
-<th data-quarto-table-cell-role="th">column</th>
-<th data-quarto-table-cell-role="th">NaN</th>
+<th data-quarto-table-cell-role="th">tweetId</th>
+<th data-quarto-table-cell-role="th">tweetUrl</th>
+<th data-quarto-table-cell-role="th">content</th>
+<th data-quarto-table-cell-role="th">isReply</th>
+<th data-quarto-table-cell-role="th">replyTo</th>
+<th data-quarto-table-cell-role="th">createdAt</th>
+<th data-quarto-table-cell-role="th">authorId</th>
+<th data-quarto-table-cell-role="th">authorName</th>
+<th data-quarto-table-cell-role="th">authorUsername</th>
+<th data-quarto-table-cell-role="th">authorVerified</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">inReplyToId</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">time_response</th>
+<th data-quarto-table-cell-role="th">account_age_days</th>
+<th data-quarto-table-cell-role="th">mentions_count</th>
+<th data-quarto-table-cell-role="th">hashtags_count</th>
+<th data-quarto-table-cell-role="th">content_length</th>
+<th data-quarto-table-cell-role="th">has_profile_picture</th>
+<th data-quarto-table-cell-role="th">sentiment_polarity</th>
+<th data-quarto-table-cell-role="th">label_encoded</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
-<td>0</td>
-<td>tweetId</td>
+<td>1877190873579950336</td>
+<td>https://x.com/hectorjalonm/status/187719087357...</td>
+<td>@DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...</td>
+<td>True</td>
+<td>DiegoPonguill10</td>
+<td>2025-01-09 03:09:00</td>
+<td>1458536175119986688</td>
+<td>héctor 🌵</td>
+<td>hectorjalonm</td>
 <td>False</td>
+<td>...</td>
+<td>1877188297551650816</td>
+<td>2025-01-08 22:10:30</td>
+<td>298.5</td>
+<td>1151</td>
+<td>3</td>
+<td>0</td>
+<td>88</td>
+<td>True</td>
+<td>0.0</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>1</td>
-<td>tweetId</td>
+<td>1877188297551650816</td>
+<td>https://x.com/DiegoPonguill10/status/187718829...</td>
+<td>@hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...</td>
+<td>True</td>
+<td>hectorjalonm</td>
+<td>2025-01-09 02:59:00</td>
+<td>1555549203211976704</td>
+<td>Diego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!</td>
+<td>DiegoPonguill10</td>
 <td>False</td>
+<td>...</td>
+<td>1877123519743451648</td>
+<td>2025-01-08 22:10:30</td>
+<td>288.5</td>
+<td>883</td>
+<td>3</td>
+<td>0</td>
+<td>119</td>
+<td>True</td>
+<td>0.0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>2</td>
-<td>tweetId</td>
+<td>1877186248986501120</td>
+<td>https://x.com/ekuador_593/status/1877186248986...</td>
+<td>@Gregori58965636 @yesendiaz @DanielNoboaOk Otr...</td>
+<td>True</td>
+<td>Gregori58965636</td>
+<td>2025-01-09 02:50:00</td>
+<td>1457524470365708288</td>
+<td>Sebastián Noboa Ec</td>
+<td>ekuador_593</td>
 <td>False</td>
+<td>...</td>
+<td>1877122565782576896</td>
+<td>2025-01-08 22:10:30</td>
+<td>279.5</td>
+<td>1153</td>
+<td>3</td>
+<td>0</td>
+<td>60</td>
+<td>True</td>
+<td>0.0</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>3</td>
-<td>tweetId</td>
+<td>1877168335193833472</td>
+<td>https://x.com/JRamirez2O24/status/187716833519...</td>
+<td>@jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...</td>
+<td>True</td>
+<td>jdiegol2010</td>
+<td>2025-01-09 01:39:00</td>
+<td>1759130630766341888</td>
+<td>ANDRES RAMIREZ</td>
+<td>JRamirez2O24</td>
 <td>False</td>
+<td>...</td>
+<td>1877159202646315264</td>
+<td>2025-01-08 22:10:30</td>
+<td>208.5</td>
+<td>321</td>
+<td>2</td>
+<td>0</td>
+<td>51</td>
+<td>True</td>
+<td>0.0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>4</td>
-<td>tweetId</td>
+<td>1877159202646315264</td>
+<td>https://x.com/jdiegol2010/status/1877159202646...</td>
+<td>@JRamirez2O24 @DanielNoboaOk El tema es respet...</td>
+<td>True</td>
+<td>JRamirez2O24</td>
+<td>2025-01-09 01:03:00</td>
+<td>146111157</td>
+<td>Juan Diego</td>
+<td>jdiegol2010</td>
 <td>False</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">...</th>
 <td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4130693</th>
-<td>158868</td>
-<td>sentiment_polarity</td>
-<td>False</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">4130694</th>
-<td>158869</td>
-<td>sentiment_polarity</td>
-<td>False</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4130695</th>
-<td>158870</td>
-<td>sentiment_polarity</td>
-<td>False</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">4130696</th>
-<td>158871</td>
-<td>sentiment_polarity</td>
-<td>False</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4130697</th>
-<td>158872</td>
-<td>sentiment_polarity</td>
-<td>False</td>
+<td>1877130145938481152</td>
+<td>2025-01-08 22:10:30</td>
+<td>172.5</td>
+<td>5343</td>
+<td>2</td>
+<td>0</td>
+<td>80</td>
+<td>True</td>
+<td>0.0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
 
-<p>4130698 rows × 3 columns</p>
+<p>5 rows × 27 columns</p>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="asignar-nueva-columna" class="level1">
-<h1>Asignar nueva columna</h1>
 
 
 </section>

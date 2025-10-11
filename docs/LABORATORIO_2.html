@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="c3f1ae01" class="cell" data-execution_count="1">
+<div id="da7dc2e4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler</span>
@@ -240,14 +240,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [nltk_data]     C:\Users\delga\AppData\Roaming\nltk_data...
 [nltk_data]   Package wordnet is already up-to-date!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="71">
 <pre><code>True</code></pre>
 </div>
 </div>
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="f94e4ff5" class="cell" data-execution_count="2">
+<div id="a8abf01a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
@@ -499,11 +499,11 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="a9ac8ffd" class="cell" data-execution_count="3">
+<div id="b9bf1589" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>hashtags               92.19
 replyTo                 0.54
 mentions                0.22
@@ -537,12 +537,12 @@ dtype: float64</code></pre>
 </section>
 <section id="asignar-nueva-columna" class="level1">
 <h1>Asignar nueva columna</h1>
-<div id="009477a4" class="cell" data-execution_count="4">
+<div id="53cd05f9" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'es_respuesta'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'isReply'</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'autor_verificado'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'authorVerified'</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">'tiene_foto'</span>] <span class="op">=</span> LabelEncoder().fit_transform(tweets[<span class="st">'has_profile_picture'</span>])</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tweets.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="74">
 <div>
 
 
@@ -704,19 +704,19 @@ dtype: float64</code></pre>
 </section>
 <section id="countvectorizer" class="level1">
 <h1>CountVectorizer</h1>
-<div id="c5244690" class="cell" data-execution_count="5">
+<div id="146d5173" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> stopwords.words(<span class="st">'english'</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer(stop_words<span class="op">=</span>stop_words)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#vectorizer = TfidfVectorizer(stop_words=stop_words)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="fit-aprende-el-vocabulari" class="level2">
 <h2 class="anchored" data-anchor-id="fit-aprende-el-vocabulari">fit: Aprende el vocabulari</h2>
-<div id="9b60c031" class="cell" data-execution_count="6">
+<div id="8692ff2d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(tweets)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="82d2ef83" class="cell" data-execution_count="7">
+<div id="98d73778" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>vectorizer.get_feature_names_out()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="77">
 <pre><code>array(['account_age_days', 'authorfollowers', 'authorid',
        'authorjoindate', 'authorname', 'authorprofilepic',
        'authorusername', 'authorverified', 'autor_verificado', 'content',
@@ -731,9 +731,9 @@ dtype: float64</code></pre>
 <section id="transform-crea-la-matriz-de-conteos-sparse-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="transform-crea-la-matriz-de-conteos-sparse-matrix">transform: Crea la matriz de conteos (sparse matrix)</h2>
 <p>Cada fila representa un documento, cada columna una palabra del vocabulario</p>
-<div id="6ba4f36f" class="cell" data-execution_count="8">
+<div id="fea83f97" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X.toarray()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 1, 0],
        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -797,7 +797,7 @@ dtype: float64</code></pre>
 </section>
 <section id="visualizar-la-matriz-como-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="visualizar-la-matriz-como-dataframe">Visualizar la matriz como DataFrame</h2>
-<div id="eaaa54b3" class="cell" data-execution_count="9">
+<div id="adbc89e3" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(X.toarray(), columns<span class="op">=</span>vectorizer.get_feature_names_out())</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

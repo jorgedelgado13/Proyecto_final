@@ -182,6 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#porcentaje-de-missing-values-por-columna" id="toc-porcentaje-de-missing-values-por-columna" class="nav-link" data-scroll-target="#porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</a></li>
   <li><a href="#reshaping-de-la-data-para-visualización" id="toc-reshaping-de-la-data-para-visualización" class="nav-link" data-scroll-target="#reshaping-de-la-data-para-visualización">Reshaping de la Data para Visualización</a></li>
   </ul></li>
+  <li><a href="#asignar-nueva-columna" id="toc-asignar-nueva-columna" class="nav-link" data-scroll-target="#asignar-nueva-columna">Asignar nueva columna</a></li>
   </ul>
 </nav>
     </div>
@@ -209,55 +210,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="ef409987" class="cell" data-execution_count="1">
+<div id="cd931a52" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="c6137f06" class="cell" data-execution_count="2">
+<div id="d02a70c3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tweets.head()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tweets.info()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.head)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.info)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.shape)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 158873 entries, 0 to 158872
-Data columns (total 26 columns):
- #   Column               Non-Null Count   Dtype  
----  ------               --------------   -----  
- 0   tweetId              158873 non-null  int64  
- 1   tweetUrl             158873 non-null  object 
- 2   content              158873 non-null  object 
- 3   isReply              158873 non-null  bool   
- 4   replyTo              158011 non-null  object 
- 5   createdAt            158873 non-null  object 
- 6   authorId             158873 non-null  int64  
- 7   authorName           158871 non-null  object 
- 8   authorUsername       158873 non-null  object 
- 9   authorVerified       158873 non-null  bool   
- 10  authorFollowers      158873 non-null  int64  
- 11  authorProfilePic     158873 non-null  object 
- 12  authorJoinDate       158873 non-null  object 
- 13  source               158873 non-null  object 
- 14  hashtags             12415 non-null   object 
- 15  mentions             158525 non-null  object 
- 16  conversationId       158873 non-null  int64  
- 17  inReplyToId          158873 non-null  int64  
- 18  Date                 158873 non-null  object 
- 19  time_response        158873 non-null  float64
- 20  account_age_days     158873 non-null  int64  
- 21  mentions_count       158873 non-null  int64  
- 22  hashtags_count       158873 non-null  int64  
- 23  content_length       158873 non-null  int64  
- 24  has_profile_picture  158873 non-null  bool   
- 25  sentiment_polarity   158873 non-null  float64
-dtypes: bool(3), float64(2), int64(9), object(12)
-memory usage: 28.3+ MB
+<pre><code>&lt;bound method NDFrame.head of                     tweetId  \
+0       1877190873579950336   
+1       1877188297551650816   
+2       1877186248986501120   
+3       1877168335193833472   
+4       1877159202646315264   
+...                     ...   
+158868  1910030377110077696   
+158869  1910028396467478784   
+158870  1910026147896631552   
+158871  1910026005353533184   
+158872  1910025946931027968   
+
+                                                 tweetUrl  \
+0       https://x.com/hectorjalonm/status/187719087357...   
+1       https://x.com/DiegoPonguill10/status/187718829...   
+2       https://x.com/ekuador_593/status/1877186248986...   
+3       https://x.com/JRamirez2O24/status/187716833519...   
+4       https://x.com/jdiegol2010/status/1877159202646...   
+...                                                   ...   
+158868  https://x.com/lilibeth7394/status/191003037711...   
+158869  https://x.com/_Claudia______/status/1910028396...   
+158870  https://x.com/IsaiasRodriguz/status/1910026147...   
+158871  https://x.com/controlremoto85/status/191002600...   
+158872  https://x.com/allechhh/status/1910025946931027996   
+
+                                                  content  isReply  \
+0       @DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...     True   
+1       @hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...     True   
+2       @Gregori58965636 @yesendiaz @DanielNoboaOk Otr...     True   
+3       @jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...     True   
+4       @JRamirez2O24 @DanielNoboaOk El tema es respet...     True   
+...                                                   ...      ...   
+158868  @LuisaGonzalezEc Por más hospitales con medica...     True   
+158869  @LuisaGonzalezEc ¡Vamos Con TODO PresidentA \n...     True   
+158870  @LuisaGonzalezEc Vamos con todo PRESIDENTA ! 💪...     True   
+158871      @LuisaGonzalezEc Luisa presidenta sin dudarlo     True   
+158872  @LuisaGonzalezEc Desde México todo mi apoyo a ...     True   
+
+                replyTo            createdAt             authorId  \
+0       DiegoPonguill10  2025-01-09 03:09:00  1458536175119986688   
+1          hectorjalonm  2025-01-09 02:59:00  1555549203211976704   
+2       Gregori58965636  2025-01-09 02:50:00  1457524470365708288   
+3           jdiegol2010  2025-01-09 01:39:00  1759130630766341888   
+4          JRamirez2O24  2025-01-09 01:03:00            146111157   
+...                 ...                  ...                  ...   
+158868  LuisaGonzalezEc  2025-04-09 18:01:00            193481457   
+158869  LuisaGonzalezEc  2025-04-09 17:53:00  1464620252189401088   
+158870  LuisaGonzalezEc  2025-04-09 17:44:00            383933505   
+158871  LuisaGonzalezEc  2025-04-09 17:44:00           4846627047   
+158872  LuisaGonzalezEc  2025-04-09 17:44:00  1418120966480310272   
+
+                                            authorName   authorUsername  \
+0                                             héctor 🌵     hectorjalonm   
+1       Diego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!  DiegoPonguill10   
+2                                   Sebastián Noboa Ec      ekuador_593   
+3                                       ANDRES RAMIREZ     JRamirez2O24   
+4                                           Juan Diego      jdiegol2010   
+...                                                ...              ...   
+158868                                   Od.Lily Silva     lilibeth7394   
+158869                                         Claudia   _Claudia______   
+158870                             ISAÍAS RODRIGUEZ 🇪🇨   IsaiasRodriguz   
+158871                                           Kandy  controlremoto85   
+158872                                          Allech         allechhh   
+
+        authorVerified  ...       conversationId          inReplyToId  \
+0                False  ...  1877115691146306005  1877188297551650816   
+1                False  ...  1877115691146306005  1877123519743451648   
+2                False  ...  1877115691146306005  1877122565782576896   
+3                False  ...  1877115691146306005  1877159202646315264   
+4                False  ...  1877115691146306005  1877130145938481152   
+...                ...  ...                  ...                  ...   
+158868           False  ...  1910025386240450698  1910025386240450816   
+158869           False  ...  1910025386240450698  1910025386240450816   
+158870           False  ...  1910025386240450698  1910025386240450816   
+158871           False  ...  1910025386240450698  1910025386240450816   
+158872           False  ...  1910025386240450698  1910025386240450816   
+
+                       Date time_response account_age_days mentions_count  \
+0       2025-01-08 22:10:30    298.500000             1151              3   
+1       2025-01-08 22:10:30    288.500000              883              3   
+2       2025-01-08 22:10:30    279.500000             1153              3   
+3       2025-01-08 22:10:30    208.500000              321              2   
+4       2025-01-08 22:10:30    172.500000             5343              2   
+...                     ...           ...              ...            ...   
+158868  2025-04-09 17:41:53     19.116667             5219              1   
+158869  2025-04-09 17:41:53     11.116667             1134              1   
+158870  2025-04-09 17:41:53      2.116667             4843              1   
+158871  2025-04-09 17:41:53      2.116667             3267              1   
+158872  2025-04-09 17:41:53      2.116667             1262              2   
+
+        hashtags_count  content_length has_profile_picture  sentiment_polarity  
+0                    0              88                True                0.00  
+1                    0             119                True                0.00  
+2                    0              60                True                0.00  
+3                    0              51                True                0.00  
+4                    0              80                True                0.00  
+...                ...             ...                 ...                 ...  
+158868               0              74                True                0.00  
+158869               0             123                True                0.00  
+158870               0             174                True                0.75  
+158871               0              45                True                0.00  
+158872               0             188                True                0.00  
+
+[158873 rows x 26 columns]&gt;
+&lt;bound method DataFrame.info of                     tweetId  \
+0       1877190873579950336   
+1       1877188297551650816   
+2       1877186248986501120   
+3       1877168335193833472   
+4       1877159202646315264   
+...                     ...   
+158868  1910030377110077696   
+158869  1910028396467478784   
+158870  1910026147896631552   
+158871  1910026005353533184   
+158872  1910025946931027968   
+
+                                                 tweetUrl  \
+0       https://x.com/hectorjalonm/status/187719087357...   
+1       https://x.com/DiegoPonguill10/status/187718829...   
+2       https://x.com/ekuador_593/status/1877186248986...   
+3       https://x.com/JRamirez2O24/status/187716833519...   
+4       https://x.com/jdiegol2010/status/1877159202646...   
+...                                                   ...   
+158868  https://x.com/lilibeth7394/status/191003037711...   
+158869  https://x.com/_Claudia______/status/1910028396...   
+158870  https://x.com/IsaiasRodriguz/status/1910026147...   
+158871  https://x.com/controlremoto85/status/191002600...   
+158872  https://x.com/allechhh/status/1910025946931027996   
+
+                                                  content  isReply  \
+0       @DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...     True   
+1       @hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...     True   
+2       @Gregori58965636 @yesendiaz @DanielNoboaOk Otr...     True   
+3       @jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...     True   
+4       @JRamirez2O24 @DanielNoboaOk El tema es respet...     True   
+...                                                   ...      ...   
+158868  @LuisaGonzalezEc Por más hospitales con medica...     True   
+158869  @LuisaGonzalezEc ¡Vamos Con TODO PresidentA \n...     True   
+158870  @LuisaGonzalezEc Vamos con todo PRESIDENTA ! 💪...     True   
+158871      @LuisaGonzalezEc Luisa presidenta sin dudarlo     True   
+158872  @LuisaGonzalezEc Desde México todo mi apoyo a ...     True   
+
+                replyTo            createdAt             authorId  \
+0       DiegoPonguill10  2025-01-09 03:09:00  1458536175119986688   
+1          hectorjalonm  2025-01-09 02:59:00  1555549203211976704   
+2       Gregori58965636  2025-01-09 02:50:00  1457524470365708288   
+3           jdiegol2010  2025-01-09 01:39:00  1759130630766341888   
+4          JRamirez2O24  2025-01-09 01:03:00            146111157   
+...                 ...                  ...                  ...   
+158868  LuisaGonzalezEc  2025-04-09 18:01:00            193481457   
+158869  LuisaGonzalezEc  2025-04-09 17:53:00  1464620252189401088   
+158870  LuisaGonzalezEc  2025-04-09 17:44:00            383933505   
+158871  LuisaGonzalezEc  2025-04-09 17:44:00           4846627047   
+158872  LuisaGonzalezEc  2025-04-09 17:44:00  1418120966480310272   
+
+                                            authorName   authorUsername  \
+0                                             héctor 🌵     hectorjalonm   
+1       Diego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!  DiegoPonguill10   
+2                                   Sebastián Noboa Ec      ekuador_593   
+3                                       ANDRES RAMIREZ     JRamirez2O24   
+4                                           Juan Diego      jdiegol2010   
+...                                                ...              ...   
+158868                                   Od.Lily Silva     lilibeth7394   
+158869                                         Claudia   _Claudia______   
+158870                             ISAÍAS RODRIGUEZ 🇪🇨   IsaiasRodriguz   
+158871                                           Kandy  controlremoto85   
+158872                                          Allech         allechhh   
+
+        authorVerified  ...       conversationId          inReplyToId  \
+0                False  ...  1877115691146306005  1877188297551650816   
+1                False  ...  1877115691146306005  1877123519743451648   
+2                False  ...  1877115691146306005  1877122565782576896   
+3                False  ...  1877115691146306005  1877159202646315264   
+4                False  ...  1877115691146306005  1877130145938481152   
+...                ...  ...                  ...                  ...   
+158868           False  ...  1910025386240450698  1910025386240450816   
+158869           False  ...  1910025386240450698  1910025386240450816   
+158870           False  ...  1910025386240450698  1910025386240450816   
+158871           False  ...  1910025386240450698  1910025386240450816   
+158872           False  ...  1910025386240450698  1910025386240450816   
+
+                       Date time_response account_age_days mentions_count  \
+0       2025-01-08 22:10:30    298.500000             1151              3   
+1       2025-01-08 22:10:30    288.500000              883              3   
+2       2025-01-08 22:10:30    279.500000             1153              3   
+3       2025-01-08 22:10:30    208.500000              321              2   
+4       2025-01-08 22:10:30    172.500000             5343              2   
+...                     ...           ...              ...            ...   
+158868  2025-04-09 17:41:53     19.116667             5219              1   
+158869  2025-04-09 17:41:53     11.116667             1134              1   
+158870  2025-04-09 17:41:53      2.116667             4843              1   
+158871  2025-04-09 17:41:53      2.116667             3267              1   
+158872  2025-04-09 17:41:53      2.116667             1262              2   
+
+        hashtags_count  content_length has_profile_picture  sentiment_polarity  
+0                    0              88                True                0.00  
+1                    0             119                True                0.00  
+2                    0              60                True                0.00  
+3                    0              51                True                0.00  
+4                    0              80                True                0.00  
+...                ...             ...                 ...                 ...  
+158868               0              74                True                0.00  
+158869               0             123                True                0.00  
+158870               0             174                True                0.75  
+158871               0              45                True                0.00  
+158872               0             188                True                0.00  
+
+[158873 rows x 26 columns]&gt;
 (158873, 26)
 tweetId                  int64
 tweetUrl                object
@@ -291,11 +469,11 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="9daf562b" class="cell" data-execution_count="3">
+<div id="bab1981b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>hashtags               92.19
 replyTo                 0.54
 mentions                0.22
@@ -329,14 +507,14 @@ dtype: float64</code></pre>
 <section id="reshaping-de-la-data-para-visualización" class="level3">
 <h3 class="anchored" data-anchor-id="reshaping-de-la-data-para-visualización">Reshaping de la Data para Visualización</h3>
 <p>To visualize missing values with Altair, we need to reshape the data into a long format where each missing value is a row:</p>
-<div id="801a4bdc" class="cell" data-execution_count="4">
+<div id="8409e412" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tweets_nans <span class="op">=</span> tweets.isna().reset_index().melt(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">'index'</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'column'</span>,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">"NaN"</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>tweets_nans</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -423,9 +601,12 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="asignar-nueva-columna" class="level1">
+<h1>Asignar nueva columna</h1>
+
+
 </section>
 
 </main> <!-- /main -->

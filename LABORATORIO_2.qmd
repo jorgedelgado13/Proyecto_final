@@ -18,8 +18,8 @@ import altair as alt
 tweets = pd.read_csv("data/tweets_totales_con_sentimiento_ml.csv")
 
 # Muestra las primeras filas
-tweets.head()
-tweets.info()
+print(tweets.head)
+print(tweets.info)
 print(tweets.shape)
 print(tweets.dtypes)
 ```
@@ -47,3 +47,4 @@ tweets_nans
 ```
 
 
+# Asignar nueva columna 

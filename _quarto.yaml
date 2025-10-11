@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  resources: data/*.csv
 
 website:
   title: "Machine Learning"
@@ -9,22 +10,23 @@ website:
     search: true
     contents:
       - text: "Inicio"
-        href: index.qmd
+        #href: index.qmd
       - section: "Introduction to ML"
         contents:
-          - altair.qmd
-          - eda.qmd
+         # - altair.qmd
+         # - eda.qmd
       - section: "Classification"
-        href: classification.qmd
+        href: #classification.qmd
         contents:
-          - categorical_encoding.qmd
-          - categorical_pipeline.qmd
+          - #categorical_encoding.qmd
+          - #categorical_pipeline.qmd
       - section: "Natural Language Processing (NLP)"
         contents:
-          - ml_text.qmd
-          - bagofwords.qmd
-          - tfidf.qmd
-          - text classification.qmd
+          - #ml_text.qmd
+          - #bagofwords.qmd
+          - #tfidf.qmd
+          - #text classification.qmd
+          - LABORATORIO_2.qmd
 
 format:
   html:

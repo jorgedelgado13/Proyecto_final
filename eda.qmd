@@ -2,20 +2,18 @@
 title: "Exploratory Data Analysis (EDA)"
 ---
 
-# Introduction
+# Introducción
 
-Exploratory Data Analysis (EDA) is one of the fundamental steps in any data science process. It allows us to **understand the structure**, **detect anomalies**, and **uncover patterns** in the data before modeling.
+El análisis exploratorio de los datos (EDA) es uno de los pasos fundamentales en el procesamieto y análisis para ciencia de datos.Este nos permite **entender la estuctura**, **detectar anomalias**, y **descubrir patrones** en la data antes de modelarla.
 
-> *"Without EDA, you're not doing data science, you're just guessing."*
-
-EDA combines statistics, programming, and **visualization** to explore datasets. This report is designed to help you practice these core skills using real-world data.
+EDA combina estadística, programación, y **visualización** para explorar los datasets.
 
 
 ## Dataset
 
-We will use the **`movies`** dataset from [vega-datasets](https://vega.github.io/vega-datasets/), which includes information about thousands of films such as their ratings, genres, duration, and box office revenue.
+Para el ejemplo usaremos **`movies`** dataset de [vega-datasets](https://vega.github.io/vega-datasets/), mismo que incluye informacion sobre miles de films como de sus respectivos ranking, generos, duración y sus ingresos generados.
 
-Let's load and preview the dataset:
+
 
 ```{python}
 import pandas as pd
@@ -29,31 +27,31 @@ movies = data.movies()
 movies.head()
 ```
 
-Now, let’s examine the shape (number of rows and columns) of the dataset:
+Examinamos la forma, número de filas y columnas 
 
 ```{python}
 movies.shape
 ```
 
-This tells us how many entries (rows) and features (columns) are present in the dataset.
 
 
-## First Steps
 
-Before diving deeper into the data, it’s useful to explore some key metadata:
+## Primeros pasos 
 
-- ✅ The **column names** and their **data types**
-- ⚠️ The **presence of missing values**
-- 📊 Summary **statistics** for numeric columns
+Antes de analizar la data, es recomendable analizar la metadata:
 
-### Column Names and Data Types
+- ✅ La **columna names** y sus **data types**
+- ⚠️ La **presencia de missing values**
+- 📊 Summary **estadístico** para las columns numericas 
 
-Understanding the structure of the dataset helps us know what type of data we're dealing with.
+### Nobres de las Columnas y Tipos de Data 
+
+Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando
 
 ```{python}
 movies.dtypes
 ```
-We can also use .info() for a more complete summary, including non-null counts:
+También se puede usar .info()
 
 
 ```{python}
@@ -61,18 +59,18 @@ We can also use .info() for a more complete summary, including non-null counts:
 movies.info()
 ```
 
-## Missing Values
+## Valores faltantes
 
-Detecting and handling missing values is a critical step in any EDA process. Missing data can bias analysis or break downstream models if not handled properly.
+Detectar y manejar missing values es un paso crítico en cualquier proceso EDA. La data faltantes puede sesgar el análisis o invalidar modelos si no es manejada de manera adeucada.
 
-- Detect **patterns** in missingness
-- Identify if some columns are almost entirely null
-- Decide whether to **drop** or **impute** certain variables
+- Detectar **patrones** en faltantes
+- Identificar si algunas columnas son casi completamente nulas 
+- Decidir entre eliminar **(drop)** o imputar **(impute)** ciertas variables
 
 
-### Percentage of Missing Values per Column
+### Porcentaje de Missing Values por Columna
 
-Let’s start by computing the percentage of missing values in each column:
+
 
 ```{python}
 nan_percent = movies.isna().mean() * 100
@@ -80,7 +78,7 @@ nan_percent_sorted = nan_percent.sort_values(ascending=False).round(2)
 nan_percent_sorted
 ```
 
-### Reshaping the Data for Visualization
+### Reshaping de la Data para Visualización
 
 To visualize missing values with Altair, we need to reshape the data into a long format where each missing value is a row:
 

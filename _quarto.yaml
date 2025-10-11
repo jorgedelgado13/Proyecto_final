@@ -8,7 +8,7 @@ website:
     style: "docked"
     search: true
     contents:
-      - text: "Welcome"
+      - text: "Inicio"
         href: index.qmd
       - section: "Introduction to ML"
         contents:
@@ -24,6 +24,7 @@ website:
           - ml_text.qmd
           - bagofwords.qmd
           - tfidf.qmd
+          - text classification.qmd
 
 format:
   html:

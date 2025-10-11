@@ -3,7 +3,7 @@ title: "Laboratorio 2 - Módulo de aprendizaje de máquina"
 ---
 
 # Laboratorio 2 
-Módulo de aprendizajo de máquina
+Módulo de aprendizaje de máquina
 Yachaytech 2025
 
 Realizado por: Jorge Delgado

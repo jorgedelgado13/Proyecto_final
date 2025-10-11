@@ -15,8 +15,35 @@ import altair as alt
 # Cargar data
 
 ```{python}
-df = pd.read_csv("data/tweets_totales_con_sentimiento_ml.csv")
+tweets = pd.read_csv("data/tweets_totales_con_sentimiento_ml.csv")
 
 # Muestra las primeras filas
-df.head()
+tweets.head()
+tweets.info()
+print(tweets.shape)
+print(tweets.dtypes)
 ```
+Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando
+
+### Porcentaje de Missing Values por Columna
+
+```{python}
+nan_percent = tweets.isna().mean() * 100
+nan_percent_sorted = nan_percent.sort_values(ascending=False).round(2)
+nan_percent_sorted
+```
+
+### Reshaping de la Data para Visualización
+
+To visualize missing values with Altair, we need to reshape the data into a long format where each missing value is a row:
+
+```{python}
+tweets_nans = tweets.isna().reset_index().melt(
+    id_vars='index',
+    var_name='column',
+    value_name="NaN"
+)
+tweets_nans
+```
+
+

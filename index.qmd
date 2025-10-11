@@ -1,0 +1,36 @@
+---
+title: "Welcome"
+---
+
+# Welcome to the Machine Learning Module
+
+Welcome to the **Machine Learning** module (ITEMSCINTARTV02) at **Yachay Tech**, a fundamental part of the **Master’s in Artificial Intelligence** program. This course provides a rigorous and practical introduction to machine learning, one of the most transformative fields in computer science and data-driven industries today.
+
+## Course Vision
+
+Machine Learning (ML) is reshaping the way we interact with data and make decisions. From **e-commerce** and **cybersecurity** to **healthcare** and **big data**, the ability to extract insights and build predictive models is essential in solving complex problems. This module equips students with the ability to:
+
+- Understand the **fundamentals of ML**, including supervised, unsupervised, and semi-supervised learning.
+- Apply and optimize **state-of-the-art algorithms** using real-world datasets.
+- Critically evaluate the **impact and limitations** of ML technologies in diverse contexts.
+
+## Learning Goals
+
+By the end of this course, students will be able to:
+
+- Describe and explain the **purpose** and use cases of core ML techniques.
+- Implement and tune ML models to **extract knowledge** from diverse datasets.
+- Select and apply algorithms **based on domain requirements**.
+- Engage with **interdisciplinary research** and consider **ethical implications** of AI in society.
+
+## Learning Approach
+
+This module follows a **theory + practice** methodology:
+
+- Each concept is introduced through **interactive lectures** and deepened via **hands-on coding labs** in Python.
+- Students will work with **real-world datasets** to explore and implement algorithms.
+- The course includes **paper reviews**, **DataCamp self-paced modules**, and **project-based learning** to build strong analytical and technical skills.
+
+---
+
+Let this be a space where you challenge your understanding, ask bold questions, and connect theory to impactful applications. Welcome to the journey of **Machine Learning** at Yachay Tech.

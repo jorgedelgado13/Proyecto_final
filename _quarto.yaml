@@ -10,22 +10,9 @@ website:
     search: true
     contents:
       - text: "Inicio"
-        #href: index.qmd
-      - section: "Introduction to ML"
-        contents:
-         # - altair.qmd
-         # - eda.qmd
-      - section: "Classification"
-        href: #classification.qmd
-        contents:
-          - #categorical_encoding.qmd
-          - #categorical_pipeline.qmd
+        href: index.qmd
       - section: "Natural Language Processing (NLP)"
         contents:
-          - #ml_text.qmd
-          - #bagofwords.qmd
-          - #tfidf.qmd
-          - #text classification.qmd
           - LABORATORIO_2.qmd
 
 format:

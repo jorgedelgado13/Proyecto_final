@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "LABORATORIO_2.html",
+    "href": "LABORATORIO_2.html",
+    "title": "Laboratorio",
+    "section": "",
+    "text": "Importar librerías\n\nimport pandas as pd\nimport altair as alt\n\n\n\nCargar data\n\ndf = pd.read_csv(\"data/tweets_totales_con_sentimiento_ml.csv\")\n\n# Muestra las primeras filas\ndf.head()\n\n\n\n\n\n\n\n\ntweetId\ntweetUrl\ncontent\nisReply\nreplyTo\ncreatedAt\nauthorId\nauthorName\nauthorUsername\nauthorVerified\n...\nconversationId\ninReplyToId\nDate\ntime_response\naccount_age_days\nmentions_count\nhashtags_count\ncontent_length\nhas_profile_picture\nsentiment_polarity\n\n\n\n\n0\n1877190873579950336\nhttps://x.com/hectorjalonm/status/187719087357...\n@DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...\nTrue\nDiegoPonguill10\n2025-01-09 03:09:00\n1458536175119986688\nhéctor 🌵\nhectorjalonm\nFalse\n...\n1877115691146306005\n1877188297551650816\n2025-01-08 22:10:30\n298.5\n1151\n3\n0\n88\nTrue\n0.0\n\n\n1\n1877188297551650816\nhttps://x.com/DiegoPonguill10/status/187718829...\n@hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...\nTrue\nhectorjalonm\n2025-01-09 02:59:00\n1555549203211976704\nDiego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!\nDiegoPonguill10\nFalse\n...\n1877115691146306005\n1877123519743451648\n2025-01-08 22:10:30\n288.5\n883\n3\n0\n119\nTrue\n0.0\n\n\n2\n1877186248986501120\nhttps://x.com/ekuador_593/status/1877186248986...\n@Gregori58965636 @yesendiaz @DanielNoboaOk Otr...\nTrue\nGregori58965636\n2025-01-09 02:50:00\n1457524470365708288\nSebastián Noboa Ec\nekuador_593\nFalse\n...\n1877115691146306005\n1877122565782576896\n2025-01-08 22:10:30\n279.5\n1153\n3\n0\n60\nTrue\n0.0\n\n\n3\n1877168335193833472\nhttps://x.com/JRamirez2O24/status/187716833519...\n@jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...\nTrue\njdiegol2010\n2025-01-09 01:39:00\n1759130630766341888\nANDRES RAMIREZ\nJRamirez2O24\nFalse\n...\n1877115691146306005\n1877159202646315264\n2025-01-08 22:10:30\n208.5\n321\n2\n0\n51\nTrue\n0.0\n\n\n4\n1877159202646315264\nhttps://x.com/jdiegol2010/status/1877159202646...\n@JRamirez2O24 @DanielNoboaOk El tema es respet...\nTrue\nJRamirez2O24\n2025-01-09 01:03:00\n146111157\nJuan Diego\njdiegol2010\nFalse\n...\n1877115691146306005\n1877130145938481152\n2025-01-08 22:10:30\n172.5\n5343\n2\n0\n80\nTrue\n0.0\n\n\n\n\n5 rows × 26 columns",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Laboratorio"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Laboratorio 2 - Módulo de aprendizaje de máquina",
+    "section": "",
+    "text": "Laboratorio 2\nMódulo de aprendizaje de máquina Yachaytech 2025\nRealizado por: Jorge Delgado",
+    "crumbs": [
+      "Inicio"
+    ]
+  }
+]

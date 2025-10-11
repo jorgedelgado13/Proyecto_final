@@ -44,6 +44,17 @@
     ]
   },
   {
+    "objectID": "LABORATORIO_2.html#función-de-limpieza",
+    "href": "LABORATORIO_2.html#función-de-limpieza",
+    "title": "Laboratorio",
+    "section": "Función de limpieza",
+    "text": "Función de limpieza\n\ndef get_wordnet_pos(treebank_tag):\n    # print(\"treebank_tag\",treebank_tag)\n    if treebank_tag.startswith('J'):\n        return wordnet.ADJ\n    elif treebank_tag.startswith('V'):\n        return wordnet.VERB\n    elif treebank_tag.startswith('N'):\n        return wordnet.NOUN\n    elif treebank_tag.startswith('R'):\n        return wordnet.ADV\n    else:\n        return wordnet.NOUN \n\n\ndef preprocessing_document(doc):\n    #1 transformar en minusculas\n    doc = doc.lower()\n    \n    #2 tokenizar\n    tokens = word_tokenize(doc)\n\n    #3 obtener lematizacion con etiqueta POS\n    tagged_tokens = pos_tag(tokens)\n\n    #ELIMINAR LAS STOP-WORDS EN CASO QUE NO USE EL PARAMETRO STOPWORD EN LA VECTORIZACION\n\n    #4 filtrar numeros\n    filtered_tokens = [(word,pos) for (word,pos) in tagged_tokens if word.isalpha()]\n\n    #5 Lematizacion usando el pos\n    lemmatized_words = [lemmatizer.lemmatize(word,get_wordnet_pos(pos)) for word, pos in filtered_tokens]\n\n    return \" \".join(lemmatized_words)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Laboratorio"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Laboratorio 2 - Módulo de aprendizaje de máquina",

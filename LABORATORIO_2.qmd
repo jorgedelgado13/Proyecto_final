@@ -6,22 +6,31 @@ code-fold: false
 # Importar librerías
 
 ```{python}
+# ====== Importar librerías ======
+import re
+import unicodedata
 import pandas as pd
 import altair as alt
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler
-from sklearn.compose import ColumnTransformer
+
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+# NLTK
 import nltk
-from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
-from nltk import word_tokenize # tokenizacion
-from nltk import pos_tag #lematizacion
-from nltk.stem import WordNetLemmatizer
-from nltk.corpus import wordnet
+    
 
-lemmatizer = WordNetLemmatizer()
+# Descargas necesarias de NLTK (solo se descargan una vez)
+nltk.download("stopwords")
+stop_es = stopwords.words("spanish")
+# ====== Cargar data ======
+tweets = pd.read_csv("data/tweets_totales_con_sentimiento_ml.csv", encoding="utf-8")
 
-nltk.download('stopwords') # necessary for removal of stop words
-nltk.download('wordnet')
+# Muestra básica
+display(tweets.head())
+tweets.info()
+print("shape:", tweets.shape)
+print(tweets.dtypes)
+
 ```
 
 
@@ -41,127 +50,98 @@ Entender la estructura del dataset nos da una mejor idea de con que estamos lidi
 ### Porcentaje de Missing Values por Columna
 
 ```{python}
+# ====== Porcentaje de Missing Values por Columna ======
 nan_percent = tweets.isna().mean() * 100
 nan_percent_sorted = nan_percent.sort_values(ascending=False).round(2)
 nan_percent_sorted
+
 ```
 
 
-# Asignar nueva columna 
+# Llenar celdas vacias 
 ```{python}
-tweets['es_respuesta'] = LabelEncoder().fit_transform(tweets['isReply'])
-tweets['autor_verificado'] = LabelEncoder().fit_transform(tweets['authorVerified'])
-tweets['tiene_foto'] = LabelEncoder().fit_transform(tweets['has_profile_picture'])
-tweets.head()
-```
-
-
-# CountVectorizer
-```{python}
-stop_words = stopwords.words('english')
-vectorizer = CountVectorizer(stop_words=stop_words)
-#vectorizer = TfidfVectorizer(stop_words=stop_words)
-```
-
-
-## fit: Aprende el vocabulari
-```{python}
-X = vectorizer.fit_transform(tweets)
-```
-
-```{python}
-vectorizer.get_feature_names_out()
-```
-
-## transform: Crea la matriz de conteos (sparse matrix)
-Cada fila representa un documento, cada columna una palabra del vocabulario
-```{python}
-X.toarray()
-```
-
-## Visualizar la matriz como DataFrame
-
-```{python}
-df = pd.DataFrame(X.toarray(), columns=vectorizer.get_feature_names_out())
-print(df)
+texts_raw = tweets["content"].fillna("").astype(str)
 ```
 
     
 ## Función de limpieza
 
 ```{python}
+# ====== Función de limpieza (conserva 'ñ', quita tildes) ======
+# En lugar de NFD (que rompería la ñ), mapeamos tildes explícitamente.
+_TILDE_MAP = str.maketrans({
+    "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u",
+    "Á": "a", "É": "e", "Í": "i", "Ó": "o", "Ú": "u",
+    "ü": "u", "Ü": "u"
+})
 
+def normalize_text(text: str) -> str:
+    text = str(text).lower().strip()
+    # URLs
+    text = re.sub(r"https?://\S+|www\.\S+", " ", text)
+    # menciones
+    text = re.sub(r"@\w+", " ", text)
+    # hashtags (si no te sirven)
+    text = re.sub(r"#\w+", " ", text)
+    # quitar tildes pero NO tocar 'ñ'
+    text = text.translate(_TILDE_MAP)
+    # conservar letras (a-z, ñ) y espacios
+    text = re.sub(r"[^a-zñ\s]", " ", text)
+    # colapsar espacios
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
-
-def get_wordnet_pos(treebank_tag):
-    # print("treebank_tag",treebank_tag)
-    if treebank_tag.startswith('J'):
-        return wordnet.ADJ
-    elif treebank_tag.startswith('V'):
-        return wordnet.VERB
-    elif treebank_tag.startswith('N'):
-        return wordnet.NOUN
-    elif treebank_tag.startswith('R'):
-        return wordnet.ADV
-    else:
-        return wordnet.NOUN 
-
-
-def preprocessing_document(doc):
-    #1 transformar en minusculas
-    doc = doc.lower()
-    
-    #2 tokenizar
-    tokens = word_tokenize(doc)
-
-    #3 obtener lematizacion con etiqueta POS
-    tagged_tokens = pos_tag(tokens)
-
-    #ELIMINAR LAS STOP-WORDS EN CASO QUE NO USE EL PARAMETRO STOPWORD EN LA VECTORIZACION
-
-    #4 filtrar numeros
-    filtered_tokens = [(word,pos) for (word,pos) in tagged_tokens if word.isalpha()]
-
-    #5 Lematizacion usando el pos
-    lemmatized_words = [lemmatizer.lemmatize(word,get_wordnet_pos(pos)) for word, pos in filtered_tokens]
-
-    return " ".join(lemmatized_words)
-
+tweets["clean_text"] = texts_raw.apply(normalize_text)
+tweets[["content", "clean_text"]].head()
 ```
 
-# Preprocesamiento manual
-
-```{python}
-for doc in tweets:
-    r = preprocessing_document(doc)
-    print(f"doc: {doc}, preprocesamiento: {r}")
-```
 
 ## Fit_transform
 Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words
+```{python}
+stop_es = stopwords.words("spanish")
+vectorizer = TfidfVectorizer(stop_words=stop_es)
+#vectorizer = CountVectorizer(stop_words=stop_es) 
+
+```
 
 
 ```{python}
-tweets_cleaned = [preprocessing_document(doc) for doc in tweets]
-X = vectorizer.fit_transform(tweets)
+
+X = vectorizer.fit_transform(tweets["clean_text"])
 ```
 
 ## Obtener las palabras finales
 
 ```{python}
-vectorizer.get_feature_names_out()
+print("Matriz X:", X.shape)      # (n_docs, n_terms)
+vocab = vectorizer.get_feature_names_out()
+print("Primeras 20 palabras:", vocab[:20])
+
+sample_rows = min(10, X.shape[0])
+preview_df = pd.DataFrame(
+    X[:sample_rows].toarray(),
+    columns=vocab
+)
+preview_df.iloc[:, :20]
+
 ```
 
-# Matriz de ocurrencias (conteos)
-Esta matriz muestra cada fila un documento, y cada columna una palabra
+
+# Cargar el dataset
 
 ```{python}
-X.toarray()
+#categorias = ['comp.graphics','comp.sys.mac.hardware','rec.sport.baseball','talk.politics.misc']
+
+#newsgroups = fetch_20newsgroups(subset='train', remove=('headers','footers','quotes'))
+#print(newsgroups.target_names)
 ```
 
+# Features y target
+
 ```{python}
+#X_text = newsgroups.data #features
+#y = newsgroups.target #target
+```
 
-
-df_1 = pd.DataFrame(X.toarray(),columns=vectorizer.get_feature_names_out())
-df_1
 ```

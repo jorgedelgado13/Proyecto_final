@@ -34,7 +34,7 @@ df['label_encoded'] = LabelEncoder().fit_transform(df['label'])
 df
 ```
 
-##  OrdinalEncoder(): usar en columnas categoricas ordinasl, donde los valores tienen un orden natural (e.g., S < M < L)
+##  OrdinalEncoder(): usar en columnas categoricas ordinales, donde los valores tienen un orden natural (e.g., S < M < L)
 
 
 ```{python}

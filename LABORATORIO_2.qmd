@@ -62,3 +62,25 @@ stop_words = stopwords.words('english')
 vectorizer = CountVectorizer(stop_words=stop_words)
 ```
 
+
+## fit: Aprende el vocabulari
+```{python}
+X = vectorizer.fit_transform(tweets[content])
+```
+
+```{python}
+vectorizer.get_feature_names_out()
+```
+
+## transform: Crea la matriz de conteos (sparse matrix)
+Cada fila representa un documento, cada columna una palabra del vocabulario
+```{python}
+X.toarray()
+```
+
+## Visualizar la matriz como DataFrame
+
+```{python}
+df = pd.DataFrame(X.toarray(), columns=vectorizer.get_feature_names_out())
+print(df)
+```

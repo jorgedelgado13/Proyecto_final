@@ -136,3 +136,32 @@ for doc in tweets:
     r = preprocessing_document(doc)
     print(f"doc: {doc}, preprocesamiento: {r}")
 ```
+
+## Fit_transform
+Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words
+
+
+```{python}
+tweets_cleaned = [preprocessing_document(doc) for doc in tweets]
+X = vectorizer.fit_transform(tweets)
+```
+
+## Obtener las palabras finales
+
+```{python}
+vectorizer.get_feature_names_out()
+```
+
+# Matriz de ocurrencias (conteos)
+Esta matriz muestra cada fila un documento, y cada columna una palabra
+
+```{python}
+X.toarray()
+```
+
+```{python}
+
+
+df_1 = pd.DataFrame(X.toarray(),columns=vectorizer.get_feature_names_out())
+df_1
+```

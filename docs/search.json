@@ -55,6 +55,28 @@
     ]
   },
   {
+    "objectID": "LABORATORIO_2.html#fit_transform",
+    "href": "LABORATORIO_2.html#fit_transform",
+    "title": "Laboratorio",
+    "section": "Fit_transform",
+    "text": "Fit_transform\nAprende de los tweets (vocabulario) y del ser caso elimina las stop-words\n\ntweets_cleaned = [preprocessing_document(doc) for doc in tweets]\nX = vectorizer.fit_transform(tweets)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Laboratorio"
+    ]
+  },
+  {
+    "objectID": "LABORATORIO_2.html#obtener-las-palabras-finales",
+    "href": "LABORATORIO_2.html#obtener-las-palabras-finales",
+    "title": "Laboratorio",
+    "section": "Obtener las palabras finales",
+    "text": "Obtener las palabras finales\n\nvectorizer.get_feature_names_out()\n\narray(['account_age_days', 'authorfollowers', 'authorid',\n       'authorjoindate', 'authorname', 'authorprofilepic',\n       'authorusername', 'authorverified', 'autor_verificado', 'content',\n       'content_length', 'conversationid', 'createdat', 'date',\n       'es_respuesta', 'has_profile_picture', 'hashtags',\n       'hashtags_count', 'inreplytoid', 'isreply', 'mentions',\n       'mentions_count', 'replyto', 'sentiment_polarity', 'source',\n       'tiene_foto', 'time_response', 'tweetid', 'tweeturl'], dtype=object)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Laboratorio"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Laboratorio 2 - Módulo de aprendizaje de máquina",

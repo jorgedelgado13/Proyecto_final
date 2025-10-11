@@ -352,8 +352,8 @@
     ]
   },
   {
-    "objectID": "categorical_encoding.html#ordinalencoder-usar-en-columnas-categoricas-ordinasl-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l",
-    "href": "categorical_encoding.html#ordinalencoder-usar-en-columnas-categoricas-ordinasl-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l",
+    "objectID": "categorical_encoding.html#ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l",
+    "href": "categorical_encoding.html#ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l",
     "title": "Categorical Encoding",
     "section": "",
     "text": "size_order = [['S','M','L']]\ndf['size_encoded'] = OrdinalEncoder(categories=size_order).fit_transform(df[['size']])\ndf\n\n\n\n\n\n\n\n\nsize\ncolor\nprice\nlabel\nlabel_encoded\nsize_encoded\n\n\n\n\n0\nM\ngreen\n10.1\npantalones\n1\n1.0\n\n\n1\nS\nred\n13.5\ncamisetas\n0\n0.0\n\n\n2\nL\nblue\n15.6\ncamisetas\n0\n2.0",
@@ -548,39 +548,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome",
+    "title": "Laboratorio 2 - Módulo de aprendizaje de máquina",
     "section": "",
-    "text": "Welcome to the Machine Learning module (ITEMSCINTARTV02) at Yachay Tech, a fundamental part of the Master’s in Artificial Intelligence program. This course provides a rigorous and practical introduction to machine learning, one of the most transformative fields in computer science and data-driven industries today.\n\n\nMachine Learning (ML) is reshaping the way we interact with data and make decisions. From e-commerce and cybersecurity to healthcare and big data, the ability to extract insights and build predictive models is essential in solving complex problems. This module equips students with the ability to:\n\nUnderstand the fundamentals of ML, including supervised, unsupervised, and semi-supervised learning.\nApply and optimize state-of-the-art algorithms using real-world datasets.\nCritically evaluate the impact and limitations of ML technologies in diverse contexts.\n\n\n\n\nBy the end of this course, students will be able to:\n\nDescribe and explain the purpose and use cases of core ML techniques.\nImplement and tune ML models to extract knowledge from diverse datasets.\nSelect and apply algorithms based on domain requirements.\nEngage with interdisciplinary research and consider ethical implications of AI in society.\n\n\n\n\nThis module follows a theory + practice methodology:\n\nEach concept is introduced through interactive lectures and deepened via hands-on coding labs in Python.\nStudents will work with real-world datasets to explore and implement algorithms.\nThe course includes paper reviews, DataCamp self-paced modules, and project-based learning to build strong analytical and technical skills.\n\n\nLet this be a space where you challenge your understanding, ask bold questions, and connect theory to impactful applications. Welcome to the journey of Machine Learning at Yachay Tech.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#course-vision",
-    "href": "index.html#course-vision",
-    "title": "Welcome",
-    "section": "",
-    "text": "Machine Learning (ML) is reshaping the way we interact with data and make decisions. From e-commerce and cybersecurity to healthcare and big data, the ability to extract insights and build predictive models is essential in solving complex problems. This module equips students with the ability to:\n\nUnderstand the fundamentals of ML, including supervised, unsupervised, and semi-supervised learning.\nApply and optimize state-of-the-art algorithms using real-world datasets.\nCritically evaluate the impact and limitations of ML technologies in diverse contexts.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#learning-goals",
-    "href": "index.html#learning-goals",
-    "title": "Welcome",
-    "section": "",
-    "text": "By the end of this course, students will be able to:\n\nDescribe and explain the purpose and use cases of core ML techniques.\nImplement and tune ML models to extract knowledge from diverse datasets.\nSelect and apply algorithms based on domain requirements.\nEngage with interdisciplinary research and consider ethical implications of AI in society.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#learning-approach",
-    "href": "index.html#learning-approach",
-    "title": "Welcome",
-    "section": "",
-    "text": "This module follows a theory + practice methodology:\n\nEach concept is introduced through interactive lectures and deepened via hands-on coding labs in Python.\nStudents will work with real-world datasets to explore and implement algorithms.\nThe course includes paper reviews, DataCamp self-paced modules, and project-based learning to build strong analytical and technical skills.\n\n\nLet this be a space where you challenge your understanding, ask bold questions, and connect theory to impactful applications. Welcome to the journey of Machine Learning at Yachay Tech.",
+    "text": "Laboratorio 2\nMódulo de aprendizajo de máquina Yachaytech 2025\nRealizado por: Jorge Delgado",
     "crumbs": [
       "Welcome"
     ]

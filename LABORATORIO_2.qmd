@@ -37,6 +37,8 @@ nan_percent_sorted
 
 # Asignar nueva columna 
 ```{python}
-tweets['label_encoded'] = LabelEncoder().fit_transform(tweets['authorVerified'])
+tweets['es_respuesta'] = LabelEncoder().fit_transform(tweets['isReply'])
+tweets['autor_verificado'] = LabelEncoder().fit_transform(tweets['authorVerified'])
+tweets['tiene_foto'] = LabelEncoder().fit_transform(tweets['has_profile_picture'])
 tweets.head()
 ```

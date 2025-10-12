@@ -180,16 +180,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cargar-data" id="toc-cargar-data" class="nav-link" data-scroll-target="#cargar-data">Cargar data</a>
   <ul class="collapse">
   <li><a href="#porcentaje-de-missing-values-por-columna" id="toc-porcentaje-de-missing-values-por-columna" class="nav-link" data-scroll-target="#porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</a></li>
-  </ul></li>
-  <li><a href="#llenar-celdas-vacias" id="toc-llenar-celdas-vacias" class="nav-link" data-scroll-target="#llenar-celdas-vacias">Llenar celdas vacias</a>
-  <ul class="collapse">
   <li><a href="#función-de-limpieza" id="toc-función-de-limpieza" class="nav-link" data-scroll-target="#función-de-limpieza">Función de limpieza</a></li>
-  <li><a href="#fit_transform" id="toc-fit_transform" class="nav-link" data-scroll-target="#fit_transform">Fit_transform</a></li>
-  <li><a href="#obtener-las-palabras-finales" id="toc-obtener-las-palabras-finales" class="nav-link" data-scroll-target="#obtener-las-palabras-finales">Obtener las palabras finales</a></li>
+  <li><a href="#palabras-que-demuestran-apoyo-o-disgusto" id="toc-palabras-que-demuestran-apoyo-o-disgusto" class="nav-link" data-scroll-target="#palabras-que-demuestran-apoyo-o-disgusto">Palabras que demuestran apoyo o disgusto</a></li>
+  <li><a href="#creación-de-etiquetas-con-labelencoder" id="toc-creación-de-etiquetas-con-labelencoder" class="nav-link" data-scroll-target="#creación-de-etiquetas-con-labelencoder">Creación de etiquetas con LabelEncoder</a></li>
+  <li><a href="#construcción-de-variable-target-basada-en-caractisticas-de-usuarios" id="toc-construcción-de-variable-target-basada-en-caractisticas-de-usuarios" class="nav-link" data-scroll-target="#construcción-de-variable-target-basada-en-caractisticas-de-usuarios">Construcción de variable target basada en caractisticas de usuarios</a></li>
+  <li><a href="#vectorización-de-texto" id="toc-vectorización-de-texto" class="nav-link" data-scroll-target="#vectorización-de-texto">Vectorización de texto</a></li>
+  <li><a href="#one-hot-encoder-para-variables-categoricas-método-de-autodetección" id="toc-one-hot-encoder-para-variables-categoricas-método-de-autodetección" class="nav-link" data-scroll-target="#one-hot-encoder-para-variables-categoricas-método-de-autodetección">One hot encoder para variables categoricas (método de autodetección)</a></li>
+  <li><a href="#ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer" id="toc-ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer" class="nav-link" data-scroll-target="#ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer">Ensamble: númericas (Label Ecoder) + categóticas (One-hot-encoder) + text (columntransformer)</a></li>
+  <li><a href="#split-división-entrenamiento-y-evaluación" id="toc-split-división-entrenamiento-y-evaluación" class="nav-link" data-scroll-target="#split-división-entrenamiento-y-evaluación">Split (división), entrenamiento y evaluación</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión">Matriz de confusión</a></li>
+  <li><a href="#inspección-palabras-más-comunes-tf-idf" id="toc-inspección-palabras-más-comunes-tf-idf" class="nav-link" data-scroll-target="#inspección-palabras-más-comunes-tf-idf">Inspección: palabras más comunes (TF-IDF)</a></li>
   </ul></li>
-  <li><a href="#crear-nueva-columna-objetivo" id="toc-crear-nueva-columna-objetivo" class="nav-link" data-scroll-target="#crear-nueva-columna-objetivo">Crear nueva columna objetivo</a></li>
-  <li><a href="#cargar-el-dataset" id="toc-cargar-el-dataset" class="nav-link" data-scroll-target="#cargar-el-dataset">Cargar el dataset</a></li>
-  <li><a href="#features-y-target" id="toc-features-y-target" class="nav-link" data-scroll-target="#features-y-target">Features y target</a></li>
   </ul>
 </nav>
     </div>
@@ -217,36 +218,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="4449605c" class="cell" data-execution_count="1">
+<div id="a83f7762" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Importar librerías ======</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unicodedata</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># NLTK</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Descargas necesarias de NLTK (solo se descargan una vez)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">"stopwords"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>stop_es <span class="op">=</span> stopwords.words(<span class="st">"spanish"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Cargar data ======</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra básica</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>display(tweets.head())</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>tweets.info()</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, tweets.shape)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[nltk_data] Downloading package stopwords to
-[nltk_data]     C:\Users\delga\AppData\Roaming\nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!</code></pre>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, OneHotEncoder, StandardScaler</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> (</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    accuracy_score, precision_score, recall_score, f1_score,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    classification_report, ConfusionMatrixDisplay</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># NLTK</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">"stopwords"</span>, quiet<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>stop_es <span class="op">=</span> stopwords.words(<span class="st">"spanish"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="cargar-data" class="level1">
+<h1>Cargar data</h1>
+<div id="b6e81f76" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vista rápida</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>display(tweets.head(<span class="dv">3</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tweets.info()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"shape:"</span>, tweets.shape)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -351,58 +358,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>True</td>
 <td>0.0</td>
 </tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>1877168335193833472</td>
-<td>https://x.com/JRamirez2O24/status/187716833519...</td>
-<td>@jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...</td>
-<td>True</td>
-<td>jdiegol2010</td>
-<td>2025-01-09 01:39:00</td>
-<td>1759130630766341888</td>
-<td>ANDRES RAMIREZ</td>
-<td>JRamirez2O24</td>
-<td>False</td>
-<td>...</td>
-<td>1877115691146306005</td>
-<td>1877159202646315264</td>
-<td>2025-01-08 22:10:30</td>
-<td>208.5</td>
-<td>321</td>
-<td>2</td>
-<td>0</td>
-<td>51</td>
-<td>True</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>1877159202646315264</td>
-<td>https://x.com/jdiegol2010/status/1877159202646...</td>
-<td>@JRamirez2O24 @DanielNoboaOk El tema es respet...</td>
-<td>True</td>
-<td>JRamirez2O24</td>
-<td>2025-01-09 01:03:00</td>
-<td>146111157</td>
-<td>Juan Diego</td>
-<td>jdiegol2010</td>
-<td>False</td>
-<td>...</td>
-<td>1877115691146306005</td>
-<td>1877130145938481152</td>
-<td>2025-01-08 22:10:30</td>
-<td>172.5</td>
-<td>5343</td>
-<td>2</td>
-<td>0</td>
-<td>80</td>
-<td>True</td>
-<td>0.0</td>
-</tr>
 </tbody>
 </table>
 
-<p>5 rows × 26 columns</p>
+<p>3 rows × 26 columns</p>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -469,333 +428,72 @@ sentiment_polarity     float64
 dtype: object</code></pre>
 </div>
 </div>
-</section>
-<section id="cargar-data" class="level1">
-<h1>Cargar data</h1>
-<div id="b3c20032" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra las primeras filas</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.head)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.info)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.shape)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;bound method NDFrame.head of                     tweetId  \
-0       1877190873579950336   
-1       1877188297551650816   
-2       1877186248986501120   
-3       1877168335193833472   
-4       1877159202646315264   
-...                     ...   
-158868  1910030377110077696   
-158869  1910028396467478784   
-158870  1910026147896631552   
-158871  1910026005353533184   
-158872  1910025946931027968   
-
-                                                 tweetUrl  \
-0       https://x.com/hectorjalonm/status/187719087357...   
-1       https://x.com/DiegoPonguill10/status/187718829...   
-2       https://x.com/ekuador_593/status/1877186248986...   
-3       https://x.com/JRamirez2O24/status/187716833519...   
-4       https://x.com/jdiegol2010/status/1877159202646...   
-...                                                   ...   
-158868  https://x.com/lilibeth7394/status/191003037711...   
-158869  https://x.com/_Claudia______/status/1910028396...   
-158870  https://x.com/IsaiasRodriguz/status/1910026147...   
-158871  https://x.com/controlremoto85/status/191002600...   
-158872  https://x.com/allechhh/status/1910025946931027996   
-
-                                                  content  isReply  \
-0       @DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...     True   
-1       @hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...     True   
-2       @Gregori58965636 @yesendiaz @DanielNoboaOk Otr...     True   
-3       @jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...     True   
-4       @JRamirez2O24 @DanielNoboaOk El tema es respet...     True   
-...                                                   ...      ...   
-158868  @LuisaGonzalezEc Por más hospitales con medica...     True   
-158869  @LuisaGonzalezEc ¡Vamos Con TODO PresidentA \n...     True   
-158870  @LuisaGonzalezEc Vamos con todo PRESIDENTA ! 💪...     True   
-158871      @LuisaGonzalezEc Luisa presidenta sin dudarlo     True   
-158872  @LuisaGonzalezEc Desde México todo mi apoyo a ...     True   
-
-                replyTo            createdAt             authorId  \
-0       DiegoPonguill10  2025-01-09 03:09:00  1458536175119986688   
-1          hectorjalonm  2025-01-09 02:59:00  1555549203211976704   
-2       Gregori58965636  2025-01-09 02:50:00  1457524470365708288   
-3           jdiegol2010  2025-01-09 01:39:00  1759130630766341888   
-4          JRamirez2O24  2025-01-09 01:03:00            146111157   
-...                 ...                  ...                  ...   
-158868  LuisaGonzalezEc  2025-04-09 18:01:00            193481457   
-158869  LuisaGonzalezEc  2025-04-09 17:53:00  1464620252189401088   
-158870  LuisaGonzalezEc  2025-04-09 17:44:00            383933505   
-158871  LuisaGonzalezEc  2025-04-09 17:44:00           4846627047   
-158872  LuisaGonzalezEc  2025-04-09 17:44:00  1418120966480310272   
-
-                                            authorName   authorUsername  \
-0                                             héctor 🌵     hectorjalonm   
-1       Diego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!  DiegoPonguill10   
-2                                   Sebastián Noboa Ec      ekuador_593   
-3                                       ANDRES RAMIREZ     JRamirez2O24   
-4                                           Juan Diego      jdiegol2010   
-...                                                ...              ...   
-158868                                   Od.Lily Silva     lilibeth7394   
-158869                                         Claudia   _Claudia______   
-158870                             ISAÍAS RODRIGUEZ 🇪🇨   IsaiasRodriguz   
-158871                                           Kandy  controlremoto85   
-158872                                          Allech         allechhh   
-
-        authorVerified  ...       conversationId          inReplyToId  \
-0                False  ...  1877115691146306005  1877188297551650816   
-1                False  ...  1877115691146306005  1877123519743451648   
-2                False  ...  1877115691146306005  1877122565782576896   
-3                False  ...  1877115691146306005  1877159202646315264   
-4                False  ...  1877115691146306005  1877130145938481152   
-...                ...  ...                  ...                  ...   
-158868           False  ...  1910025386240450698  1910025386240450816   
-158869           False  ...  1910025386240450698  1910025386240450816   
-158870           False  ...  1910025386240450698  1910025386240450816   
-158871           False  ...  1910025386240450698  1910025386240450816   
-158872           False  ...  1910025386240450698  1910025386240450816   
-
-                       Date time_response account_age_days mentions_count  \
-0       2025-01-08 22:10:30    298.500000             1151              3   
-1       2025-01-08 22:10:30    288.500000              883              3   
-2       2025-01-08 22:10:30    279.500000             1153              3   
-3       2025-01-08 22:10:30    208.500000              321              2   
-4       2025-01-08 22:10:30    172.500000             5343              2   
-...                     ...           ...              ...            ...   
-158868  2025-04-09 17:41:53     19.116667             5219              1   
-158869  2025-04-09 17:41:53     11.116667             1134              1   
-158870  2025-04-09 17:41:53      2.116667             4843              1   
-158871  2025-04-09 17:41:53      2.116667             3267              1   
-158872  2025-04-09 17:41:53      2.116667             1262              2   
-
-        hashtags_count  content_length has_profile_picture  sentiment_polarity  
-0                    0              88                True                0.00  
-1                    0             119                True                0.00  
-2                    0              60                True                0.00  
-3                    0              51                True                0.00  
-4                    0              80                True                0.00  
-...                ...             ...                 ...                 ...  
-158868               0              74                True                0.00  
-158869               0             123                True                0.00  
-158870               0             174                True                0.75  
-158871               0              45                True                0.00  
-158872               0             188                True                0.00  
-
-[158873 rows x 26 columns]&gt;
-&lt;bound method DataFrame.info of                     tweetId  \
-0       1877190873579950336   
-1       1877188297551650816   
-2       1877186248986501120   
-3       1877168335193833472   
-4       1877159202646315264   
-...                     ...   
-158868  1910030377110077696   
-158869  1910028396467478784   
-158870  1910026147896631552   
-158871  1910026005353533184   
-158872  1910025946931027968   
-
-                                                 tweetUrl  \
-0       https://x.com/hectorjalonm/status/187719087357...   
-1       https://x.com/DiegoPonguill10/status/187718829...   
-2       https://x.com/ekuador_593/status/1877186248986...   
-3       https://x.com/JRamirez2O24/status/187716833519...   
-4       https://x.com/jdiegol2010/status/1877159202646...   
-...                                                   ...   
-158868  https://x.com/lilibeth7394/status/191003037711...   
-158869  https://x.com/_Claudia______/status/1910028396...   
-158870  https://x.com/IsaiasRodriguz/status/1910026147...   
-158871  https://x.com/controlremoto85/status/191002600...   
-158872  https://x.com/allechhh/status/1910025946931027996   
-
-                                                  content  isReply  \
-0       @DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...     True   
-1       @hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...     True   
-2       @Gregori58965636 @yesendiaz @DanielNoboaOk Otr...     True   
-3       @jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...     True   
-4       @JRamirez2O24 @DanielNoboaOk El tema es respet...     True   
-...                                                   ...      ...   
-158868  @LuisaGonzalezEc Por más hospitales con medica...     True   
-158869  @LuisaGonzalezEc ¡Vamos Con TODO PresidentA \n...     True   
-158870  @LuisaGonzalezEc Vamos con todo PRESIDENTA ! 💪...     True   
-158871      @LuisaGonzalezEc Luisa presidenta sin dudarlo     True   
-158872  @LuisaGonzalezEc Desde México todo mi apoyo a ...     True   
-
-                replyTo            createdAt             authorId  \
-0       DiegoPonguill10  2025-01-09 03:09:00  1458536175119986688   
-1          hectorjalonm  2025-01-09 02:59:00  1555549203211976704   
-2       Gregori58965636  2025-01-09 02:50:00  1457524470365708288   
-3           jdiegol2010  2025-01-09 01:39:00  1759130630766341888   
-4          JRamirez2O24  2025-01-09 01:03:00            146111157   
-...                 ...                  ...                  ...   
-158868  LuisaGonzalezEc  2025-04-09 18:01:00            193481457   
-158869  LuisaGonzalezEc  2025-04-09 17:53:00  1464620252189401088   
-158870  LuisaGonzalezEc  2025-04-09 17:44:00            383933505   
-158871  LuisaGonzalezEc  2025-04-09 17:44:00           4846627047   
-158872  LuisaGonzalezEc  2025-04-09 17:44:00  1418120966480310272   
-
-                                            authorName   authorUsername  \
-0                                             héctor 🌵     hectorjalonm   
-1       Diego Ponguillo Vargas TODO TODITO #5 😉 HLVS!!  DiegoPonguill10   
-2                                   Sebastián Noboa Ec      ekuador_593   
-3                                       ANDRES RAMIREZ     JRamirez2O24   
-4                                           Juan Diego      jdiegol2010   
-...                                                ...              ...   
-158868                                   Od.Lily Silva     lilibeth7394   
-158869                                         Claudia   _Claudia______   
-158870                             ISAÍAS RODRIGUEZ 🇪🇨   IsaiasRodriguz   
-158871                                           Kandy  controlremoto85   
-158872                                          Allech         allechhh   
-
-        authorVerified  ...       conversationId          inReplyToId  \
-0                False  ...  1877115691146306005  1877188297551650816   
-1                False  ...  1877115691146306005  1877123519743451648   
-2                False  ...  1877115691146306005  1877122565782576896   
-3                False  ...  1877115691146306005  1877159202646315264   
-4                False  ...  1877115691146306005  1877130145938481152   
-...                ...  ...                  ...                  ...   
-158868           False  ...  1910025386240450698  1910025386240450816   
-158869           False  ...  1910025386240450698  1910025386240450816   
-158870           False  ...  1910025386240450698  1910025386240450816   
-158871           False  ...  1910025386240450698  1910025386240450816   
-158872           False  ...  1910025386240450698  1910025386240450816   
-
-                       Date time_response account_age_days mentions_count  \
-0       2025-01-08 22:10:30    298.500000             1151              3   
-1       2025-01-08 22:10:30    288.500000              883              3   
-2       2025-01-08 22:10:30    279.500000             1153              3   
-3       2025-01-08 22:10:30    208.500000              321              2   
-4       2025-01-08 22:10:30    172.500000             5343              2   
-...                     ...           ...              ...            ...   
-158868  2025-04-09 17:41:53     19.116667             5219              1   
-158869  2025-04-09 17:41:53     11.116667             1134              1   
-158870  2025-04-09 17:41:53      2.116667             4843              1   
-158871  2025-04-09 17:41:53      2.116667             3267              1   
-158872  2025-04-09 17:41:53      2.116667             1262              2   
-
-        hashtags_count  content_length has_profile_picture  sentiment_polarity  
-0                    0              88                True                0.00  
-1                    0             119                True                0.00  
-2                    0              60                True                0.00  
-3                    0              51                True                0.00  
-4                    0              80                True                0.00  
-...                ...             ...                 ...                 ...  
-158868               0              74                True                0.00  
-158869               0             123                True                0.00  
-158870               0             174                True                0.75  
-158871               0              45                True                0.00  
-158872               0             188                True                0.00  
-
-[158873 rows x 26 columns]&gt;
-(158873, 26)
-tweetId                  int64
-tweetUrl                object
-content                 object
-isReply                   bool
-replyTo                 object
-createdAt               object
-authorId                 int64
-authorName              object
-authorUsername          object
-authorVerified            bool
-authorFollowers          int64
-authorProfilePic        object
-authorJoinDate          object
-source                  object
-hashtags                object
-mentions                object
-conversationId           int64
-inReplyToId              int64
-Date                    object
-time_response          float64
-account_age_days         int64
-mentions_count           int64
-hashtags_count           int64
-content_length           int64
-has_profile_picture       bool
-sentiment_polarity     float64
-dtype: object</code></pre>
-</div>
-</div>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="0041319b" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Porcentaje de Missing Values por Columna ======</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean() <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted <span class="op">=</span> nan_percent.sort_values(ascending<span class="op">=</span><span class="va">False</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>nan_percent_sorted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c460b18b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Porcentaje de Missing Values por Columna ======</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).mul(<span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nan_percent.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>hashtags               92.19
-replyTo                 0.54
-mentions                0.22
-authorName              0.00
-tweetUrl                0.00
-tweetId                 0.00
-createdAt               0.00
-authorId                0.00
-isReply                 0.00
-content                 0.00
-authorVerified          0.00
-authorUsername          0.00
-authorFollowers         0.00
-authorProfilePic        0.00
-source                  0.00
-authorJoinDate          0.00
-conversationId          0.00
-inReplyToId             0.00
-Date                    0.00
-time_response           0.00
-account_age_days        0.00
-mentions_count          0.00
-hashtags_count          0.00
-content_length          0.00
-has_profile_picture     0.00
-sentiment_polarity      0.00
+<pre><code>hashtags            92.19
+replyTo              0.54
+mentions             0.22
+authorName           0.00
+tweetUrl             0.00
+tweetId              0.00
+createdAt            0.00
+authorId             0.00
+isReply              0.00
+content              0.00
+authorVerified       0.00
+authorUsername       0.00
+authorFollowers      0.00
+authorProfilePic     0.00
+source               0.00
+authorJoinDate       0.00
+conversationId       0.00
+inReplyToId          0.00
+Date                 0.00
+time_response        0.00
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="llenar-celdas-vacias" class="level1">
-<h1>Llenar celdas vacias</h1>
-<div id="8eaec550" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>texts_raw <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).astype(<span class="bu">str</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <section id="función-de-limpieza" class="level2">
 <h2 class="anchored" data-anchor-id="función-de-limpieza">Función de limpieza</h2>
-<div id="76e349c9" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Función de limpieza (conserva 'ñ', quita tildes) ======</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># En lugar de NFD (que rompería la ñ), mapeamos tildes explícitamente.</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>_TILDE_MAP <span class="op">=</span> <span class="bu">str</span>.maketrans({</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"á"</span>: <span class="st">"a"</span>, <span class="st">"é"</span>: <span class="st">"e"</span>, <span class="st">"í"</span>: <span class="st">"i"</span>, <span class="st">"ó"</span>: <span class="st">"o"</span>, <span class="st">"ú"</span>: <span class="st">"u"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Á"</span>: <span class="st">"a"</span>, <span class="st">"É"</span>: <span class="st">"e"</span>, <span class="st">"Í"</span>: <span class="st">"i"</span>, <span class="st">"Ó"</span>: <span class="st">"o"</span>, <span class="st">"Ú"</span>: <span class="st">"u"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ü"</span>: <span class="st">"u"</span>, <span class="st">"Ü"</span>: <span class="st">"u"</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_text(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="bu">str</span>(text).lower().strip()</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># URLs</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"https</span><span class="op">?</span><span class="vs">://</span><span class="dv">\S</span><span class="op">+</span><span class="cf">|</span><span class="vs">www</span><span class="ch">\.</span><span class="dv">\S</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># menciones</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"@</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># hashtags (si no te sirven)</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"#</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># quitar tildes pero NO tocar 'ñ'</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.translate(_TILDE_MAP)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># conservar letras (a-z, ñ) y espacios</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="pp">[^a-zñ</span><span class="dv">\s</span><span class="pp">]</span><span class="vs">"</span>, <span class="st">" "</span>, text)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># colapsar espacios</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="dv">\s</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text).strip()</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"clean_text"</span>] <span class="op">=</span> texts_raw.<span class="bu">apply</span>(normalize_text)</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"content"</span>, <span class="st">"clean_text"</span>]].head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="aab3eb35" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Normalización de texto (conserva 'ñ', quita tildes) ======</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>_TILDE_MAP <span class="op">=</span> <span class="bu">str</span>.maketrans({</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"á"</span>:<span class="st">"a"</span>,<span class="st">"é"</span>:<span class="st">"e"</span>,<span class="st">"í"</span>:<span class="st">"i"</span>,<span class="st">"ó"</span>:<span class="st">"o"</span>,<span class="st">"ú"</span>:<span class="st">"u"</span>,<span class="st">"Á"</span>:<span class="st">"a"</span>,<span class="st">"É"</span>:<span class="st">"e"</span>,<span class="st">"Í"</span>:<span class="st">"i"</span>,<span class="st">"Ó"</span>:<span class="st">"o"</span>,<span class="st">"Ú"</span>:<span class="st">"u"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ü"</span>:<span class="st">"u"</span>,<span class="st">"Ü"</span>:<span class="st">"u"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_text(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="bu">str</span>(text)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.lower().strip()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"https</span><span class="op">?</span><span class="vs">://</span><span class="dv">\S</span><span class="op">+</span><span class="cf">|</span><span class="vs">www</span><span class="ch">\.</span><span class="dv">\S</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)  <span class="co"># URLs</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"@</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)                   <span class="co"># menciones</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"#</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text)                   <span class="co"># hashtags (como texto)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.translate(_TILDE_MAP)                   <span class="co"># quitar tildes (NO toca ñ)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="pp">[^a-zñ</span><span class="dv">\s</span><span class="pp">]</span><span class="vs">"</span>, <span class="st">" "</span>, text)              <span class="co"># solo letras y espacios</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r"</span><span class="dv">\s</span><span class="op">+</span><span class="vs">"</span>, <span class="st">" "</span>, text).strip()            <span class="co"># espacios extra</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Asegurar columna 'content'</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"content"</span> <span class="kw">not</span> <span class="kw">in</span> tweets.columns:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No se encontró la columna 'content' en el dataset."</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"clean_text"</span>] <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).astype(<span class="bu">str</span>).<span class="bu">apply</span>(normalize_text)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Algunas features simples de texto (antes de TF-IDF)</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"num_urls"</span>]      <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).<span class="bu">str</span>.count(<span class="vs">r"https</span><span class="op">?</span><span class="vs">://</span><span class="cf">|</span><span class="vs">www</span><span class="ch">\.</span><span class="vs">"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"num_mentions"</span>]  <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).<span class="bu">str</span>.count(<span class="vs">r"@</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"num_hashtags"</span>]  <span class="op">=</span> tweets[<span class="st">"content"</span>].fillna(<span class="st">""</span>).<span class="bu">str</span>.count(<span class="vs">r"#</span><span class="dv">\w</span><span class="op">+</span><span class="vs">"</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"text_len"</span>]      <span class="op">=</span> tweets[<span class="st">"clean_text"</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"content"</span>,<span class="st">"clean_text"</span>,<span class="st">"num_urls"</span>,<span class="st">"num_mentions"</span>,<span class="st">"num_hashtags"</span>,<span class="st">"text_len"</span>]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -805,6 +503,10 @@ dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">content</th>
 <th data-quarto-table-cell-role="th">clean_text</th>
+<th data-quarto-table-cell-role="th">num_urls</th>
+<th data-quarto-table-cell-role="th">num_mentions</th>
+<th data-quarto-table-cell-role="th">num_hashtags</th>
+<th data-quarto-table-cell-role="th">text_len</th>
 </tr>
 </thead>
 <tbody>
@@ -812,26 +514,46 @@ dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">0</th>
 <td>@DiegoPonguill10 @DanielNoboaOk @LuisaGonzalez...</td>
 <td>jajajaajajajajajajajajjajaajja okkkkkkk</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>39</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>@hectorjalonm @DanielNoboaOk @LuisaGonzalezEc ...</td>
 <td>ahora vivimos en la miseria antes fuimos el me...</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>71</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>@Gregori58965636 @yesendiaz @DanielNoboaOk Otr...</td>
 <td>otro troll basura</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>17</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>@jdiegol2010 @DanielNoboaOk https://t.co/CsLWQ...</td>
 <td></td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>@JRamirez2O24 @DanielNoboaOk El tema es respet...</td>
 <td>el tema es respetar a quien eligio el pueblo o no</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>49</td>
 </tr>
 </tbody>
 </table>
@@ -840,40 +562,29 @@ dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="fit_transform" class="level2">
-<h2 class="anchored" data-anchor-id="fit_transform">Fit_transform</h2>
-<p>Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words</p>
-<div id="7e6417a3" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stop_es <span class="op">=</span> stopwords.words(<span class="st">"spanish"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_es)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#vectorizer = CountVectorizer(stop_words=stop_es) </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="2d1b8d61" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(tweets[<span class="st">"clean_text"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="obtener-las-palabras-finales" class="level2">
-<h2 class="anchored" data-anchor-id="obtener-las-palabras-finales">Obtener las palabras finales</h2>
-<div id="8c582592" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matriz X:"</span>, X.shape)      <span class="co"># (n_docs, n_terms)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> vectorizer.get_feature_names_out()</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primeras 20 palabras:"</span>, vocab[:<span class="dv">20</span>])</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sample_rows <span class="op">=</span> <span class="bu">min</span>(<span class="dv">10</span>, X.shape[<span class="dv">0</span>])</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>preview_df <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    X[:sample_rows].toarray(),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>vocab</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>preview_df.iloc[:, :<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Matriz X: (158873, 57859)
-Primeras 20 palabras: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' 'aaaaaaaaaaaaa'
- 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
- 'aaaaaaasco' 'aaaaaahhhh' 'aaaaaanndaaaaaaa' 'aaaaaauuuuuchhhh' 'aaaaah'
- 'aaaaajajajajaajajajajajajajajaajajajajajajaajajajajajajajaajajajajajajaajajajajajajaja'
- 'aaaah' 'aaaahh' 'aaaahhhajajajajajajajajajajaj' 'aaaahhhh' 'aaaajjjaaa']</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<section id="palabras-que-demuestran-apoyo-o-disgusto" class="level2">
+<h2 class="anchored" data-anchor-id="palabras-que-demuestran-apoyo-o-disgusto">Palabras que demuestran apoyo o disgusto</h2>
+<div id="68f57af3" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lex_neg <span class="op">=</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"asco"</span>,<span class="st">"basura"</span>,<span class="st">"corrupto"</span>,<span class="st">"estupido"</span>,<span class="st">"idiota"</span>,<span class="st">"ladron"</span>,<span class="st">"mentiroso"</span>,<span class="st">"odiar"</span>,<span class="st">"odio"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"imbecil"</span>,<span class="st">"tonto"</span>,<span class="st">"vomito"</span>,<span class="st">"repugnante"</span>,<span class="st">"asqueroso"</span>,<span class="st">"miserable"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>lex_pos <span class="op">=</span> {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"apoyo"</span>,<span class="st">"gracias"</span>,<span class="st">"excelente"</span>,<span class="st">"felicitaciones"</span>,<span class="st">"bien"</span>,<span class="st">"bravo"</span>,<span class="st">"genial"</span>,<span class="st">"mejor"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"aplaudo"</span>,<span class="st">"orgullo"</span>,<span class="st">"feliz"</span>,<span class="st">"contento"</span>,<span class="st">"admiro"</span>,<span class="st">"fuerza"</span>,<span class="st">"vamos"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_lexicon_hits(text: <span class="bu">str</span>, lexicon: <span class="bu">set</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> text:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> text.split()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> tokens <span class="cf">if</span> t <span class="kw">in</span> lexicon)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"neg_count"</span>] <span class="op">=</span> tweets[<span class="st">"clean_text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> t: count_lexicon_hits(t, lex_neg))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"pos_count"</span>] <span class="op">=</span> tweets[<span class="st">"clean_text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> t: count_lexicon_hits(t, lex_pos))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"clean_text"</span>,<span class="st">"neg_count"</span>,<span class="st">"pos_count"</span>]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -881,258 +592,41 @@ Primeras 20 palabras: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' '
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">aa</th>
-<th data-quarto-table-cell-role="th">aaa</th>
-<th data-quarto-table-cell-role="th">aaaa</th>
-<th data-quarto-table-cell-role="th">aaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaaaaaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaaasco</th>
-<th data-quarto-table-cell-role="th">aaaaaahhhh</th>
-<th data-quarto-table-cell-role="th">aaaaaanndaaaaaaa</th>
-<th data-quarto-table-cell-role="th">aaaaaauuuuuchhhh</th>
-<th data-quarto-table-cell-role="th">aaaaah</th>
-<th data-quarto-table-cell-role="th">aaaaajajajajaajajajajajajajajaajajajajajajaajajajajajajajaajajajajajajaajajajajajajaja</th>
-<th data-quarto-table-cell-role="th">aaaah</th>
-<th data-quarto-table-cell-role="th">aaaahh</th>
-<th data-quarto-table-cell-role="th">aaaahhhajajajajajajajajajajaj</th>
-<th data-quarto-table-cell-role="th">aaaahhhh</th>
-<th data-quarto-table-cell-role="th">aaaajjjaaa</th>
+<th data-quarto-table-cell-role="th">clean_text</th>
+<th data-quarto-table-cell-role="th">neg_count</th>
+<th data-quarto-table-cell-role="th">pos_count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>jajajaajajajajajajajajjajaajja okkkkkkk</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>ahora vivimos en la miseria antes fuimos el me...</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>otro troll basura</td>
+<td>1</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td></td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">5</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">6</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">7</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">8</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">9</th>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
+<td>el tema es respetar a quien eligio el pueblo o no</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
@@ -1141,31 +635,399 @@ Primeras 20 palabras: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' '
 </div>
 </div>
 </section>
-</section>
-<section id="crear-nueva-columna-objetivo" class="level1">
-<h1>Crear nueva columna objetivo</h1>
-<div id="77cf1a59" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"asco"</span>] <span class="op">=</span> preview_df[<span class="st">"asco"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="cargar-el-dataset" class="level1">
-<h1>Cargar el dataset</h1>
-<div id="460fc37d" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#revisar = ['isReply','has_profile_picture','authorVerified']</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#newsgroups = fetch_20newsgroups(subset='train', remove=('headers','footers','quotes'))</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(newsgroups.target_names)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="features-y-target" class="level1">
-<h1>Features y target</h1>
-<div id="0ee700ac" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#X_text = newsgroups.data #features</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y = newsgroups.target #target</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>```</p>
+<section id="creación-de-etiquetas-con-labelencoder" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-etiquetas-con-labelencoder">Creación de etiquetas con LabelEncoder</h2>
+<div id="a65e5616" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columnas esperadas (si no están, se crean como 0 para evitar errores)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cols_flags <span class="op">=</span> [<span class="st">"isReply"</span>, <span class="st">"authorVerified"</span>, <span class="st">"has_profile_picture"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols_flags:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> tweets.columns:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        tweets[c] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear nuevas columnas *_encoded usando LabelEncoder (manteniendo el estilo previo)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols_flags:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertimos a string por robustez ante valores no booleanos</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    tweets[<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">_encoded"</span>] <span class="op">=</span> le.fit_transform(tweets[c].astype(<span class="bu">str</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">_encoded"</span> <span class="cf">for</span> c <span class="kw">in</span> cols_flags]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">isReply_encoded</th>
+<th data-quarto-table-cell-role="th">authorVerified_encoded</th>
+<th data-quarto-table-cell-role="th">has_profile_picture_encoded</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="construcción-de-variable-target-basada-en-caractisticas-de-usuarios" class="level2">
+<h2 class="anchored" data-anchor-id="construcción-de-variable-target-basada-en-caractisticas-de-usuarios">Construcción de variable target basada en caractisticas de usuarios</h2>
+<div id="0400b787" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asegurar columnas numéricas (si no existen, se crean con 0)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num_needed <span class="op">=</span> [<span class="st">"account_age_days"</span>, <span class="st">"time_response"</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> num_needed:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> tweets.columns:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        tweets[c] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cast numérico seguro</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"account_age_days"</span>,<span class="st">"time_response"</span>,<span class="st">"num_urls"</span>,<span class="st">"num_mentions"</span>,<span class="st">"num_hashtags"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"text_len"</span>,<span class="st">"neg_count"</span>,<span class="st">"pos_count"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">"isReply_encoded"</span>,<span class="st">"authorVerified_encoded"</span>,<span class="st">"has_profile_picture_encoded"</span>]:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    tweets[c] <span class="op">=</span> pd.to_numeric(tweets[c], errors<span class="op">=</span><span class="st">"coerce"</span>).fillna(<span class="dv">0</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reglas -&gt; puntos</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> np.zeros(<span class="bu">len</span>(tweets), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> (tweets[<span class="st">"account_age_days"</span>] <span class="op">&lt;</span> <span class="dv">30</span>).astype(<span class="bu">int</span>)                   <span class="co"># cuenta reciente</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> (tweets[<span class="st">"time_response"</span>] <span class="op">&lt;</span> <span class="dv">30</span>).astype(<span class="bu">int</span>)                      <span class="co"># respuesta muy rápida (ajusta a tu caso)</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> (tweets[<span class="st">"authorVerified_encoded"</span>] <span class="op">==</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)             <span class="co"># no verificada</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> (tweets[<span class="st">"has_profile_picture_encoded"</span>] <span class="op">==</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)        <span class="co"># sin foto</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> ((tweets[<span class="st">"num_urls"</span>] <span class="op">+</span> tweets[<span class="st">"num_mentions"</span>] <span class="op">+</span> tweets[<span class="st">"num_hashtags"</span>]) <span class="op">&gt;=</span> <span class="dv">3</span>).astype(<span class="bu">int</span>)  <span class="co"># mucho "ruido"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>score <span class="op">+=</span> ((tweets[<span class="st">"neg_count"</span>] <span class="op">&gt;</span> tweets[<span class="st">"pos_count"</span>]) <span class="op">&amp;</span> (tweets[<span class="st">"neg_count"</span>] <span class="op">&gt;=</span> <span class="dv">2</span>)).astype(<span class="bu">int</span>)     <span class="co"># negatividad marcada</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Umbral: 3 señales o más =&gt; bot</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"bots"</span>] <span class="op">=</span> (score <span class="op">&gt;=</span> <span class="dv">3</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Distribución de 'bots':"</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tweets[<span class="st">"bots"</span>].value_counts(dropna<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Distribución de 'bots':
+bots
+0    147332
+1     11541
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="vectorización-de-texto" class="level2">
+<h2 class="anchored" data-anchor-id="vectorización-de-texto">Vectorización de texto</h2>
+<div id="cae27988" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TF-IDF sobre 'clean_text' (español)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tfidf <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_es, min_df<span class="op">=</span><span class="dv">5</span>)  <span class="co"># sube/baja min_df según dataset</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>X_text <span class="op">=</span> tfidf.fit_transform(tweets[<span class="st">"clean_text"</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>vocab   <span class="op">=</span> tfidf.get_feature_names_out()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matriz TF-IDF:"</span>, X_text.shape)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ejemplo de vocab:"</span>, vocab[:<span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Matriz TF-IDF: (158873, 16345)
+Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandona' 'abandonada'
+ 'abandonadas' 'abandonado' 'abandonados' 'abandonar' 'abandonaron'
+ 'abandone' 'abandono' 'abatidos' 'abdala' 'abel' 'aberracion']</code></pre>
+</div>
+</div>
+</section>
+<section id="one-hot-encoder-para-variables-categoricas-método-de-autodetección" class="level2">
+<h2 class="anchored" data-anchor-id="one-hot-encoder-para-variables-categoricas-método-de-autodetección">One hot encoder para variables categoricas (método de autodetección)</h2>
+<div id="33bc5a4e" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar automáticamente columnas object para One-Hot (excluyendo 'content'/'clean_text')</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>obj_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> tweets.select_dtypes(include<span class="op">=</span>[<span class="st">"object"</span>]).columns</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> {<span class="st">"content"</span>,<span class="st">"clean_text"</span>}]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>obj_cols[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>['tweetUrl',
+ 'replyTo',
+ 'createdAt',
+ 'authorName',
+ 'authorUsername',
+ 'authorProfilePic',
+ 'authorJoinDate',
+ 'source',
+ 'hashtags',
+ 'mentions']</code></pre>
+</div>
+</div>
+</section>
+<section id="ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer" class="level2">
+<h2 class="anchored" data-anchor-id="ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer">Ensamble: númericas (Label Ecoder) + categóticas (One-hot-encoder) + text (columntransformer)</h2>
+<div id="48e8eb26" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numéricas explícitas (puedes añadir/quitar)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> [</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"account_age_days"</span>,<span class="st">"time_response"</span>,<span class="st">"num_urls"</span>,<span class="st">"num_mentions"</span>,<span class="st">"num_hashtags"</span>,<span class="st">"text_len"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"neg_count"</span>,<span class="st">"pos_count"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flags codificados por LabelEncoder (ya son numéricos)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"isReply_encoded"</span>,<span class="st">"authorVerified_encoded"</span>,<span class="st">"has_profile_picture_encoded"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Algunas podrían no existir (si el dataset original varía)</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> num_cols <span class="cf">if</span> c <span class="kw">in</span> tweets.columns]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocesador</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"num"</span>,  Pipeline([(<span class="st">"scaler"</span>, StandardScaler())]), num_cols),</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"cat"</span>,  OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>, sparse_output<span class="op">=</span><span class="va">True</span>), obj_cols),</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"text"</span>, tfidf, <span class="st">"clean_text"</span>),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    remainder<span class="op">=</span><span class="st">"drop"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    sparse_threshold<span class="op">=</span><span class="fl">1.0</span>  <span class="co"># mantenemos salida esparza por el bloque texto</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)  <span class="co"># balanced por si hay desbalance</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"prep"</span>, preprocessor),</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"clf"</span>,  clf)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># X e y finales</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> tweets[[<span class="st">"clean_text"</span>] <span class="op">+</span> num_cols <span class="op">+</span> obj_cols]  <span class="co"># el CT tomará lo que necesita</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tweets[<span class="st">"bots"</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Clases en y:"</span>, <span class="bu">dict</span>(y.value_counts()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Clases en y: {0: np.int64(147332), 1: np.int64(11541)}</code></pre>
+</div>
+</div>
+</section>
+<section id="split-división-entrenamiento-y-evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="split-división-entrenamiento-y-evaluación">Split (división), entrenamiento y evaluación</h2>
+<p>Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words</p>
+<div id="e9f453a1" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Si hay 1 sola clase, relajamos umbral de bots para forzar 2 clases (safeguard)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> y.nunique() <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"⚠️ 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a &gt;=2 señales."</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    tweets[<span class="st">"bots"</span>] <span class="op">=</span> (score <span class="op">&gt;=</span> <span class="dv">2</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> tweets[<span class="st">"bots"</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nuevas clases en y:"</span>, <span class="bu">dict</span>(y.value_counts()))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Estratificar solo si hay 2 clases</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>stratify_opt <span class="op">=</span> y <span class="cf">if</span> y.nunique() <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>stratify_opt</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>pipe.fit(X_train, y_train)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipe.predict(X_test)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>acc  <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>prec <span class="op">=</span> precision_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>rec  <span class="op">=</span> recall_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>f1   <span class="op">=</span> f1_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"accuracy:  </span><span class="sc">{</span>acc<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"precision: </span><span class="sc">{</span>prec<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"recall:    </span><span class="sc">{</span>rec<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"f1:        </span><span class="sc">{</span>f1<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Classification report:"</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>accuracy:  0.952
+precision: 0.636
+recall:    0.788
+f1:        0.704
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.98      0.96      0.97     29467
+           1       0.64      0.79      0.70      2308
+
+    accuracy                           0.95     31775
+   macro avg       0.81      0.88      0.84     31775
+weighted avg       0.96      0.95      0.95     31775
+</code></pre>
+</div>
+</div>
+</section>
+<section id="matriz-de-confusión" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-confusión">Matriz de confusión</h2>
+<div id="cbb0a7c1" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="LABORATORIO_2_files/figure-html/cell-13-output-1.png" width="521" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="inspección-palabras-más-comunes-tf-idf" class="level2">
+<h2 class="anchored" data-anchor-id="inspección-palabras-más-comunes-tf-idf">Inspección: palabras más comunes (TF-IDF)</h2>
+<div id="becf32d8" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top términos por TF-IDF medio (en el train)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> issparse</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>X_train_text <span class="op">=</span> pipe.named_steps[<span class="st">"prep"</span>].named_transformers_[<span class="st">"text"</span>].transform(X_train[<span class="st">"clean_text"</span>])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>idf_vocab    <span class="op">=</span> pipe.named_steps[<span class="st">"prep"</span>].named_transformers_[<span class="st">"text"</span>].get_feature_names_out()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Promedio por columna</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> issparse(X_train_text):</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    col_means <span class="op">=</span> np.array(X_train_text.mean(axis<span class="op">=</span><span class="dv">0</span>)).ravel()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    col_means <span class="op">=</span> X_train_text.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>top_idx <span class="op">=</span> np.argsort(col_means)[::<span class="op">-</span><span class="dv">1</span>][:<span class="dv">20</span>]</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>top_terms <span class="op">=</span> [(idf_vocab[i], <span class="bu">float</span>(col_means[i])) <span class="cf">for</span> i <span class="kw">in</span> top_idx]</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(top_terms, columns<span class="op">=</span>[<span class="st">"term"</span>,<span class="st">"mean_tfidf"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">term</th>
+<th data-quarto-table-cell-role="th">mean_tfidf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>luisa</td>
+<td>0.018745</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>si</td>
+<td>0.015491</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>mas</td>
+<td>0.014759</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>presidente</td>
+<td>0.014515</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>noboa</td>
+<td>0.014076</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>ecuador</td>
+<td>0.011523</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>pais</td>
+<td>0.010178</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>presidenta</td>
+<td>0.009667</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>solo</td>
+<td>0.008450</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>rana</td>
+<td>0.007805</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>rene</td>
+<td>0.007487</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>nunca</td>
+<td>0.006732</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>asi</td>
+<td>0.006544</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>vamos</td>
+<td>0.006476</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>bien</td>
+<td>0.006353</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>ser</td>
+<td>0.006154</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>pueblo</td>
+<td>0.005984</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>correa</td>
+<td>0.005610</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>mejor</td>
+<td>0.005541</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>va</td>
+<td>0.005462</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->

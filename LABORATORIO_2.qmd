@@ -18,6 +18,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
@@ -27,6 +28,8 @@ from sklearn.metrics import (
 # NLTK
 import nltk
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+nltk.download("punkt", quiet=True)
 nltk.download("stopwords", quiet=True)
 stop_es = stopwords.words("spanish")
 ```
@@ -60,11 +63,6 @@ nan_percent.head(20)
 ## Función de limpieza
 
 ```{python}
-# ====== Normalización de texto (conserva 'ñ', quita tildes) ======
-_TILDE_MAP = str.maketrans({
-    "á":"a","é":"e","í":"i","ó":"o","ú":"u","Á":"a","É":"e","Í":"i","Ó":"o","Ú":"u",
-    "ü":"u","Ü":"u"
-})
 
 def normalize_text(text: str) -> str:
     text = str(text)
@@ -72,18 +70,14 @@ def normalize_text(text: str) -> str:
     text = re.sub(r"https?://\S+|www\.\S+", " ", text)  # URLs
     text = re.sub(r"@\w+", " ", text)                   # menciones
     text = re.sub(r"#\w+", " ", text)                   # hashtags (como texto)
-    text = text.translate(_TILDE_MAP)                   # quitar tildes (NO toca ñ)
     text = re.sub(r"[^a-zñ\s]", " ", text)              # solo letras y espacios
     text = re.sub(r"\s+", " ", text).strip()            # espacios extra
     return text
 
-# Asegurar columna 'content'
-if "content" not in tweets.columns:
-    raise ValueError("No se encontró la columna 'content' en el dataset.")
 
 tweets["clean_text"] = tweets["content"].fillna("").astype(str).apply(normalize_text)
 
-# Algunas features simples de texto (antes de TF-IDF)
+# Creación de algunas features simples de texto
 tweets["num_urls"]      = tweets["content"].fillna("").str.count(r"https?://|www\.")
 tweets["num_mentions"]  = tweets["content"].fillna("").str.count(r"@\w+")
 tweets["num_hashtags"]  = tweets["content"].fillna("").str.count(r"#\w+")
@@ -108,7 +102,7 @@ lex_pos = {
 def count_lexicon_hits(text: str, lexicon: set) -> int:
     if not text:
         return 0
-    tokens = text.split()
+    tokens = word_tokenize(text, language="spanish")
     return sum(1 for t in tokens if t in lexicon)
 
 tweets["neg_count"] = tweets["clean_text"].apply(lambda t: count_lexicon_hits(t, lex_neg))

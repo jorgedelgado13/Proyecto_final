@@ -226,18 +226,9 @@ print("Clases en y:", dict(y.value_counts()))
 ## Split (división), entrenamiento y evaluación
 Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words
 ```{python}
-# Si hay 1 sola clase, relajamos umbral de bots para forzar 2 clases (safeguard)
-if y.nunique() < 2:
-    print(" !!! 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a >=2 señales.")
-    tweets["bots"] = (score >= 2).astype(int)
-    y = tweets["bots"].astype(int)
-    print("Nuevas clases en y:", dict(y.value_counts()))
-
-# Estratificar solo si hay 2 clases
-stratify_opt = y if y.nunique() > 1 else None
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=stratify_opt
+    X, y, test_size=0.2, random_state=42
 )
 
 pipe.fit(X_train, y_train)

@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="a3fb09c1" class="cell" data-execution_count="1">
+<div id="5126de17" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Importar librerías ======</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unicodedata</span>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cargar-data" class="level1">
 <h1>Cargar data</h1>
-<div id="ed083b84" class="cell" data-execution_count="2">
+<div id="8ede7a8e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tweets <span class="op">=</span> pd.read_csv(<span class="st">"data/tweets_totales_con_sentimiento_ml.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vista rápida</span></span>
@@ -434,11 +434,11 @@ dtype: object</code></pre>
 <p>Entender la estructura del dataset nos da una mejor idea de con que estamos lidiando</p>
 <section id="porcentaje-de-missing-values-por-columna" class="level3">
 <h3 class="anchored" data-anchor-id="porcentaje-de-missing-values-por-columna">Porcentaje de Missing Values por Columna</h3>
-<div id="fc1c05ab" class="cell" data-execution_count="3">
+<div id="43ff0990" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ====== Porcentaje de Missing Values por Columna ======</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nan_percent <span class="op">=</span> tweets.isna().mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>).mul(<span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nan_percent.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>hashtags            92.19
 replyTo              0.54
 mentions             0.22
@@ -465,7 +465,7 @@ dtype: float64</code></pre>
 </section>
 <section id="función-de-limpieza" class="level2">
 <h2 class="anchored" data-anchor-id="función-de-limpieza">Función de limpieza</h2>
-<div id="94f4a0be" class="cell" data-execution_count="4">
+<div id="566875ac" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_text(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="bu">str</span>(text)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.lower().strip()</span>
@@ -486,7 +486,7 @@ dtype: float64</code></pre>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"text_len"</span>]      <span class="op">=</span> tweets[<span class="st">"clean_text"</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"content"</span>,<span class="st">"clean_text"</span>,<span class="st">"num_urls"</span>,<span class="st">"num_mentions"</span>,<span class="st">"num_hashtags"</span>,<span class="st">"text_len"</span>]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -557,7 +557,7 @@ dtype: float64</code></pre>
 </section>
 <section id="palabras-que-demuestran-apoyo-o-disgusto" class="level2">
 <h2 class="anchored" data-anchor-id="palabras-que-demuestran-apoyo-o-disgusto">Palabras que demuestran apoyo o disgusto</h2>
-<div id="c23b35f4" class="cell" data-execution_count="5">
+<div id="86edbf68" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lex_neg <span class="op">=</span> {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"asco"</span>,<span class="st">"basura"</span>,<span class="st">"corrupto"</span>,<span class="st">"estupido"</span>,<span class="st">"idiota"</span>,<span class="st">"ladron"</span>,<span class="st">"mentiroso"</span>,<span class="st">"odiar"</span>,<span class="st">"odio"</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"imbecil"</span>,<span class="st">"tonto"</span>,<span class="st">"vomito"</span>,<span class="st">"repugnante"</span>,<span class="st">"asqueroso"</span>,<span class="st">"miserable"</span></span>
@@ -577,7 +577,7 @@ dtype: float64</code></pre>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>tweets[<span class="st">"pos_count"</span>] <span class="op">=</span> tweets[<span class="st">"clean_text"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> t: count_lexicon_hits(t, lex_pos))</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="st">"clean_text"</span>,<span class="st">"neg_count"</span>,<span class="st">"pos_count"</span>]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -630,21 +630,21 @@ dtype: float64</code></pre>
 </section>
 <section id="creación-de-etiquetas-con-labelencoder" class="level2">
 <h2 class="anchored" data-anchor-id="creación-de-etiquetas-con-labelencoder">Creación de etiquetas con LabelEncoder</h2>
-<div id="de988578" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columnas esperadas (si no están, se crean como 0 para evitar errores)</span></span>
+<div id="a00a76ef" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columnas esperadas, se crean como 0 para evitar errores</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cols_flags <span class="op">=</span> [<span class="st">"isReply"</span>, <span class="st">"authorVerified"</span>, <span class="st">"has_profile_picture"</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols_flags:</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> tweets.columns:</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        tweets[c] <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear nuevas columnas *_encoded usando LabelEncoder (manteniendo el estilo previo)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear nuevas columnas *_encoded usando LabelEncoder </span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cols_flags:</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    le <span class="op">=</span> LabelEncoder()</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convertimos a string por robustez ante valores no booleanos</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    tweets[<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">_encoded"</span>] <span class="op">=</span> le.fit_transform(tweets[c].astype(<span class="bu">str</span>))</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>tweets[[<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">_encoded"</span> <span class="cf">for</span> c <span class="kw">in</span> cols_flags]].head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
 
@@ -697,8 +697,8 @@ dtype: float64</code></pre>
 </section>
 <section id="construcción-de-variable-target-basada-en-caractisticas-de-usuarios" class="level2">
 <h2 class="anchored" data-anchor-id="construcción-de-variable-target-basada-en-caractisticas-de-usuarios">Construcción de variable target basada en caractisticas de usuarios</h2>
-<div id="0bd1b137" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asegurar columnas numéricas (si no existen, se crean con 0)</span></span>
+<div id="b90e258f" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asegurar columnas numéricas, si no existen, se crean con 0</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num_needed <span class="op">=</span> [<span class="st">"account_age_days"</span>, <span class="st">"time_response"</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> num_needed:</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> tweets.columns:</span>
@@ -736,31 +736,33 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="vectorización-de-texto" class="level2">
 <h2 class="anchored" data-anchor-id="vectorización-de-texto">Vectorización de texto</h2>
-<div id="7db21fbc" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TF-IDF sobre 'clean_text' (español)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tfidf <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_es, min_df<span class="op">=</span><span class="dv">5</span>)  <span class="co"># sube/baja min_df según dataset</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>X_text <span class="op">=</span> tfidf.fit_transform(tweets[<span class="st">"clean_text"</span>])</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>vocab   <span class="op">=</span> tfidf.get_feature_names_out()</span>
+<div id="c92ae3cf" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorizer sobre 'clean_text' (español)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vectorizer = CountVectorizer(stop_words=stop_es) </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_es)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>X_text <span class="op">=</span> vectorizer.fit_transform(tweets[<span class="st">"clean_text"</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>vocab   <span class="op">=</span> vectorizer.get_feature_names_out()</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matriz TF-IDF:"</span>, X_text.shape)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ejemplo de vocab:"</span>, vocab[:<span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Matriz TF-IDF: (158873, 16351)
-Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandon' 'abandona'
- 'abandonada' 'abandonadas' 'abandonado' 'abandonados' 'abandonar'
- 'abandonaron' 'abandone' 'abandono' 'abatidos' 'abdal' 'abdala']</code></pre>
+<pre><code>Matriz TF-IDF: (158873, 57258)
+Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaaa' 'aaaaaa' 'aaaaaaa' 'aaaaaaaa' 'aaaaaaaaaaaaa'
+ 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+ 'aaaaaaasco' 'aaaaaahhhh' 'aaaaaanndaaaaaaa' 'aaaaaauuuuuchhhh' 'aaaaah'
+ 'aaaaajajajajaajajajajajajajajaajajajajajajaajajajajajajajaajajajajajajaajajajajajajaja'
+ 'aaaah' 'aaaahh' 'aaaahhhajajajajajajajajajajaj' 'aaaahhhh' 'aaaajjjaaa']</code></pre>
 </div>
 </div>
 </section>
 <section id="one-hot-encoder-para-variables-categoricas-método-de-autodetección" class="level2">
 <h2 class="anchored" data-anchor-id="one-hot-encoder-para-variables-categoricas-método-de-autodetección">One hot encoder para variables categoricas (método de autodetección)</h2>
-<div id="59f4f42a" class="cell" data-execution_count="9">
+<div id="5915142e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar automáticamente columnas object para One-Hot (excluyendo 'content'/'clean_text')</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>obj_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> tweets.select_dtypes(include<span class="op">=</span>[<span class="st">"object"</span>]).columns</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> {<span class="st">"content"</span>,<span class="st">"clean_text"</span>}]</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>obj_cols[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>['tweetUrl',
  'replyTo',
  'createdAt',
@@ -776,7 +778,7 @@ Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandon' 'aban
 </section>
 <section id="ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer" class="level2">
 <h2 class="anchored" data-anchor-id="ensamble-númericas-label-ecoder-categóticas-one-hot-encoder-text-columntransformer">Ensamble: númericas (Label Ecoder) + categóticas (One-hot-encoder) + text (columntransformer)</h2>
-<div id="4ecc5bed" class="cell" data-execution_count="10">
+<div id="ded0da99" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numéricas explícitas (puedes añadir/quitar)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> [</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"account_age_days"</span>,<span class="st">"time_response"</span>,<span class="st">"num_urls"</span>,<span class="st">"num_mentions"</span>,<span class="st">"num_hashtags"</span>,<span class="st">"text_len"</span>,</span>
@@ -793,17 +795,17 @@ Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandon' 'aban
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"num"</span>,  Pipeline([(<span class="st">"scaler"</span>, StandardScaler())]), num_cols),</span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"cat"</span>,  OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>, sparse_output<span class="op">=</span><span class="va">True</span>), obj_cols),</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"text"</span>, tfidf, <span class="st">"clean_text"</span>),</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"text"</span>, vectorizer, <span class="st">"clean_text"</span>),</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    remainder<span class="op">=</span><span class="st">"drop"</span>,</span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    sparse_threshold<span class="op">=</span><span class="fl">1.0</span>  <span class="co"># mantenemos salida esparza por el bloque texto</span></span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)  <span class="co"># balanced por si hay desbalance</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)  <span class="co"># balanced por si hay desbalance</span></span>
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"prep"</span>, preprocessor),</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"clf"</span>,  clf)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"clf"</span>,  model)</span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>])</span>
 <span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># X e y finales</span></span>
@@ -819,10 +821,10 @@ Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandon' 'aban
 <section id="split-división-entrenamiento-y-evaluación" class="level2">
 <h2 class="anchored" data-anchor-id="split-división-entrenamiento-y-evaluación">Split (división), entrenamiento y evaluación</h2>
 <p>Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words</p>
-<div id="87ab9de4" class="cell" data-execution_count="11">
+<div id="b4ac6f15" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Si hay 1 sola clase, relajamos umbral de bots para forzar 2 clases (safeguard)</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> y.nunique() <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"⚠️ 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a &gt;=2 señales."</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" !!! 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a &gt;=2 señales."</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    tweets[<span class="st">"bots"</span>] <span class="op">=</span> (score <span class="op">&gt;=</span> <span class="dv">2</span>).astype(<span class="bu">int</span>)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> tweets[<span class="st">"bots"</span>].astype(<span class="bu">int</span>)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Nuevas clases en y:"</span>, <span class="bu">dict</span>(y.value_counts()))</span>
@@ -851,15 +853,15 @@ Ejemplo de vocab: ['aa' 'aaa' 'aaaa' 'aaaah' 'ab' 'abad' 'abajo' 'abandon' 'aban
 <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>accuracy:  0.952
-precision: 0.640
-recall:    0.766
-f1:        0.698
+precision: 0.644
+recall:    0.764
+f1:        0.699
 
 Classification report:
               precision    recall  f1-score   support
 
            0       0.98      0.97      0.97     29477
-           1       0.64      0.77      0.70      2298
+           1       0.64      0.76      0.70      2298
 
     accuracy                           0.95     31775
    macro avg       0.81      0.87      0.84     31775
@@ -870,7 +872,7 @@ weighted avg       0.96      0.95      0.95     31775
 </section>
 <section id="matriz-de-confusión" class="level2">
 <h2 class="anchored" data-anchor-id="matriz-de-confusión">Matriz de confusión</h2>
-<div id="ef1243e6" class="cell" data-execution_count="12">
+<div id="ba06fa2a" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -883,7 +885,7 @@ weighted avg       0.96      0.95      0.95     31775
 </section>
 <section id="inspección-palabras-más-comunes-tf-idf" class="level2">
 <h2 class="anchored" data-anchor-id="inspección-palabras-más-comunes-tf-idf">Inspección: palabras más comunes (TF-IDF)</h2>
-<div id="a0185d91" class="cell" data-execution_count="13">
+<div id="abe1632e" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top términos por TF-IDF medio (en el train)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> issparse</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -899,7 +901,7 @@ weighted avg       0.96      0.95      0.95     31775
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>top_idx <span class="op">=</span> np.argsort(col_means)[::<span class="op">-</span><span class="dv">1</span>][:<span class="dv">20</span>]</span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>top_terms <span class="op">=</span> [(idf_vocab[i], <span class="bu">float</span>(col_means[i])) <span class="cf">for</span> i <span class="kw">in</span> top_idx]</span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(top_terms, columns<span class="op">=</span>[<span class="st">"term"</span>,<span class="st">"mean_tfidf"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 
 
@@ -915,102 +917,102 @@ weighted avg       0.96      0.95      0.95     31775
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>luisa</td>
-<td>0.018317</td>
+<td>0.017463</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
-<td>si</td>
-<td>0.014502</td>
+<td>presidente</td>
+<td>0.013639</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
-<td>presidente</td>
-<td>0.014213</td>
+<td>si</td>
+<td>0.013565</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>noboa</td>
-<td>0.013893</td>
+<td>0.013282</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>est</td>
-<td>0.013206</td>
+<td>0.012355</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">5</th>
 <td>ecuador</td>
-<td>0.011428</td>
+<td>0.010876</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">6</th>
 <td>pa</td>
-<td>0.009767</td>
+<td>0.009257</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">7</th>
 <td>presidenta</td>
-<td>0.009428</td>
+<td>0.009170</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">8</th>
 <td>ser</td>
-<td>0.009156</td>
+<td>0.008616</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">9</th>
 <td>as</td>
-<td>0.008277</td>
+<td>0.007794</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">10</th>
 <td>solo</td>
-<td>0.007926</td>
+<td>0.007455</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">11</th>
 <td>rana</td>
-<td>0.007583</td>
+<td>0.007120</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">12</th>
 <td>nunca</td>
-<td>0.006750</td>
+<td>0.006444</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">13</th>
 <td>vamos</td>
-<td>0.006507</td>
+<td>0.006277</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">14</th>
-<td>bien</td>
-<td>0.006278</td>
+<td>qu</td>
+<td>0.005890</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">15</th>
-<td>qu</td>
-<td>0.006257</td>
+<td>bien</td>
+<td>0.005888</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">16</th>
 <td>pueblo</td>
-<td>0.005907</td>
+<td>0.005597</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">17</th>
-<td>correa</td>
-<td>0.005493</td>
+<td>mejor</td>
+<td>0.005172</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">18</th>
-<td>mejor</td>
-<td>0.005480</td>
+<td>correa</td>
+<td>0.005143</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">19</th>
-<td>va</td>
-<td>0.005405</td>
+<td>rc</td>
+<td>0.005099</td>
 </tr>
 </tbody>
 </table>

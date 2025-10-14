@@ -113,13 +113,13 @@ tweets[["clean_text","neg_count","pos_count"]].head(5)
 
 ## Creación de etiquetas con LabelEncoder
 ```{python}
-# Columnas esperadas (si no están, se crean como 0 para evitar errores)
+# Columnas esperadas, se crean como 0 para evitar errores
 cols_flags = ["isReply", "authorVerified", "has_profile_picture"]
 for c in cols_flags:
     if c not in tweets.columns:
         tweets[c] = 0
 
-# Crear nuevas columnas *_encoded usando LabelEncoder (manteniendo el estilo previo)
+# Crear nuevas columnas *_encoded usando LabelEncoder 
 for c in cols_flags:
     le = LabelEncoder()
     # Convertimos a string por robustez ante valores no booleanos
@@ -131,7 +131,7 @@ tweets[[f"{c}_encoded" for c in cols_flags]].head(5)
 
 ## Construcción de variable target basada en caractisticas de usuarios
 ```{python}
-# Asegurar columnas numéricas (si no existen, se crean con 0)
+# Asegurar columnas numéricas, si no existen, se crean con 0
 num_needed = ["account_age_days", "time_response"]
 for c in num_needed:
     if c not in tweets.columns:
@@ -163,11 +163,11 @@ print(tweets["bots"].value_counts(dropna=False))
 
 ## Vectorización de texto 
 ```{python}
-# TF-IDF sobre 'clean_text' (español)
-tfidf = TfidfVectorizer(stop_words=stop_es, min_df=5)  # sube/baja min_df según dataset
-
-X_text = tfidf.fit_transform(tweets["clean_text"])
-vocab   = tfidf.get_feature_names_out()
+# Vectorizer sobre 'clean_text' (español)
+# vectorizer = CountVectorizer(stop_words=stop_es) 
+vectorizer = TfidfVectorizer(stop_words=stop_es)
+X_text = vectorizer.fit_transform(tweets["clean_text"])
+vocab   = vectorizer.get_feature_names_out()
 print("Matriz TF-IDF:", X_text.shape)
 print("Ejemplo de vocab:", vocab[:20])
 
@@ -201,17 +201,17 @@ preprocessor = ColumnTransformer(
     transformers=[
         ("num",  Pipeline([("scaler", StandardScaler())]), num_cols),
         ("cat",  OneHotEncoder(handle_unknown="ignore", sparse_output=True), obj_cols),
-        ("text", tfidf, "clean_text"),
+        ("text", vectorizer, "clean_text"),
     ],
     remainder="drop",
     sparse_threshold=1.0  # mantenemos salida esparza por el bloque texto
 )
 
 # Modelo
-clf = LogisticRegression(max_iter=1000, class_weight="balanced")  # balanced por si hay desbalance
+model = LogisticRegression(max_iter=1000, class_weight="balanced")  # balanced por si hay desbalance
 pipe = Pipeline([
     ("prep", preprocessor),
-    ("clf",  clf)
+    ("clf",  model)
 ])
 
 # X e y finales
@@ -228,7 +228,7 @@ Aprende de los tweets (vocabulario) y del ser caso elimina las stop-words
 ```{python}
 # Si hay 1 sola clase, relajamos umbral de bots para forzar 2 clases (safeguard)
 if y.nunique() < 2:
-    print("⚠️ 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a >=2 señales.")
+    print(" !!! 'bots' tiene una sola clase con el umbral actual. Bajando el umbral a >=2 señales.")
     tweets["bots"] = (score >= 2).astype(int)
     y = tweets["bots"].astype(int)
     print("Nuevas clases en y:", dict(y.value_counts()))

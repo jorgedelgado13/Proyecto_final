@@ -44,6 +44,26 @@ df.head()
 ```{python}
 df.info()
 ```
+```{python}
+# Detectar tipos de columnas
+num_vars = df.select_dtypes(include=['number']).columns
+cat_vars = df.select_dtypes(include=['object', 'category']).columns
+text_vars = [col for col in df.columns if df[col].dtype == 'object' and df[col].str.len().mean() > 30]
+
+# Mostrar resultados
+print("Tipos de variables en el DataFrame:\n")
+print(f"Variables numéricas ({len(num_vars)}): {list(num_vars)}")
+print(f"Variables categóricas ({len(cat_vars)}): {list(cat_vars)}")
+print(f"Variables de texto ({len(text_vars)}): {list(text_vars)}")
+
+# Si quieres un resumen tabular:
+resumen = pd.DataFrame({
+    'Tipo': ['Numéricas', 'Categóricas', 'Texto'],
+    'Cantidad': [len(num_vars), len(cat_vars), len(text_vars)]
+})
+
+display(resumen)
+```
 
 ```{python}
 # Resumen numérico
@@ -51,9 +71,21 @@ df.describe(include="number").T
 ```
 
 ```{python}
+num_df = df.select_dtypes(include=['number'])
+# Distribución (histogramas)
+print("\n Distribuciones de variables numéricas:")
+num_df.hist(bins=20, figsize=(12, 8), edgecolor='black')
+plt.suptitle("Distribución de variables numéricas", fontsize=14)
+plt.tight_layout()
+plt.show()
+```
+
+
+```{python}
 # Resumen categórico
 df.select_dtypes(exclude="number").nunique().sort_values(ascending=False).head(20)
 ```
+
 
 ```{python}
 # Nulos y duplicados

@@ -264,11 +264,11 @@ print(f"Concentración de polaridad y relación preliminar con la toxicidad.")
 
 ## 2. Preprocesamiento y codificación
 ```{python}
-df_procesar = df[['content', 'toxicity_score']].copy()
+df_procesado = df[['content', 'toxicity_score']].copy()
 
-initial_rows = len(df_procesar)
-df_procesar = df_procesar.dropna(subset=['toxicity_score', 'content'])
-final_rows = len(df_procesar)
+initial_rows = len(df_procesado)
+df_procesado = df_procesado.dropna(subset=['toxicity_score', 'content'])
+final_rows = len(df_procesado)
 
 # Función simple de limpieza de texto
 def clean_text(text):
@@ -287,7 +287,7 @@ def clean_text(text):
     return text
 
 # Aplicar limpieza
-df_procesar['content_clean'] = df_procesar['content'].apply(clean_text)
+df_procesado['content_clean'] = df_procesado['content'].apply(clean_text)
 
 # Remover stopwords en español
 spanish_stopwords = set(stopwords.words('spanish'))
@@ -297,7 +297,8 @@ def remove_stopwords(text):
     return ' '.join([word for word in words if word not in spanish_stopwords and len(word) > 2])
 
 # Crear texto procesado final
-df_procesar['text_processed'] = df_procesar['content_clean'].apply(remove_stopwords)
+df_procesado['text_processed'] = df_procesado['content_clean'].apply(remove_stopwords)
+print(df_procesado)
 ```
 
 ```{python}

@@ -244,25 +244,61 @@ if len(numeric_cols) > 1:
 
 **Hallazgos clave (EDA):**  
 ```{python}
-print("\n1. DISTRIBUCIÓN DE LOS DATOS:")
+print("DISTRIBUCIÓN DE LOS DATOS:")
 print(f"- Mi Set de datos tiene {df.shape[0]} observaciones y {df.shape[1]} variables")
 print(f"- Variables numéricas son: {len(numeric_cols)}")
 print(f"- Variables categóricas son: {len(cat_cols)}")
 
-print(f"\n3. VARIABLE OBJETIVO (Score de TOXICIDAD):")
+print(f"VARIABLE OBJETIVO (Score de TOXICIDAD):")
 toxicity_mean = df['toxicity_score'].mean()
 toxicity_std = df['toxicity_score'].std()
 print(f"- Media de toxicidad: {toxicity_mean:.4f}")
 print(f"- Desviación estándar: {toxicity_std:.4f}")
 print(f"- La mayoría de tweets tienen baja toxicidad pues son menores a 0.5, la toxicidad media es: {toxicity_mean:.4f}")
 
+print(f"Distribución de `toxicity_score` con mediana, cuartiles y % de valores altos.")
+print(f"Campos con nulos relevantes (p.ej. `toxicity_score` y `hashtags`).")
+print(f"Concentración de polaridad y relación preliminar con la toxicidad.")
 ```
 
-- Distribución de `toxicity_score` con mediana, cuartiles y % de valores altos.  
-- Campos con nulos relevantes (p.ej. `toxicity_score` y `hashtags`).  
-- Concentración de polaridad y relación preliminar con la toxicidad.
 
 ## 2. Preprocesamiento y codificación
+```{python}
+df_procesar = df[['content', 'toxicity_score']].copy()
+
+initial_rows = len(df_procesar)
+df_procesar = df_procesar.dropna(subset=['toxicity_score', 'content'])
+final_rows = len(df_procesar)
+
+# Función simple de limpieza de texto
+def clean_text(text):
+    if pd.isna(text):
+        return ""
+    
+    text = str(text).lower()
+    # Remover URLs, menciones, hashtags, ademas números y caracteres especiales
+    text = re.sub(r'http\S+|www\S+', '', text)
+    text = re.sub(r'@\w+', '', text)
+    text = re.sub(r'#\w+', '', text)
+    text = re.sub(r'\d+', '', text)
+    text = re.sub(r'[^\w\s]', ' ', text)
+    text = ' '.join(text.split())
+    
+    return text
+
+# Aplicar limpieza
+df_procesar['content_clean'] = df_procesar['content'].apply(clean_text)
+
+# Remover stopwords en español
+spanish_stopwords = set(stopwords.words('spanish'))
+
+def remove_stopwords(text):
+    words = text.split()
+    return ' '.join([word for word in words if word not in spanish_stopwords and len(word) > 2])
+
+# Crear texto procesado final
+df_procesar['text_processed'] = df_procesar['content_clean'].apply(remove_stopwords)
+```
 
 ```{python}
 text_col = "content"

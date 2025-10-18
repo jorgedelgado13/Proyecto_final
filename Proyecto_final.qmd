@@ -34,9 +34,10 @@ from sklearn.metrics import (
 from sklearn.cluster import KMeans
 
 # Ruta al CSV (deja el archivo en la misma carpeta que este .qmd)
-df = pd.read_csv("data/500_tweets_con_toxicity.csv", encoding="utf-8")
+df = pd.read_csv("data/1500_tweets_con_toxicity.csv", encoding="utf-8")
 df.head()
 ```
+
 
 ## 1. EDA
 

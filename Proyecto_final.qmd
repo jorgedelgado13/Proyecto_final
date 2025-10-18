@@ -18,6 +18,19 @@ import pandas as pd
 import numpy as np
 import re, ast
 import matplotlib.pyplot as plt
+import seaborn as sns
+import nltk
+from nltk.corpus import stopwords
+from nltk import word_tokenize # tokenizacion
+from nltk import pos_tag #lematizacion
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
+from wordcloud import WordCloud
+from collections import Counter
+
+nltk.download("punkt", quiet=True)
+nltk.download("stopwords", quiet=True)
+stop_es = stopwords.words("spanish")
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -31,6 +44,7 @@ from sklearn.metrics import (
     mean_absolute_error, mean_squared_error, r2_score,
     silhouette_score
 )
+
 from sklearn.cluster import KMeans
 
 # Ruta al CSV (deja el archivo en la misma carpeta que este .qmd)
@@ -56,7 +70,7 @@ print(f"Variables numéricas ({len(num_vars)}): {list(num_vars)}")
 print(f"Variables categóricas ({len(cat_vars)}): {list(cat_vars)}")
 print(f"Variables de texto ({len(text_vars)}): {list(text_vars)}")
 
-# Si quieres un resumen tabular:
+# Resumen tabular:
 resumen = pd.DataFrame({
     'Tipo': ['Numéricas', 'Categóricas', 'Texto'],
     'Cantidad': [len(num_vars), len(cat_vars), len(text_vars)]
@@ -104,6 +118,19 @@ plt.xlabel("toxicity_score"); plt.ylabel("Frecuencia"); plt.show()
 df["toxicity_score"].describe(percentiles=[0.1,0.25,0.5,0.75,0.9,0.95])
 ```
 
+
+```{python}
+plt.figure(figsize=(10,4))
+plt.subplot(1,2,1)
+sns.histplot(df['toxicity_score'], bins=30, kde=True, color='steelblue')
+plt.title('Distribución de toxicity_score')
+plt.xlabel('toxicity_score')
+plt.ylabel('Frecuencia')
+plt.tight_layout()
+plt.show()
+```
+
+
 ```{python}
 # Boxplots de numéricas clave
 num_cols = ["authorFollowers", "time_response", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity"]
@@ -137,10 +164,68 @@ for col, title in [("hashtags","Top hashtags"), ("mentions","Top menciones")]:
             display(top.to_frame("count"))
 ```
 
+```{python}
+# Conteo de Variables categóricas
+
+cat_cols = df.select_dtypes(include=['object', 'category']).columns
+
+if len(cat_cols) > 0:
+    for col in cat_cols[:5]:  # graficar hasta 5 variables categóricas
+        # Contar categorías y tomar solo las 10 principales
+        top_cats = df[col].value_counts().head(10)
+
+        plt.figure(figsize=(8, 4))
+        sns.barplot(y=top_cats.index, x=top_cats.values, palette='viridis')
+        plt.title(f"Top 10 categorías más frecuentes en: {col}")
+        plt.xlabel("Frecuencia")
+        plt.ylabel(col)
+        plt.tight_layout()
+        plt.show()
+else:
+    print("No hay variables categóricas para graficar.\n")
+```
+
+
+```{python}
+# Detectar variable de texto
+text_cols = [col for col in df.columns if df[col].dtype == 'object' and df[col].str.len().mean() > 30]
+
+if len(text_cols) > 0:
+    col_texto = text_cols[1]  # usa la segunda columna tipo texto
+    texto = " ".join(df[col_texto].dropna().astype(str))
+
+    # --- Generar nube de palabras ---
+    plt.figure(figsize=(10,6))
+    wc = WordCloud(width=800, height=400, background_color='white', colormap='viridis', max_words=100).generate(texto)
+    plt.imshow(wc, interpolation='bilinear')
+    plt.axis("off")
+    plt.title(f"Nube de palabras - {col_texto}")
+    plt.show()
+
+    # --- Calcular las 10 palabras más frecuentes ---
+    palabras = texto.split()
+    frec = Counter(palabras)
+    comunes = pd.DataFrame(frec.most_common(10), columns=['Palabra', 'Frecuencia'])
+
+    # --- Gráfico Top 10 ---
+    plt.figure(figsize=(8,4))
+    sns.barplot(data=comunes, x='Frecuencia', y='Palabra', palette='mako')
+    plt.title(f"Top 10 palabras más representativas - {col_texto}")
+    plt.tight_layout()
+    plt.show()
+
+    # --- Mostrar tabla ---
+    display(comunes)
+else:
+    print("No se detectó ninguna columna de texto para generar la nube de palabras.\n")
+```
+
 **Hallazgos clave (EDA):**  
 - Distribución de `toxicity_score` con mediana, cuartiles y % de valores altos.  
 - Campos con nulos relevantes (p.ej. `toxicity_score` y `hashtags`).  
 - Concentración de polaridad y relación preliminar con la toxicidad.
+```
+
 
 ## 2. Preprocesamiento y codificación
 

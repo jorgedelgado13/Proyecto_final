@@ -13,7 +13,7 @@ website:
         href: index.qmd
       - section: "Natural Language Processing (NLP)"
         contents:
-          - LABORATORIO_2.qmd
+          - Proyecto_final.qmd
 
 format:
   html:

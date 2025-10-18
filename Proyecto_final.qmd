@@ -1,0 +1,240 @@
+---
+title: "Análisis ML de Toxicidad en Tweets (Ecuador)"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## 0. Preparación
+
+```{python}
+import pandas as pd
+import numpy as np
+import re, ast
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score, roc_auc_score,
+    classification_report, ConfusionMatrixDisplay,
+    mean_absolute_error, mean_squared_error, r2_score,
+    silhouette_score
+)
+from sklearn.cluster import KMeans
+
+# Ruta al CSV (deja el archivo en la misma carpeta que este .qmd)
+df = pd.read_csv("data/500_tweets_con_toxicity.csv", encoding="utf-8")
+df.head()
+```
+
+## 1. EDA
+
+```{python}
+df.info()
+```
+
+```{python}
+# Resumen numérico
+df.describe(include="number").T
+```
+
+```{python}
+# Resumen categórico
+df.select_dtypes(exclude="number").nunique().sort_values(ascending=False).head(20)
+```
+
+```{python}
+# Nulos y duplicados
+missing = df.isna().sum().sort_values(ascending=False).to_frame("n_missing")
+missing["pct"] = (df.isna().mean()*100).sort_values(ascending=False)
+missing.head(10)
+```
+
+```{python}
+# Distribución toxicity_score
+df["toxicity_score"] = pd.to_numeric(df["toxicity_score"], errors="coerce")
+df["toxicity_score"].dropna().hist(bins=30)
+plt.title("Distribución de toxicity_score")
+plt.xlabel("toxicity_score"); plt.ylabel("Frecuencia"); plt.show()
+
+df["toxicity_score"].describe(percentiles=[0.1,0.25,0.5,0.75,0.9,0.95])
+```
+
+```{python}
+# Boxplots de numéricas clave
+num_cols = ["authorFollowers", "time_response", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity"]
+present = [c for c in num_cols if c in df.columns]
+df[present].boxplot(rot=45); plt.title("Boxplots numéricos"); plt.tight_layout(); plt.show()
+```
+
+```{python}
+# Top hashtags y menciones
+def parse_list_like(x):
+    if pd.isna(x): return []
+    s = str(x).strip()
+    try:
+        obj = ast.literal_eval(s)
+        if isinstance(obj, list):
+            return [str(t).strip().lower() for t in obj if str(t).strip()]
+    except Exception:
+        pass
+    s = re.sub(r"[\[\]{}()'\"#]", " ", s)
+    tokens = re.split(r"[,\s]+", s)
+    return [t.strip().lower() for t in tokens if t.strip()]
+
+for col, title in [("hashtags","Top hashtags"), ("mentions","Top menciones")]:
+    if col in df.columns:
+        items = []
+        for v in df[col]:
+            items.extend(parse_list_like(v))
+        if items:
+            top = pd.Series(items).value_counts().head(20)
+            top.sort_values(ascending=True).plot(kind="barh"); plt.title(title); plt.tight_layout(); plt.show()
+            display(top.to_frame("count"))
+```
+
+**Hallazgos clave (EDA):**  
+- Distribución de `toxicity_score` con mediana, cuartiles y % de valores altos.  
+- Campos con nulos relevantes (p.ej. `toxicity_score` y `hashtags`).  
+- Concentración de polaridad y relación preliminar con la toxicidad.
+
+## 2. Preprocesamiento y codificación
+
+```{python}
+text_col = "content"
+num_cols = ["authorFollowers", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity"]
+cat_cols = ["source", "has_profile_picture"]
+
+# Subconjunto para modelado
+df_model = df[[text_col, "toxicity_score"] + num_cols + cat_cols].copy()
+for c in num_cols:
+    df_model[c] = pd.to_numeric(df_model[c], errors="coerce")
+for c in cat_cols:
+    df_model[c] = df_model[c].astype("category")
+df_model = df_model.dropna(subset=[text_col, "toxicity_score"]).reset_index(drop=True)
+
+X = df_model[[text_col] + num_cols + cat_cols]
+y_cont = df_model["toxicity_score"]
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("text", TfidfVectorizer(max_df=0.9, min_df=5, ngram_range=(1,2), strip_accents="unicode"), text_col),
+        ("num", Pipeline([("scaler", StandardScaler(with_mean=False))]), num_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols),
+    ]
+)
+preprocessor
+```
+
+## 3. Clasificación
+
+```{python}
+# Target binario con umbral 0.5 (puedes justificar 0.5 vs 0.7 en el informe)
+y_bin = (y_cont >= 0.5).astype(int)
+X_train, X_test, y_train, y_test = train_test_split(X, y_bin, test_size=0.2, random_state=42, stratify=y_bin)
+
+pipe_clf = Pipeline([("preprocess", preprocessor),
+                     ("clf", LogisticRegression(max_iter=300, solver="liblinear", class_weight="balanced"))])
+
+pipe_clf.fit(X_train, y_train)
+y_pred = pipe_clf.predict(X_test)
+y_proba = pipe_clf.predict_proba(X_test)[:,1]
+
+metrics = {
+    "accuracy": accuracy_score(y_test, y_pred),
+    "precision": precision_score(y_test, y_pred, zero_division=0),
+    "recall": recall_score(y_test, y_pred, zero_division=0),
+    "f1": f1_score(y_test, y_pred, zero_division=0),
+    "roc_auc": roc_auc_score(y_test, y_proba),
+}
+metrics
+```
+
+```{python}
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+plt.title("Matriz de confusión - Clasificación"); plt.tight_layout(); plt.show()
+```
+
+## 4. Regresión
+
+```{python}
+X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(X, y_cont, test_size=0.2, random_state=42)
+
+pipe_reg = Pipeline([("preprocess", preprocessor), ("reg", LinearRegression())])
+pipe_reg.fit(X_train_r, y_train_r)
+y_pred_r = pipe_reg.predict(X_test_r)
+
+reg_metrics = {
+    "MAE": mean_absolute_error(y_test_r, y_pred_r),
+    "RMSE": mean_squared_error(y_test_r, y_pred_r, squared=False),
+    "R2": r2_score(y_test_r, y_pred_r),
+}
+reg_metrics
+```
+
+```{python}
+plt.scatter(y_test_r, y_pred_r, alpha=0.6)
+plt.title("Real vs. Predicho (Regresión)"); plt.xlabel("Real"); plt.ylabel("Predicho"); plt.tight_layout(); plt.show()
+
+res = y_test_r - y_pred_r
+plt.scatter(y_pred_r, res, alpha=0.6); plt.axhline(0, linestyle="--")
+plt.title("Residuales vs. Predicción"); plt.xlabel("Predicción"); plt.ylabel("Residual"); plt.tight_layout(); plt.show()
+```
+
+## 5. Clustering
+
+```{python}
+num_cols_cluster = ["authorFollowers", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity", "toxicity_score"]
+dfc = df[num_cols_cluster].apply(pd.to_numeric, errors="coerce").dropna().reset_index(drop=True)
+
+sil_scores = {}
+best = {"k": None, "score": -1, "labels": None}
+
+for k in range(2,7):
+    pipe_km = Pipeline([("scaler", StandardScaler()), ("km", KMeans(n_clusters=k, n_init=10, random_state=42))])
+    labels = pipe_km.fit_predict(dfc)
+    sil = silhouette_score(dfc, labels)
+    sil_scores[k] = sil
+    if sil > best["score"]:
+        best = {"k": k, "score": sil, "labels": labels, "model": pipe_km}
+
+sil_scores, best["k"], best["score"]
+```
+
+```{python}
+dfvis = dfc.copy()
+dfvis["cluster"] = best["labels"]
+for cl in sorted(dfvis["cluster"].unique()):
+    part = dfvis[dfvis["cluster"]==cl]
+    plt.scatter(part["sentiment_polarity"], part["toxicity_score"], alpha=0.6, label=f"Cluster {cl}")
+plt.legend(); plt.title(f"Clusters KMeans (k={best['k']})"); plt.xlabel("sentiment_polarity"); plt.ylabel("toxicity_score"); plt.tight_layout(); plt.show()
+
+# Relación con target binario (0.5)
+y_bin_all = (dfvis["toxicity_score"] >= 0.5).astype(int)
+ct = pd.crosstab(dfvis["cluster"], y_bin_all, normalize="index")*100
+ct.round(1)
+```
+
+## 6. Conclusiones y próximos pasos
+
+- Calidad de datos y nulos: …  
+- Justificación del umbral para clasificación: …  
+- Rendimiento de modelos: …  
+- Patrones en clusters vs clases: …  
+
+**Mejoras propuestas:**
+- Probar `Ridge` o `ElasticNet` para regresión.
+- Ajustar umbrales y `class_weight` en clasificación; búsqueda de hiperparámetros con `GridSearchCV`.
+- Expandir features del texto: `ngram_range`, `min_df`, limpieza de URLs, usuarios y emojis.
+- Evaluar reducción de dimensionalidad para clustering/visualización (PCA/TruncatedSVD).

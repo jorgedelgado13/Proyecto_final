@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preparación" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="preparación"><span class="header-section-number">1</span> 0. Preparación</h2>
-<div id="241140bc" class="cell" data-execution_count="1">
+<div id="f7896e28" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="eda"><span class="header-section-number">2</span> 1. EDA</h2>
-<div id="be42747b" class="cell" data-execution_count="2">
+<div id="bc94e552" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -454,7 +454,7 @@ dtypes: bool(3), float64(3), int64(9), object(12)
 memory usage: 285.8+ KB</code></pre>
 </div>
 </div>
-<div id="3f65140b" class="cell" data-execution_count="3">
+<div id="c8772fd5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar tipos de columnas</span></span>
@@ -517,7 +517,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="0ab4ebe2" class="cell" data-execution_count="4">
+<div id="a0849b9f" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico</span></span>
@@ -680,7 +680,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="bc35c6a5" class="cell" data-execution_count="5">
+<div id="d68e61c6" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>])</span>
@@ -703,7 +703,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="49f20e15" class="cell" data-execution_count="6">
+<div id="88c519b4" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen categórico</span></span>
@@ -728,7 +728,7 @@ authorVerified            1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="6849961e" class="cell" data-execution_count="7">
+<div id="d0d7c287" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nulos y duplicados</span></span>
@@ -805,7 +805,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="f76263d0" class="cell" data-execution_count="8">
+<div id="ce9ad180" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución toxicity_score</span></span>
@@ -838,7 +838,7 @@ max         0.939145
 Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="dcdab2ea" class="cell" data-execution_count="9">
+<div id="ea75e75f" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
@@ -858,7 +858,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="2a63daa7" class="cell" data-execution_count="10">
+<div id="464e3a2d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots de numéricas clave</span></span>
@@ -874,7 +874,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="38256565" class="cell" data-execution_count="11">
+<div id="1a541766" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top hashtags y menciones</span></span>
@@ -1110,7 +1110,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="bb321c01" class="cell" data-execution_count="12">
+<div id="35ca8140" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de Variables categóricas</span></span>
@@ -1168,7 +1168,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="4f65a1f2" class="cell" data-execution_count="13">
+<div id="c1ec4a36" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar variable de texto</span></span>
@@ -1286,7 +1286,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="15821510" class="cell" data-execution_count="14">
+<div id="b11bce6e" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlación de las variables numéricas</span></span>
@@ -1331,7 +1331,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Hallazgos clave (EDA):</strong></p>
-<div id="f29b85cc" class="cell" data-execution_count="15">
+<div id="66deb807" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DISTRIBUCIÓN DE LOS DATOS:"</span>)</span>
@@ -1367,7 +1367,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 </section>
 <section id="preprocesamiento-y-codificación" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="preprocesamiento-y-codificación"><span class="header-section-number">3</span> 2. Preprocesamiento y codificación</h2>
-<div id="9154a666" class="cell" data-execution_count="16">
+<div id="5e196f6b" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_procesado <span class="op">=</span> df[[<span class="st">'content'</span>, <span class="st">'toxicity_score'</span>]].copy()</span>
@@ -1382,7 +1382,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">""</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="bu">str</span>(text).lower()</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remover URLs, menciones, hashtags, ademas números y caracteres especiales</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remover URLs, menciones, hashtags, además números y caracteres especiales</span></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'http</span><span class="dv">\S</span><span class="op">+</span><span class="cf">|</span><span class="vs">www</span><span class="dv">\S</span><span class="op">+</span><span class="vs">'</span>, <span class="st">''</span>, text)</span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'@</span><span class="dv">\w</span><span class="op">+</span><span class="vs">'</span>, <span class="st">''</span>, text)</span>
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'#</span><span class="dv">\w</span><span class="op">+</span><span class="vs">'</span>, <span class="st">''</span>, text)</span>
@@ -1399,8 +1399,8 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 <span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>spanish_stopwords <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">'spanish'</span>))</span>
 <span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> text.split()</span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join([word <span class="cf">for</span> word <span class="kw">in</span> words <span class="cf">if</span> word <span class="kw">not</span> <span class="kw">in</span> spanish_stopwords <span class="kw">and</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">2</span>])</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> word_tokenize(text, language<span class="op">=</span><span class="st">'spanish'</span>)  <span class="co"># &lt;-- cambio: antes text.split()</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join([word <span class="cf">for</span> word <span class="kw">in</span> words <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> spanish_stopwords <span class="kw">and</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">2</span>])</span>
 <span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear texto procesado final</span></span>
 <span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>df_procesado[<span class="st">'text_processed'</span>] <span class="op">=</span> df_procesado[<span class="st">'content_clean'</span>].<span class="bu">apply</span>(remove_stopwords)</span>
@@ -1449,7 +1449,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 [1347 rows x 4 columns]</code></pre>
 </div>
 </div>
-<div id="5c2bbd9a" class="cell" data-execution_count="17">
+<div id="ea40f9e5" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"text_processed"</span></span>
@@ -2268,7 +2268,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clasificación" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">4</span> 3. Clasificación</h2>
-<div id="6f3ce828" class="cell" data-execution_count="18">
+<div id="02bb2a9e" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario con umbral 0.5 (puedes justificar 0.5 vs 0.7 en el informe)</span></span>
@@ -2299,7 +2299,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
  'roc_auc': 0.7595972309628697}</code></pre>
 </div>
 </div>
-<div id="da3b3142" class="cell" data-execution_count="19">
+<div id="fe7f3857" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
@@ -2316,7 +2316,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="regresión" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="regresión"><span class="header-section-number">5</span> 4. Regresión</h2>
-<div id="a6fb82f7" class="cell" data-execution_count="20">
+<div id="cf4e005b" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -2336,7 +2336,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <pre><code>{'MAE': 0.16806338609617444, 'RMSE': 0.049797216940050744, 'R2': 0.12122430945578111}</code></pre>
 </div>
 </div>
-<div id="2ce2eaa2" class="cell" data-execution_count="21">
+<div id="147123b1" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
@@ -2364,7 +2364,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clustering" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="clustering"><span class="header-section-number">6</span> 5. Clustering</h2>
-<div id="dce8fb24" class="cell" data-execution_count="22">
+<div id="6ad13b29" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
@@ -2393,7 +2393,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
  0.9985810886175137)</code></pre>
 </div>
 </div>
-<div id="5ebb4ff1" class="cell" data-execution_count="23">
+<div id="4cec2c5a" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>

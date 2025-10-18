@@ -276,7 +276,7 @@ def clean_text(text):
         return ""
     
     text = str(text).lower()
-    # Remover URLs, menciones, hashtags, ademas números y caracteres especiales
+    # Remover URLs, menciones, hashtags, además números y caracteres especiales
     text = re.sub(r'http\S+|www\S+', '', text)
     text = re.sub(r'@\w+', '', text)
     text = re.sub(r'#\w+', '', text)
@@ -293,8 +293,8 @@ df_procesado['content_clean'] = df_procesado['content'].apply(clean_text)
 spanish_stopwords = set(stopwords.words('spanish'))
 
 def remove_stopwords(text):
-    words = text.split()
-    return ' '.join([word for word in words if word not in spanish_stopwords and len(word) > 2])
+    words = word_tokenize(text, language='spanish')  # <-- cambio: antes text.split()
+    return ' '.join([word for word in words if word.lower() not in spanish_stopwords and len(word) > 2])
 
 # Crear texto procesado final
 df_procesado['text_processed'] = df_procesado['content_clean'].apply(remove_stopwords)

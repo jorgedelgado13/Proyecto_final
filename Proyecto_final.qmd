@@ -181,7 +181,7 @@ reg_metrics = {
     "RMSE": mean_squared_error(y_test_r, y_pred_r, squared=False),
     "R2": r2_score(y_test_r, y_pred_r),
 }
-reg_metrics
+print(reg_metrics)
 ```
 
 ```{python}

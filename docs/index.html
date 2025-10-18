@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Categorical Encoding – Machine Learning</title>
+<title>Laboratorio 2 - Módulo de aprendizaje de máquina – Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,45 +20,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,9 +68,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -119,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Categorical Encoding</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Inicio</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Inicio</span></a>
   </div>
 </li>
@@ -160,8 +122,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./LABORATORIO_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Laboratorio</span></a>
+  <a href="./Proyecto_final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Análisis ML de Toxicidad en Tweets (Ecuador)</span></a>
   </div>
 </li>
       </ul>
@@ -176,19 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ejemplo-de-categorical-encoding" id="toc-ejemplo-de-categorical-encoding" class="nav-link active" data-scroll-target="#ejemplo-de-categorical-encoding">Ejemplo de categorical encoding</a>
-  <ul class="collapse">
-  <li><a href="#importando-las-librerías" id="toc-importando-las-librerías" class="nav-link" data-scroll-target="#importando-las-librerías">Importando las librerías</a></li>
-  <li><a href="#dataframe-de-ejemplo" id="toc-dataframe-de-ejemplo" class="nav-link" data-scroll-target="#dataframe-de-ejemplo">Dataframe de ejemplo</a></li>
-  <li><a href="#labelencoder-usar-solo-en-la-columna-de-output" id="toc-labelencoder-usar-solo-en-la-columna-de-output" class="nav-link" data-scroll-target="#labelencoder-usar-solo-en-la-columna-de-output">LabelEncoder(): usar solo en la columna de <code>output</code></a></li>
-  <li><a href="#ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l" id="toc-ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l" class="nav-link" data-scroll-target="#ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l">OrdinalEncoder(): usar en columnas categoricas ordinales, donde los valores tienen un orden natural (e.g., S &lt; M &lt; L)</a></li>
-  <li><a href="#onehotencoder-usar-para-las-columnas-categoricas-nominales-donde-los-valores-no-tienen-un-orden" id="toc-onehotencoder-usar-para-las-columnas-categoricas-nominales-donde-los-valores-no-tienen-un-orden" class="nav-link" data-scroll-target="#onehotencoder-usar-para-las-columnas-categoricas-nominales-donde-los-valores-no-tienen-un-orden">OneHotEncoder(): usar para las columnas categoricas nominales, donde los valores no tienen un orden</a></li>
-  </ul></li>
-  <li><a href="#columntransformer" id="toc-columntransformer" class="nav-link" data-scroll-target="#columntransformer">ColumnTransformer</a>
-  <ul class="collapse">
-  <li><a href="#creación-del-preprocesor" id="toc-creación-del-preprocesor" class="nav-link" data-scroll-target="#creación-del-preprocesor">Creación del preprocesor</a></li>
-  <li><a href="#aplicar-el-preprocesor" id="toc-aplicar-el-preprocesor" class="nav-link" data-scroll-target="#aplicar-el-preprocesor">Aplicar el preprocesor</a></li>
-  </ul></li>
+  <li><a href="#laboratorio-2" id="toc-laboratorio-2" class="nav-link active" data-scroll-target="#laboratorio-2">Laboratorio 2</a></li>
   </ul>
 </nav>
     </div>
@@ -197,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Categorical Encoding</h1>
+<h1 class="title">Laboratorio 2 - Módulo de aprendizaje de máquina</h1>
 </div>
 
 
@@ -214,288 +164,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="ejemplo-de-categorical-encoding" class="level1">
-<h1>Ejemplo de categorical encoding</h1>
-<section id="importando-las-librerías" class="level2">
-<h2 class="anchored" data-anchor-id="importando-las-librerías">Importando las librerías</h2>
-<div id="89c7fbe1" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, OneHotEncoder,OrdinalEncoder,StandardScaler, MinMaxScaler</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="dataframe-de-ejemplo" class="level2">
-<h2 class="anchored" data-anchor-id="dataframe-de-ejemplo">Dataframe de ejemplo</h2>
-<div id="4e67df94" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'size'</span>:[<span class="st">'M'</span>,<span class="st">'S'</span>,<span class="st">'L'</span>], <span class="co">#categorico ordinal = OrdinalEncoder()</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'color'</span>:[<span class="st">'green'</span>,<span class="st">'red'</span>,<span class="st">'blue'</span>], <span class="co">#categorico nominal = OneHotEncoder()</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'price'</span>:[<span class="fl">10.1</span>, <span class="fl">13.5</span>, <span class="fl">15.6</span>], <span class="co">#numerico continuo = StandardEncoder()</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'label'</span>:[<span class="st">'pantalones'</span>,<span class="st">'camisetas'</span>,<span class="st">'camisetas'</span>] <span class="co">#etiqueta = LabelEncoder()</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
+<section id="laboratorio-2" class="level1">
+<h1>Laboratorio 2</h1>
+<p>Módulo de aprendizaje de máquina Yachaytech 2025</p>
+<p>Realizado por: Jorge Delgado</p>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">size</th>
-<th data-quarto-table-cell-role="th">color</th>
-<th data-quarto-table-cell-role="th">price</th>
-<th data-quarto-table-cell-role="th">label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>M</td>
-<td>green</td>
-<td>10.1</td>
-<td>pantalones</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>S</td>
-<td>red</td>
-<td>13.5</td>
-<td>camisetas</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>L</td>
-<td>blue</td>
-<td>15.6</td>
-<td>camisetas</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="labelencoder-usar-solo-en-la-columna-de-output" class="level2">
-<h2 class="anchored" data-anchor-id="labelencoder-usar-solo-en-la-columna-de-output">LabelEncoder(): usar solo en la columna de <code>output</code></h2>
-<div id="b89f6010" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'label_encoded'</span>] <span class="op">=</span> LabelEncoder().fit_transform(df[<span class="st">'label'</span>])</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">size</th>
-<th data-quarto-table-cell-role="th">color</th>
-<th data-quarto-table-cell-role="th">price</th>
-<th data-quarto-table-cell-role="th">label</th>
-<th data-quarto-table-cell-role="th">label_encoded</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>M</td>
-<td>green</td>
-<td>10.1</td>
-<td>pantalones</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>S</td>
-<td>red</td>
-<td>13.5</td>
-<td>camisetas</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>L</td>
-<td>blue</td>
-<td>15.6</td>
-<td>camisetas</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l" class="level2">
-<h2 class="anchored" data-anchor-id="ordinalencoder-usar-en-columnas-categoricas-ordinales-donde-los-valores-tienen-un-orden-natural-e.g.-s-m-l">OrdinalEncoder(): usar en columnas categoricas ordinales, donde los valores tienen un orden natural (e.g., S &lt; M &lt; L)</h2>
-<div id="2eb43bcb" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>size_order <span class="op">=</span> [[<span class="st">'S'</span>,<span class="st">'M'</span>,<span class="st">'L'</span>]]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'size_encoded'</span>] <span class="op">=</span> OrdinalEncoder(categories<span class="op">=</span>size_order).fit_transform(df[[<span class="st">'size'</span>]])</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">size</th>
-<th data-quarto-table-cell-role="th">color</th>
-<th data-quarto-table-cell-role="th">price</th>
-<th data-quarto-table-cell-role="th">label</th>
-<th data-quarto-table-cell-role="th">label_encoded</th>
-<th data-quarto-table-cell-role="th">size_encoded</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>M</td>
-<td>green</td>
-<td>10.1</td>
-<td>pantalones</td>
-<td>1</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>S</td>
-<td>red</td>
-<td>13.5</td>
-<td>camisetas</td>
-<td>0</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>L</td>
-<td>blue</td>
-<td>15.6</td>
-<td>camisetas</td>
-<td>0</td>
-<td>2.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="onehotencoder-usar-para-las-columnas-categoricas-nominales-donde-los-valores-no-tienen-un-orden" class="level2">
-<h2 class="anchored" data-anchor-id="onehotencoder-usar-para-las-columnas-categoricas-nominales-donde-los-valores-no-tienen-un-orden">OneHotEncoder(): usar para las columnas categoricas nominales, donde los valores no tienen un orden</h2>
-<div id="6ce31258" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>color_encoder <span class="op">=</span> OneHotEncoder(sparse_output<span class="op">=</span><span class="va">False</span>,handle_unknown<span class="op">=</span><span class="st">'ignore'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>color_encoded <span class="op">=</span> color_encoder.fit_transform(df[[<span class="st">'color'</span>]])</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>color_title_encoded <span class="op">=</span> color_encoder.get_feature_names_out([<span class="st">'color'</span>])</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df[color_title_encoded] <span class="op">=</span> color_encoded</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">size</th>
-<th data-quarto-table-cell-role="th">color</th>
-<th data-quarto-table-cell-role="th">price</th>
-<th data-quarto-table-cell-role="th">label</th>
-<th data-quarto-table-cell-role="th">label_encoded</th>
-<th data-quarto-table-cell-role="th">size_encoded</th>
-<th data-quarto-table-cell-role="th">color_blue</th>
-<th data-quarto-table-cell-role="th">color_green</th>
-<th data-quarto-table-cell-role="th">color_red</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>M</td>
-<td>green</td>
-<td>10.1</td>
-<td>pantalones</td>
-<td>1</td>
-<td>1.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>S</td>
-<td>red</td>
-<td>13.5</td>
-<td>camisetas</td>
-<td>0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>L</td>
-<td>blue</td>
-<td>15.6</td>
-<td>camisetas</td>
-<td>0</td>
-<td>2.0</td>
-<td>1.0</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="columntransformer" class="level1">
-<h1>ColumnTransformer</h1>
-<section id="creación-del-preprocesor" class="level2">
-<h2 class="anchored" data-anchor-id="creación-del-preprocesor">Creación del preprocesor</h2>
-<div id="b28de0b1" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>categorical_features <span class="op">=</span> [<span class="st">'color'</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ordinal_features <span class="op">=</span> [<span class="st">'size'</span>]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>numerical_features <span class="op">=</span> [<span class="st">'price'</span>]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>size_order <span class="op">=</span> [[<span class="st">'S'</span>,<span class="st">'M'</span>,<span class="st">'L'</span>]]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'color_onehot'</span>,OneHotEncoder(),categorical_features), </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'size_ordenc'</span>,OrdinalEncoder(categories<span class="op">=</span>size_order),ordinal_features),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'price_stan'</span>,StandardScaler(),numerical_features)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="aplicar-el-preprocesor" class="level2">
-<h2 class="anchored" data-anchor-id="aplicar-el-preprocesor">Aplicar el preprocesor</h2>
-<div id="7d5b597b" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>features_transformed <span class="op">=</span> preprocessor.fit_transform(df)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>features_transformed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>array([[ 0.        ,  1.        ,  0.        ,  1.        , -1.30910667],
-       [ 0.        ,  0.        ,  1.        ,  0.        ,  0.19121783],
-       [ 1.        ,  0.        ,  0.        ,  2.        ,  1.11788884]])</code></pre>
-</div>
-</div>
-
-
-</section>
 </section>
 
 </main> <!-- /main -->

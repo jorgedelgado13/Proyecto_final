@@ -220,11 +220,33 @@ else:
     print("No se detectó ninguna columna de texto para generar la nube de palabras.\n")
 ```
 
+```{python}
+#Correlación de las variables numéricas
+numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+if len(numeric_cols) > 1:
+    # Matriz de correlación
+    correlation_matrix = df[numeric_cols].corr()
+    
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
+                square=True, fmt='.2f')
+    plt.title('Matriz de Correlación de Variables Numéricas')
+    plt.tight_layout()
+    plt.show()
+    
+    # Top correlaciones con toxicidad
+    if 'toxicity_score' in numeric_cols:
+        toxicity_corr = correlation_matrix['toxicity_score'].abs().sort_values(ascending=False)
+        print(f"=== CORRELACIONES CON {'toxicity_score'.upper()} ===")
+        print(toxicity_corr.head(10))
+```
+
+
 **Hallazgos clave (EDA):**  
 - Distribución de `toxicity_score` con mediana, cuartiles y % de valores altos.  
 - Campos con nulos relevantes (p.ej. `toxicity_score` y `hashtags`).  
 - Concentración de polaridad y relación preliminar con la toxicidad.
-```
+
 
 
 ## 2. Preprocesamiento y codificación

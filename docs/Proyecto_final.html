@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preparación" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="preparación"><span class="header-section-number">1</span> 0. Preparación</h2>
-<div id="1abc2dc2" class="cell" data-execution_count="1">
+<div id="241140bc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="eda"><span class="header-section-number">2</span> 1. EDA</h2>
-<div id="8c51f03c" class="cell" data-execution_count="2">
+<div id="be42747b" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -454,7 +454,7 @@ dtypes: bool(3), float64(3), int64(9), object(12)
 memory usage: 285.8+ KB</code></pre>
 </div>
 </div>
-<div id="54484ae1" class="cell" data-execution_count="3">
+<div id="3f65140b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar tipos de columnas</span></span>
@@ -517,7 +517,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="34d2f2df" class="cell" data-execution_count="4">
+<div id="0ab4ebe2" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico</span></span>
@@ -680,7 +680,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="804dab52" class="cell" data-execution_count="5">
+<div id="bc35c6a5" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>])</span>
@@ -703,7 +703,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="b8039f4a" class="cell" data-execution_count="6">
+<div id="49f20e15" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen categórico</span></span>
@@ -728,7 +728,7 @@ authorVerified            1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="9327a4af" class="cell" data-execution_count="7">
+<div id="6849961e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nulos y duplicados</span></span>
@@ -805,7 +805,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="66e11ee1" class="cell" data-execution_count="8">
+<div id="f76263d0" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución toxicity_score</span></span>
@@ -838,7 +838,7 @@ max         0.939145
 Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="a043acd2" class="cell" data-execution_count="9">
+<div id="dcdab2ea" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
@@ -858,7 +858,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cc2e9da0" class="cell" data-execution_count="10">
+<div id="2a63daa7" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots de numéricas clave</span></span>
@@ -874,7 +874,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="e978610c" class="cell" data-execution_count="11">
+<div id="38256565" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top hashtags y menciones</span></span>
@@ -1110,7 +1110,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="de4dd593" class="cell" data-execution_count="12">
+<div id="bb321c01" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de Variables categóricas</span></span>
@@ -1168,7 +1168,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="5f10bc22" class="cell" data-execution_count="13">
+<div id="4f65a1f2" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar variable de texto</span></span>
@@ -1286,7 +1286,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="bae45d1a" class="cell" data-execution_count="14">
+<div id="15821510" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlación de las variables numéricas</span></span>
@@ -1331,7 +1331,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Hallazgos clave (EDA):</strong></p>
-<div id="d177d8af" class="cell" data-execution_count="15">
+<div id="f29b85cc" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DISTRIBUCIÓN DE LOS DATOS:"</span>)</span>
@@ -1367,7 +1367,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 </section>
 <section id="preprocesamiento-y-codificación" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="preprocesamiento-y-codificación"><span class="header-section-number">3</span> 2. Preprocesamiento y codificación</h2>
-<div id="c8acefb7" class="cell" data-execution_count="16">
+<div id="9154a666" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_procesado <span class="op">=</span> df[[<span class="st">'content'</span>, <span class="st">'toxicity_score'</span>]].copy()</span>
@@ -1449,32 +1449,38 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 [1347 rows x 4 columns]</code></pre>
 </div>
 </div>
-<div id="818a579b" class="cell" data-execution_count="17">
+<div id="5c2bbd9a" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"content"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"text_processed"</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>]</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>cat_cols <span class="op">=</span> [<span class="st">"source"</span>, <span class="st">"has_profile_picture"</span>]</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Subconjunto para modelado</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df[[text_col, <span class="st">"toxicity_score"</span>] <span class="op">+</span> num_cols <span class="op">+</span> cat_cols].copy()</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df[[<span class="st">"content"</span>, <span class="st">"toxicity_score"</span>] <span class="op">+</span> num_cols <span class="op">+</span> cat_cols].copy()</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> num_cols:</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    df_model[c] <span class="op">=</span> pd.to_numeric(df_model[c], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> cat_cols:</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    df_model[c] <span class="op">=</span> df_model[c].astype(<span class="st">"category"</span>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df_model.dropna(subset<span class="op">=</span>[text_col, <span class="st">"toxicity_score"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>df_model[<span class="st">"toxicity_score"</span>] <span class="op">=</span> pd.to_numeric(df_model[<span class="st">"toxicity_score"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_model[[text_col] <span class="op">+</span> num_cols <span class="op">+</span> cat_cols]</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>y_cont <span class="op">=</span> df_model[<span class="st">"toxicity_score"</span>]</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadir la columna de texto procesado alineando por 'content'</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df_model.merge(df_procesado[[<span class="st">"content"</span>, <span class="st">"text_processed"</span>]], on<span class="op">=</span><span class="st">"content"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"text"</span>, TfidfVectorizer(max_df<span class="op">=</span><span class="fl">0.9</span>, min_df<span class="op">=</span><span class="dv">5</span>, ngram_range<span class="op">=</span>(<span class="dv">1</span>,<span class="dv">2</span>), strip_accents<span class="op">=</span><span class="st">"unicode"</span>), text_col),</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"num"</span>, Pipeline([(<span class="st">"scaler"</span>, StandardScaler(with_mean<span class="op">=</span><span class="va">False</span>))]), num_cols),</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"cat"</span>, OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>), cat_cols),</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>preprocessor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar NAs en texto/target</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">=</span> df_model.dropna(subset<span class="op">=</span>[text_col, <span class="st">"toxicity_score"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_model[[text_col] <span class="op">+</span> num_cols <span class="op">+</span> cat_cols]</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>y_cont <span class="op">=</span> df_model[<span class="st">"toxicity_score"</span>]</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"text"</span>, TfidfVectorizer(max_df<span class="op">=</span><span class="fl">0.9</span>, min_df<span class="op">=</span><span class="dv">5</span>, ngram_range<span class="op">=</span>(<span class="dv">1</span>,<span class="dv">2</span>), strip_accents<span class="op">=</span><span class="st">"unicode"</span>), text_col),</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"num"</span>, Pipeline([(<span class="st">"scaler"</span>, StandardScaler(with_mean<span class="op">=</span><span class="va">False</span>))]), num_cols),</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"cat"</span>, OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">"ignore"</span>), cat_cols),</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>preprocessor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <style>#sk-container-id-1 {
@@ -1958,7 +1964,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                  TfidfVectorizer(max_df=0.9, min_df=5,
                                                  ngram_range=(1, 2),
                                                  strip_accents='unicode'),
-                                 'content'),
+                                 'text_processed'),
                                 ('num',
                                  Pipeline(steps=[('scaler',
                                                   StandardScaler(with_mean=False))]),
@@ -2018,7 +2024,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
             </details>
         </div>
-    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>text</div></div></label><div class="sk-toggleable__content " data-param-prefix="text__"><pre>content</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="text__">
+    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>text</div></div></label><div class="sk-toggleable__content " data-param-prefix="text__"><pre>text_processed</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="text__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2262,7 +2268,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clasificación" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">4</span> 3. Clasificación</h2>
-<div id="df66c3cb" class="cell" data-execution_count="18">
+<div id="6f3ce828" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario con umbral 0.5 (puedes justificar 0.5 vs 0.7 en el informe)</span></span>
@@ -2286,14 +2292,14 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>{'accuracy': 0.774074074074074,
- 'precision': 0.4189189189189189,
- 'recall': 0.6326530612244898,
- 'f1': 0.5040650406504065,
- 'roc_auc': 0.7599039615846338}</code></pre>
+<pre><code>{'accuracy': 0.7717391304347826,
+ 'precision': 0.4,
+ 'recall': 0.5714285714285714,
+ 'f1': 0.47058823529411764,
+ 'roc_auc': 0.7595972309628697}</code></pre>
 </div>
 </div>
-<div id="de419b26" class="cell" data-execution_count="19">
+<div id="da3b3142" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
@@ -2310,7 +2316,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="regresión" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="regresión"><span class="header-section-number">5</span> 4. Regresión</h2>
-<div id="12c4c733" class="cell" data-execution_count="20">
+<div id="a6fb82f7" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -2327,10 +2333,10 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reg_metrics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>{'MAE': 0.21562974252085007, 'RMSE': 0.08044637897153051, 'R2': -0.40250228465286586}</code></pre>
+<pre><code>{'MAE': 0.16806338609617444, 'RMSE': 0.049797216940050744, 'R2': 0.12122430945578111}</code></pre>
 </div>
 </div>
-<div id="e050cdea" class="cell" data-execution_count="21">
+<div id="2ce2eaa2" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
@@ -2350,7 +2356,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-22-output-2.png" width="661" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-22-output-2.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2358,7 +2364,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clustering" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="clustering"><span class="header-section-number">6</span> 5. Clustering</h2>
-<div id="cb5d2442" class="cell" data-execution_count="22">
+<div id="dce8fb24" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
@@ -2387,7 +2393,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
  0.9985810886175137)</code></pre>
 </div>
 </div>
-<div id="f2d91fbd" class="cell" data-execution_count="23">
+<div id="5ebb4ff1" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>

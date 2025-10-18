@@ -302,16 +302,22 @@ print(df_procesado)
 ```
 
 ```{python}
-text_col = "content"
+text_col = "text_processed"
 num_cols = ["authorFollowers", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity"]
 cat_cols = ["source", "has_profile_picture"]
 
 # Subconjunto para modelado
-df_model = df[[text_col, "toxicity_score"] + num_cols + cat_cols].copy()
+df_model = df[["content", "toxicity_score"] + num_cols + cat_cols].copy()
 for c in num_cols:
     df_model[c] = pd.to_numeric(df_model[c], errors="coerce")
 for c in cat_cols:
     df_model[c] = df_model[c].astype("category")
+df_model["toxicity_score"] = pd.to_numeric(df_model["toxicity_score"], errors="coerce")
+
+# Añadir la columna de texto procesado alineando por 'content'
+df_model = df_model.merge(df_procesado[["content", "text_processed"]], on="content", how="left")
+
+# Filtrar NAs en texto/target
 df_model = df_model.dropna(subset=[text_col, "toxicity_score"]).reset_index(drop=True)
 
 X = df_model[[text_col] + num_cols + cat_cols]

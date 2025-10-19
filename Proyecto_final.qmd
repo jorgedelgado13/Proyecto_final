@@ -654,7 +654,7 @@ plt.tight_layout(); plt.show()
 
 ## 6. Conclusiones y próximos pasos
 
-# Calidad de los datos
+### Calidad de los datos
 - El dataset 1.5k tweets es utilizable, pero presenta nulos relevantes: toxicity_score (~10%) y hashtags (muy incompleto). No hay duplicados y algunas variables carecen de variación (p.ej., authorVerified casi constante), por lo que aportan poco al modelado.
 
 - Las señales más útiles provienen del texto (content). Los metadatos numéricos (authorFollowers, mentions_count, content_length, etc.) muestran correlaciones débiles con la toxicidad; content_length es la más consistente (correlación positiva baja).
@@ -665,13 +665,13 @@ plt.tight_layout(); plt.show()
 
 
 
-# Utilidad del target generado
+### Utilidad del target generado
 
 - Para clasificación se transformó toxicity_score en binario. El umbral 0.5 ofrece ~18% de positivos, que está cerca del objetivo práctico (~20%).
 
 - Además, se realizó una exploración para determinar el mejorumbral no solo por balance, sino con una búsqueda de umbral precisión/recall en el set de prueba. En general, tuning de umbral > usar 0.5 fijo, sobre todo si interesa capturar más casos tóxicos.
 
-# Rendimiento de modelos
+### Rendimiento de modelos
 
 - Clasificación (pipeline TF-IDF + Random Forest): resultados sólidos para un baseline con texto + metadatos. Con umbral 0.5 se observó AUC≈0.72, accuracy≈0.84, precision≈0.63 y recall≈0.25; al optimizar el umbral por F1, el recall mejora, pero a costa de algo de precisión, lo que puede ser preferible si el costo del falso negativo es alto. Analizando nuestra matriz de confusiòn el modelo es casi no “se equivoca levantando falsos tóxicos”, pero se le escapan muchos tóxicos.
 
@@ -680,7 +680,7 @@ plt.tight_layout(); plt.show()
 - Clustering : con K-Means, segmentos razonables pero no perfectos, el resultado escogido luego de aplicar el método del codo y Silhouette fue 6 por Silhouette≈0.31 . Los clusters presentan prevalencias distintas de toxicidad al cruzarlos con el target binario 0.5, lo que sugiere segmentos útiles para perfilamiento (p.ej., textos más largos vs. más cortos, autores con mayor vs. menor actividad).La longitud del texto nos indica que hay un grupo de tuits cortos y nada tóxicos y otro de tuits cortos más tóxicos. Luego se realizón una vizualización utilizando el Agglomerative  y el PCA. Usando este análisis vemos un comportamiento similiar enter  Agglomerative y K-means (k=6), en donde mustran cierto solapamiento, de todas maneras se uso clases verdaderas en donde vemos una mejor gráfica pero aun no consolida fronteras definidas. 
 
 
-# Patrones relevantes
+### Patrones relevantes
 
 Mayor longitud del contenido tiende a asociarse con mayor toxicidad, lo que nos muestra una relación débil pero consistente.
 
@@ -690,7 +690,7 @@ Los clusters no replican exactamente las clases del target, pero sí muestran gr
 
 ## Pasos futuros / mejoras
 
-# Datos y features
+### Datos y features
 
 - Completar toxicity_score faltante para evitar perder tweets; estandarizar el parseo de hashtags y menciones (listas limpias, minúsculas) y considerar frecuencias o indicadores top-k.
 
@@ -698,17 +698,17 @@ Los clusters no replican exactamente las clases del target, pero sí muestran gr
 
 - Añadir rasgos temporales (hora/día) basado en experiencia del analista como podría ser fechas de debates, revelaciones de informaciones relevantes del ámbito político ecuatoriano y de estructura (nº emojis, nº signos de exclamación).
 
-# Modelado
+### Modelado
 
-# Clasificación:
+### Clasificación:
 
 - Se utilizó en un inicio el modelo de regresión logistica, en un segundo paso se realizó el ejercicio con RandomForest, el cual automáticamente mostró mejoría del resultado por lo cual se optó por presenter el mismo en este proyecto, debido que mostró siginificativamente mejor performance no se hizo comparativa en este paso sino que se decidió utilizar únicamente RandomForest, por lo que podría haber oportunidad de mejora probando otros modelos.
 
 
-# Regresión:
+### Regresión:
 
 - Se evaluaron residuales para vizualizar el rendimiento del modelo en donde podemos ver una tendencia positiva en la comparativa de real vs. predicho, es decir que el modelo si está captando el comportamiento de los datos. Con la gráfica de residuales por otro lado tenemos un riesgo de infraajuste del modelo debido el R2 bajo. Por lo que sería interesante probar otros modelos para el análisis.   
 
-# Clustering:
+### Clustering:
 
 - Sería interesante añadir una señal semántica del texto al clustering usando TF-IDF para luego aplicar un TruncatedSVD y/o PCA y luego aplicar el K-means

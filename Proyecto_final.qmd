@@ -536,17 +536,9 @@ plt.xlabel("Predicción"); plt.ylabel("Residual"); plt.tight_layout(); plt.show(
 
 ```{python}
 
-num_cols_cluster_feat = ["authorFollowers", "account_age_days", "mentions_count",
-                         "hashtags_count", "content_length"]  # <- sin toxicity_score
-
-tmp = df[num_cols_cluster_feat + ["toxicity_score"]].copy()
-tmp[num_cols_cluster_feat + ["toxicity_score"]] = tmp[num_cols_cluster_feat + ["toxicity_score"]].apply(pd.to_numeric, errors="coerce")
-
-# Mantenemos filas completas para poder luego cruzar contra el target
-tmp = tmp.dropna(subset=num_cols_cluster_feat + ["toxicity_score"]).reset_index(drop=True)
-
-dfX = tmp[num_cols_cluster_feat]        # solo features para clusterizar
-dfY = tmp["toxicity_score"]             # target guardado para análisis posterior
+num_cols_cluster = ["authorFollowers", "account_age_days", "mentions_count",
+                    "hashtags_count", "content_length", "toxicity_score"]  # sin sentiment_polarity
+dfc = df[num_cols_cluster].apply(pd.to_numeric, errors="coerce").dropna().reset_index(drop=True)
 
 k_range = range(2, 11)
 inertias = []
@@ -558,9 +550,9 @@ for k in k_range:
         ("scaler", StandardScaler()),
         ("km", KMeans(n_clusters=k, n_init=10, random_state=42))
     ])
-    pipe_km.fit(dfX)
+    pipe_km.fit(dfc)
     labels = pipe_km.named_steps["km"].labels_
-    Xs = pipe_km.named_steps["scaler"].transform(dfX)   # silhouette en espacio escalado
+    Xs = pipe_km.named_steps["scaler"].transform(dfc)      # silhouette en espacio escalado
     inertia = pipe_km.named_steps["km"].inertia_
     sil = silhouette_score(Xs, labels)
 
@@ -594,9 +586,8 @@ plt.tight_layout(); plt.show()
 # Visualización y relación con el target binario
 
 ```{python}
-# Construimos df de visualización uniendo features, cluster y el target continuo
-dfvis = dfX.copy()
-dfvis["toxicity_score"] = dfY.values
+# --- Visualización básica y relación con target binario (0.5) ---
+dfvis = dfc.copy()
 dfvis["cluster"] = best["labels"]
 
 # Distribución de clusters
@@ -605,7 +596,7 @@ for cl, cnt in counts.items():
     pct = cnt / len(dfvis) * 100
     print(f"Cluster {cl}: {cnt} registros ({pct:.1f}%)")
 
-# Scatter 2D: una feature interpretable vs el target continuo (el target NO se usó para clusterizar)
+# Scatter 2D con variables interpretables (sin sentiment_polarity)
 for cl in sorted(dfvis["cluster"].unique()):
     part = dfvis[dfvis["cluster"] == cl]
     plt.scatter(part["content_length"], part["toxicity_score"], alpha=0.6, label=f"Cluster {cl}")
@@ -614,7 +605,7 @@ plt.title(f"Clusters KMeans (k={best['k']})")
 plt.xlabel("content_length"); plt.ylabel("toxicity_score")
 plt.tight_layout(); plt.show()
 
-# Cruce contra clase binaria (0.5)
+# Relación con target binario (0.5)
 y_bin_all = (dfvis["toxicity_score"] >= 0.5).astype(int)
 ct = pd.crosstab(dfvis["cluster"], y_bin_all, normalize="index") * 100
 print("\n% de tóxicos por cluster (umbral 0.5):")
@@ -624,7 +615,7 @@ print(ct.round(1))
 
 ```{python}
 
-Xs = best["model"].named_steps["scaler"].transform(dfX)
+Xs = best["model"].named_steps["scaler"].transform(dfc)
 
 agg = AgglomerativeClustering(n_clusters=best["k"])
 labels_agg = agg.fit_predict(Xs)
@@ -634,7 +625,7 @@ print(f"\nComparación de Silhouette:")
 print(f"- KMeans (k={best['k']}): {best['score']:.4f}")
 print(f"- Agglomerative (k={best['k']}): {sil_agg:.4f}")
 
-# PCA 2D para visualización (sin incluir toxicity_score en el fit)
+# PCA 2D para visualización (sin sentiment_polarity en las features)
 pca = PCA(n_components=2, random_state=42)
 Xp = pca.fit_transform(Xs)
 
@@ -650,7 +641,7 @@ axes[1].set_title("Agglomerative")
 axes[1].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
 axes[1].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
 
-toxbin = (dfY >= 0.5).astype(int).values
+toxbin = (dfc["toxicity_score"] >= 0.5).astype(int).values
 sc = axes[2].scatter(Xp[:, 0], Xp[:, 1], c=toxbin, cmap="RdYlBu", alpha=0.7, s=30)
 axes[2].set_title("Clases verdaderas (Tóxico binario 0/1)")
 axes[2].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")

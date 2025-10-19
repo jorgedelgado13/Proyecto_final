@@ -81,7 +81,18 @@
     "href": "Proyecto_final.html#conclusiones-y-próximos-pasos",
     "title": "Análisis ML de Toxicidad en Tweets (Ecuador)",
     "section": "3.1 6. Conclusiones y próximos pasos",
-    "text": "3.1 6. Conclusiones y próximos pasos\n\nCalidad de datos y nulos: …\n\nJustificación del umbral para clasificación: …\n\nRendimiento de modelos: …\n\nPatrones en clusters vs clases: …\n\nMejoras propuestas: - Probar Ridge o ElasticNet para regresión. - Ajustar umbrales y class_weight en clasificación; búsqueda de hiperparámetros con GridSearchCV. - Expandir features del texto: ngram_range, min_df, limpieza de URLs, usuarios y emojis. - Evaluar reducción de dimensionalidad para clustering/visualización (PCA/TruncatedSVD).",
+    "text": "3.1 6. Conclusiones y próximos pasos",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Análisis ML de Toxicidad en Tweets (Ecuador)"
+    ]
+  },
+  {
+    "objectID": "Proyecto_final.html#pasos-futuros-mejoras",
+    "href": "Proyecto_final.html#pasos-futuros-mejoras",
+    "title": "Análisis ML de Toxicidad en Tweets (Ecuador)",
+    "section": "7.1 Pasos futuros / mejoras",
+    "text": "7.1 Pasos futuros / mejoras",
     "crumbs": [
       "Natural Language Processing (NLP)",
       "Análisis ML de Toxicidad en Tweets (Ecuador)"

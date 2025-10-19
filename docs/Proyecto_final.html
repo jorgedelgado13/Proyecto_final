@@ -188,6 +188,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#conclusiones-y-próximos-pasos" id="toc-conclusiones-y-próximos-pasos" class="nav-link" data-scroll-target="#conclusiones-y-próximos-pasos"><span class="header-section-number">3.1</span> 6. Conclusiones y próximos pasos</a></li>
   </ul></li>
+  <li><a href="#calidad-de-los-datos" id="toc-calidad-de-los-datos" class="nav-link" data-scroll-target="#calidad-de-los-datos"><span class="header-section-number">4</span> Calidad de los datos</a></li>
+  <li><a href="#utilidad-del-target-generado" id="toc-utilidad-del-target-generado" class="nav-link" data-scroll-target="#utilidad-del-target-generado"><span class="header-section-number">5</span> Utilidad del target generado</a></li>
+  <li><a href="#rendimiento-de-modelos" id="toc-rendimiento-de-modelos" class="nav-link" data-scroll-target="#rendimiento-de-modelos"><span class="header-section-number">6</span> Rendimiento de modelos</a></li>
+  <li><a href="#patrones-relevantes" id="toc-patrones-relevantes" class="nav-link" data-scroll-target="#patrones-relevantes"><span class="header-section-number">7</span> Patrones relevantes</a>
+  <ul class="collapse">
+  <li><a href="#pasos-futuros-mejoras" id="toc-pasos-futuros-mejoras" class="nav-link" data-scroll-target="#pasos-futuros-mejoras"><span class="header-section-number">7.1</span> Pasos futuros / mejoras</a></li>
+  </ul></li>
+  <li><a href="#datos-y-features" id="toc-datos-y-features" class="nav-link" data-scroll-target="#datos-y-features"><span class="header-section-number">8</span> Datos y features</a></li>
+  <li><a href="#modelado" id="toc-modelado" class="nav-link" data-scroll-target="#modelado"><span class="header-section-number">9</span> Modelado</a></li>
+  <li><a href="#clasificación-1" id="toc-clasificación-1" class="nav-link" data-scroll-target="#clasificación-1"><span class="header-section-number">10</span> Clasificación:</a></li>
+  <li><a href="#regresión-1" id="toc-regresión-1" class="nav-link" data-scroll-target="#regresión-1"><span class="header-section-number">11</span> Regresión:</a></li>
+  <li><a href="#clustering-1" id="toc-clustering-1" class="nav-link" data-scroll-target="#clustering-1"><span class="header-section-number">12</span> Clustering:</a></li>
   </ul>
 </nav>
     </div>
@@ -215,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preparación" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="preparación"><span class="header-section-number">0.1</span> 0. Preparación</h2>
-<div id="06a8fef9" class="cell" data-execution_count="1">
+<div id="611c30bb" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -418,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2" data-number="0.2">
 <h2 data-number="0.2" class="anchored" data-anchor-id="eda"><span class="header-section-number">0.2</span> 1. EDA</h2>
-<div id="ff4fe793" class="cell" data-execution_count="2">
+<div id="27c61ff1" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -460,7 +472,7 @@ dtypes: bool(3), float64(3), int64(9), object(12)
 memory usage: 285.8+ KB</code></pre>
 </div>
 </div>
-<div id="b1c9f070" class="cell" data-execution_count="3">
+<div id="b7f97ad9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar tipos de columnas</span></span>
@@ -523,7 +535,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="880b440c" class="cell" data-execution_count="4">
+<div id="7d4b25c0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico</span></span>
@@ -686,7 +698,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="529f18bd" class="cell" data-execution_count="5">
+<div id="722f6c1e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>])</span>
@@ -709,7 +721,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="c346c635" class="cell" data-execution_count="6">
+<div id="e3a66889" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen categórico</span></span>
@@ -734,7 +746,7 @@ authorVerified            1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="a8bf9d0f" class="cell" data-execution_count="7">
+<div id="bf577b16" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nulos y duplicados</span></span>
@@ -811,7 +823,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="0eea6257" class="cell" data-execution_count="8">
+<div id="3604d74e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución toxicity_score</span></span>
@@ -844,7 +856,7 @@ max         0.939145
 Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="d4e7fc31" class="cell" data-execution_count="9">
+<div id="62098290" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
@@ -864,7 +876,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="09b3e6cb" class="cell" data-execution_count="10">
+<div id="81aafcb0" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots de numéricas clave</span></span>
@@ -880,7 +892,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="3b837fec" class="cell" data-execution_count="11">
+<div id="b91de2bf" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top hashtags y menciones</span></span>
@@ -1116,7 +1128,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="a494f2af" class="cell" data-execution_count="12">
+<div id="c6ae68f6" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de Variables categóricas</span></span>
@@ -1174,7 +1186,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="aab25550" class="cell" data-execution_count="13">
+<div id="9cae4615" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar variable de texto</span></span>
@@ -1292,7 +1304,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="2372b95f" class="cell" data-execution_count="14">
+<div id="43a95246" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlación de las variables numéricas</span></span>
@@ -1337,7 +1349,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Hallazgos clave (EDA):</strong></p>
-<div id="8cb7a919" class="cell" data-execution_count="15">
+<div id="b4640f4d" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DISTRIBUCIÓN DE LOS DATOS:"</span>)</span>
@@ -1373,7 +1385,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 </section>
 <section id="preprocesamiento-y-codificación" class="level2" data-number="0.3">
 <h2 data-number="0.3" class="anchored" data-anchor-id="preprocesamiento-y-codificación"><span class="header-section-number">0.3</span> 2. Preprocesamiento y codificación</h2>
-<div id="a315bdab" class="cell" data-execution_count="16">
+<div id="00c9e2ff" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_procesado <span class="op">=</span> df[[<span class="st">'content'</span>, <span class="st">'toxicity_score'</span>]].copy()</span>
@@ -1455,7 +1467,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 [1347 rows x 4 columns]</code></pre>
 </div>
 </div>
-<div id="e1c74330" class="cell" data-execution_count="17">
+<div id="c561ba64" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"text_processed"</span></span>
@@ -2274,7 +2286,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clasificación" class="level2" data-number="0.4">
 <h2 data-number="0.4" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">0.4</span> 3. Clasificación</h2>
-<div id="60b307ba" class="cell" data-execution_count="18">
+<div id="9e4d469a" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Candidatos de umbral </span></span>
@@ -2343,7 +2355,7 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
  'roc_auc': 0.7173873954868292}</code></pre>
 </div>
 </div>
-<div id="56ce25ca" class="cell" data-execution_count="19">
+<div id="9dafb619" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario con umbral 0.5 solo para el split (estratificación estable)</span></span>
@@ -2413,7 +2425,7 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
 Métricas con umbral 0.5: {'threshold_usado': 0.5, 'accuracy': 0.8405797101449275, 'precision': 0.631578947368421, 'recall': 0.24489795918367346, 'f1': 0.35294117647058826, 'roc_auc': 0.7173873954868292}</code></pre>
 </div>
 </div>
-<div id="1963eee5" class="cell" data-execution_count="20">
+<div id="938288ba" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
@@ -2430,7 +2442,7 @@ Métricas con umbral 0.5: {'threshold_usado': 0.5, 'accuracy': 0.840579710144927
 </section>
 <section id="regresión" class="level2" data-number="0.5">
 <h2 data-number="0.5" class="anchored" data-anchor-id="regresión"><span class="header-section-number">0.5</span> 4. Regresión</h2>
-<div id="088b2f8a" class="cell" data-execution_count="21">
+<div id="4cdc7c4e" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -2495,7 +2507,7 @@ Métricas con umbral 0.5: {'threshold_usado': 0.5, 'accuracy': 0.840579710144927
 {'mejor_modelo': 'LinearRegression'}</code></pre>
 </div>
 </div>
-<div id="2a1b7240" class="cell" data-execution_count="22">
+<div id="2cd0c9b7" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dispersión Real vs Predicho con línea ideal y=x</span></span>
@@ -2535,58 +2547,66 @@ Métricas con umbral 0.5: {'threshold_usado': 0.5, 'accuracy': 0.840579710144927
 </section>
 <section id="selección-de-k-codo-silhouette" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Selección de k (Codo + Silhouette)</h1>
-<div id="94fc59ec" class="cell" data-execution_count="23">
+<div id="502835e3" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>,</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"toxicity_score"</span>]  <span class="co"># sin sentiment_polarity</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[num_cols_cluster].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>k_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>silhouette_scores <span class="op">=</span> []</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>, <span class="st">"model"</span>: <span class="va">None</span>}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster_feat <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>]  <span class="co"># &lt;- sin toxicity_score</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> df[num_cols_cluster_feat <span class="op">+</span> [<span class="st">"toxicity_score"</span>]].copy()</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>tmp[num_cols_cluster_feat <span class="op">+</span> [<span class="st">"toxicity_score"</span>]] <span class="op">=</span> tmp[num_cols_cluster_feat <span class="op">+</span> [<span class="st">"toxicity_score"</span>]].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Mantenemos filas completas para poder luego cruzar contra el target</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> tmp.dropna(subset<span class="op">=</span>num_cols_cluster_feat <span class="op">+</span> [<span class="st">"toxicity_score"</span>]).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> k_range:</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"scaler"</span>, StandardScaler()),</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    ])</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    pipe_km.fit(dfc)</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.named_steps[<span class="st">"km"</span>].labels_</span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    Xs <span class="op">=</span> pipe_km.named_steps[<span class="st">"scaler"</span>].transform(dfc)      <span class="co"># silhouette en espacio escalado</span></span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>    inertia <span class="op">=</span> pipe_km.named_steps[<span class="st">"km"</span>].inertia_</span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(Xs, labels)</span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>    inertias.append(inertia)</span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    silhouette_scores.append(sil)</span>
-<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
-<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
-<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette por k:"</span>, <span class="bu">dict</span>(<span class="bu">zip</span>(k_range, np.<span class="bu">round</span>(silhouette_scores, <span class="dv">4</span>))))</span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mejor k (Silhouette): </span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">  |  Silhouette=</span><span class="sc">{</span>best[<span class="st">'score'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficos: Codo e Silhouette</span></span>
-<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(<span class="bu">list</span>(k_range), inertias, <span class="st">"o-"</span>)</span>
-<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Método del Codo (Inercia)"</span>)</span>
-<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"k"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Inercia (WCSS)"</span>)</span>
-<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(inertias):</span>
-<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].text(<span class="bu">list</span>(k_range)[i], v, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.0f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(<span class="bu">list</span>(k_range), silhouette_scores, <span class="st">"o-r"</span>)</span>
-<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Silhouette vs k"</span>)</span>
-<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"k"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Silhouette"</span>)</span>
-<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(silhouette_scores):</span>
-<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].text(<span class="bu">list</span>(k_range)[i], v<span class="op">+</span><span class="fl">0.01</span>, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.3f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>dfX <span class="op">=</span> tmp[num_cols_cluster_feat]        <span class="co"># solo features para clusterizar</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>dfY <span class="op">=</span> tmp[<span class="st">"toxicity_score"</span>]             <span class="co"># target guardado para análisis posterior</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>k_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>silhouette_scores <span class="op">=</span> []</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>, <span class="st">"model"</span>: <span class="va">None</span>}</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> k_range:</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"scaler"</span>, StandardScaler()),</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>    pipe_km.fit(dfX)</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.named_steps[<span class="st">"km"</span>].labels_</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>    Xs <span class="op">=</span> pipe_km.named_steps[<span class="st">"scaler"</span>].transform(dfX)   <span class="co"># silhouette en espacio escalado</span></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    inertia <span class="op">=</span> pipe_km.named_steps[<span class="st">"km"</span>].inertia_</span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(Xs, labels)</span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>    inertias.append(inertia)</span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>    silhouette_scores.append(sil)</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette por k:"</span>, <span class="bu">dict</span>(<span class="bu">zip</span>(k_range, np.<span class="bu">round</span>(silhouette_scores, <span class="dv">4</span>))))</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mejor k (Silhouette): </span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">  |  Silhouette=</span><span class="sc">{</span>best[<span class="st">'score'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficos: Codo e Silhouette</span></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(<span class="bu">list</span>(k_range), inertias, <span class="st">"o-"</span>)</span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Método del Codo (Inercia)"</span>)</span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"k"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Inercia (WCSS)"</span>)</span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(inertias):</span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].text(<span class="bu">list</span>(k_range)[i], v, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.0f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(<span class="bu">list</span>(k_range), silhouette_scores, <span class="st">"o-r"</span>)</span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Silhouette vs k"</span>)</span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"k"</span>)<span class="op">;</span> axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Silhouette"</span>)</span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(silhouette_scores):</span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].text(<span class="bu">list</span>(k_range)[i], v<span class="op">+</span><span class="fl">0.01</span>, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.3f}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Silhouette por k: {2: np.float64(0.2484), 3: np.float64(0.2486), 4: np.float64(0.2732), 5: np.float64(0.2973), 6: np.float64(0.3144), 7: np.float64(0.3115), 8: np.float64(0.2819), 9: np.float64(0.2918), 10: np.float64(0.2959)}
-Mejor k (Silhouette): 6  |  Silhouette=0.3144</code></pre>
+<pre><code>Silhouette por k: {2: np.float64(0.9411), 3: np.float64(0.3418), 4: np.float64(0.38), 5: np.float64(0.4035), 6: np.float64(0.3692), 7: np.float64(0.3781), 8: np.float64(0.3797), 9: np.float64(0.3829), 10: np.float64(0.3839)}
+Mejor k (Silhouette): 2  |  Silhouette=0.9411</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -2599,41 +2619,38 @@ Mejor k (Silhouette): 6  |  Silhouette=0.3144</code></pre>
 </section>
 <section id="visualización-y-relación-con-el-target-binario" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Visualización y relación con el target binario</h1>
-<div id="0f53b4fd" class="cell" data-execution_count="24">
+<div id="7d390c68" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Visualización básica y relación con target binario (0.5) ---</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de clusters</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> dfvis[<span class="st">"cluster"</span>].value_counts().sort_index()</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, cnt <span class="kw">in</span> counts.items():</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> cnt <span class="op">/</span> <span class="bu">len</span>(dfvis) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>cnt<span class="sc">}</span><span class="ss"> registros (</span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter 2D con variables interpretables (sin sentiment_polarity)</span></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>] <span class="op">==</span> cl]</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"content_length"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"content_length"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación con target binario (0.5)</span></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% d</span><span class="st">e tóxicos por cluster (umbral 0.5):"</span>)</span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct.<span class="bu">round</span>(<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construimos df de visualización uniendo features, cluster y el target continuo</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfX.copy()</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"toxicity_score"</span>] <span class="op">=</span> dfY.values</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de clusters</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> dfvis[<span class="st">"cluster"</span>].value_counts().sort_index()</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, cnt <span class="kw">in</span> counts.items():</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> cnt <span class="op">/</span> <span class="bu">len</span>(dfvis) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>cnt<span class="sc">}</span><span class="ss"> registros (</span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter 2D: una feature interpretable vs el target continuo (el target NO se usó para clusterizar)</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>] <span class="op">==</span> cl]</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"content_length"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"content_length"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Cruce contra clase binaria (0.5)</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="sc">% d</span><span class="st">e tóxicos por cluster (umbral 0.5):"</span>)</span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct.<span class="bu">round</span>(<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Cluster 0: 333 registros (24.7%)
-Cluster 1: 270 registros (20.0%)
-Cluster 2: 1 registros (0.1%)
-Cluster 3: 453 registros (33.6%)
-Cluster 4: 182 registros (13.5%)
-Cluster 5: 108 registros (8.0%)</code></pre>
+<pre><code>Cluster 0: 1346 registros (99.9%)
+Cluster 1: 1 registros (0.1%)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -2647,21 +2664,17 @@ Cluster 5: 108 registros (8.0%)</code></pre>
 % de tóxicos por cluster (umbral 0.5):
 toxicity_score      0     1
 cluster                    
-0                98.8   1.2
-1                30.4  69.6
-2               100.0   0.0
-3               100.0   0.0
-4                83.0  17.0
-5                81.5  18.5</code></pre>
+0                81.9  18.1
+1               100.0   0.0</code></pre>
 </div>
 </div>
 </section>
 <section id="comparación-con-agglomerative-pca" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Comparación con Agglomerative + PCA</h1>
-<div id="f12381ca" class="cell" data-execution_count="25">
+<div id="177b2fdf" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> best[<span class="st">"model"</span>].named_steps[<span class="st">"scaler"</span>].transform(dfc)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> best[<span class="st">"model"</span>].named_steps[<span class="st">"scaler"</span>].transform(dfX)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>agg <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span>best[<span class="st">"k"</span>])</span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>labels_agg <span class="op">=</span> agg.fit_predict(Xs)</span>
@@ -2671,7 +2684,7 @@ cluster
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"- KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>best[<span class="st">'score'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"- Agglomerative (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>sil_agg<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA 2D para visualización (sin sentiment_polarity en las features)</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA 2D para visualización (sin incluir toxicity_score en el fit)</span></span>
 <span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>Xp <span class="op">=</span> pca.fit_transform(Xs)</span>
 <span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
@@ -2687,7 +2700,7 @@ cluster
 <span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
 <span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="ss">f"PC2 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">1</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
 <span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>toxbin <span class="op">=</span> (dfc[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>).values</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>toxbin <span class="op">=</span> (dfY <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>).values</span>
 <span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> axes[<span class="dv">2</span>].scatter(Xp[:, <span class="dv">0</span>], Xp[:, <span class="dv">1</span>], c<span class="op">=</span>toxbin, cmap<span class="op">=</span><span class="st">"RdYlBu"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">"Clases verdaderas (Tóxico binario 0/1)"</span>)</span>
 <span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="ss">f"PC1 (</span><span class="sc">{</span>pca<span class="sc">.</span>explained_variance_ratio_[<span class="dv">0</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
@@ -2699,32 +2712,84 @@ cluster
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Comparación de Silhouette:
-- KMeans (k=6): 0.3144
-- Agglomerative (k=6): 0.2484</code></pre>
+- KMeans (k=2): 0.9411
+- Agglomerative (k=2): 0.9411</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-26-output-2.png" width="1703" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-26-output-2.png" width="1704" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <section id="conclusiones-y-próximos-pasos" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="conclusiones-y-próximos-pasos"><span class="header-section-number">3.1</span> 6. Conclusiones y próximos pasos</h2>
-<ul>
-<li>Calidad de datos y nulos: …<br>
-</li>
-<li>Justificación del umbral para clasificación: …<br>
-</li>
-<li>Rendimiento de modelos: …<br>
-</li>
-<li>Patrones en clusters vs clases: …</li>
-</ul>
-<p><strong>Mejoras propuestas:</strong> - Probar <code>Ridge</code> o <code>ElasticNet</code> para regresión. - Ajustar umbrales y <code>class_weight</code> en clasificación; búsqueda de hiperparámetros con <code>GridSearchCV</code>. - Expandir features del texto: <code>ngram_range</code>, <code>min_df</code>, limpieza de URLs, usuarios y emojis. - Evaluar reducción de dimensionalidad para clustering/visualización (PCA/TruncatedSVD).</p>
-
-
 </section>
+</section>
+<section id="calidad-de-los-datos" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Calidad de los datos</h1>
+<ul>
+<li><p>El dataset 1.5k tweets es utilizable, pero presenta nulos relevantes: toxicity_score (~10%) y hashtags (muy incompleto). No hay duplicados y algunas variables carecen de variación (p.ej., authorVerified casi constante), por lo que aportan poco al modelado.</p></li>
+<li><p>Las señales más útiles provienen del texto (content). Los metadatos numéricos (authorFollowers, mentions_count, content_length, etc.) muestran correlaciones débiles con la toxicidad; content_length es la más consistente (correlación positiva baja).</p></li>
+<li><p>El toxicity_score presenta sesgo a la derecha: la mayoría de los mensajes se concentra en valores bajos (poca toxicidad) y sólo una fracción pequeña alcanza niveles altos, a modo de valores extremos. En conjunto, la toxicidad media es reducida y la dispersión es amplia, sin un pico marcado alrededor de la media.</p></li>
+<li><p>Esta distribución natural del fenómeno sugiere que las interacciones tóxicas representan una minoría significativa pero no dominante para el motivo de los post que origino el estudio.</p></li>
+</ul>
+</section>
+<section id="utilidad-del-target-generado" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Utilidad del target generado</h1>
+<ul>
+<li><p>Para clasificación se transformó toxicity_score en binario. El umbral 0.5 ofrece ~18% de positivos, que está cerca del objetivo práctico (~20%).</p></li>
+<li><p>Además, se realizó una exploración para determinar el mejorumbral no solo por balance, sino con una búsqueda de umbral precisión/recall en el set de prueba. En general, tuning de umbral &gt; usar 0.5 fijo, sobre todo si interesa capturar más casos tóxicos.</p></li>
+</ul>
+</section>
+<section id="rendimiento-de-modelos" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Rendimiento de modelos</h1>
+<ul>
+<li><p>Clasificación (pipeline TF-IDF + Random Forest): resultados sólidos para un baseline con texto + metadatos. Con umbral 0.5 se observó AUC≈0.72, accuracy≈0.84, precision≈0.63 y recall≈0.25; al optimizar el umbral por F1, el recall mejora, pero a costa de algo de precisión, lo que puede ser preferible si el costo del falso negativo es alto. Analizando nuestra matriz de confusiòn el modelo es casi no “se equivoca levantando falsos tóxicos”, pero se le escapan muchos tóxicos.</p></li>
+<li><p>Regresión (predecir toxicity_score continuo): con LinearRegression se obtiene MAE≈0.17–0.22, RMSE≈0.22–0.28 y R²≈0.12. Las gráficas real vs.&nbsp;predicho y residuales vs.&nbsp;predicción, se evaluó MAE/RMSE/R², las opciones de regresión lineal y Ridge, en nuestra interpreteación Ridge da mejores resultados pero podría presentar un riesgo de infraajuste por lo que pensando den geralización optamos por proponer mantener la regresión lineal para esta aplicación.</p></li>
+<li><p>Clustering : con K-Means, segmentos razonables pero no perfectos, el resultado escogido luego de aplicar el método del codo y Silhouette fue 6 por Silhouette≈0.31 . Los clusters presentan prevalencias distintas de toxicidad al cruzarlos con el target binario 0.5, lo que sugiere segmentos útiles para perfilamiento (p.ej., textos más largos vs.&nbsp;más cortos, autores con mayor vs.&nbsp;menor actividad).La longitud del texto nos indica que hay un grupo de tuits cortos y nada tóxicos y otro de tuits cortos más tóxicos. Luego se realizón una vizualización utilizando el Agglomerative y el PCA. Usando este análisis vemos un comportamiento similiar enter Agglomerative y K-means (k=6), en donde mustran cierto solapamiento, de todas maneras se uso clases verdaderas en donde vemos una mejor gráfica pero aun no consolida fronteras definidas.</p></li>
+</ul>
+</section>
+<section id="patrones-relevantes" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Patrones relevantes</h1>
+<p>Mayor longitud del contenido tiende a asociarse con mayor toxicidad, lo que nos muestra una relación débil pero consistente.</p>
+<p>Fuentes/categorías por ejemplo source, isReply, muestran diferencias de media de toxicidad y de prevalencia de la clase tóxica; sirven para enriquecer el modelado.</p>
+<p>Los clusters no replican exactamente las clases del target, pero sí muestran gradientes (algunos grupos concentran más casos “tóxicos”).</p>
+<section id="pasos-futuros-mejoras" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="pasos-futuros-mejoras"><span class="header-section-number">7.1</span> Pasos futuros / mejoras</h2>
+</section>
+</section>
+<section id="datos-y-features" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Datos y features</h1>
+<ul>
+<li><p>Completar toxicity_score faltante para evitar perder tweets; estandarizar el parseo de hashtags y menciones (listas limpias, minúsculas) y considerar frecuencias o indicadores top-k.</p></li>
+<li><p>Fortalecer la limpieza del texto: en TF-IDF, si bien se realizó un trabajo que nos permitió continuar con los siguientes puntos se ve una oportunidad de mejora con un analísis más extenso, esto se le evidenció en la nube de palabras.</p></li>
+<li><p>Añadir rasgos temporales (hora/día) basado en experiencia del analista como podría ser fechas de debates, revelaciones de informaciones relevantes del ámbito político ecuatoriano y de estructura (nº emojis, nº signos de exclamación).</p></li>
+</ul>
+</section>
+<section id="modelado" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Modelado</h1>
+</section>
+<section id="clasificación-1" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Clasificación:</h1>
+<ul>
+<li>Se utilizó en un inicio el modelo de regresión logistica, en un segundo paso se realizó el ejercicio con RandomForest, el cual automáticamente mostró mejoría del resultado por lo cual se optó por presenter el mismo en este proyecto, debido que mostró siginificativamente mejor performance no se hizo comparativa en este paso sino que se decidió utilizar únicamente RandomForest, por lo que podría haber oportunidad de mejora probando otros modelos.</li>
+</ul>
+</section>
+<section id="regresión-1" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Regresión:</h1>
+<ul>
+<li>Se evaluaron residuales para vizualizar el rendimiento del modelo en donde podemos ver una tendencia positiva en la comparativa de real vs.&nbsp;predicho, es decir que el modelo si está captando el comportamiento de los datos. Con la gráfica de residuales por otro lado tenemos un riesgo de infraajuste del modelo debido el R2 bajo. Por lo que sería interesante probar otros modelos para el análisis.</li>
+</ul>
+</section>
+<section id="clustering-1" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Clustering:</h1>
+<ul>
+<li>Sería interesante añadir una señal semántica del texto al clustering usando TF-IDF para luego aplicar un TruncatedSVD y/o PCA y luego aplicar el K-means</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->

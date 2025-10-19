@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preparación" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="preparación"><span class="header-section-number">1</span> 0. Preparación</h2>
-<div id="7814105c" class="cell" data-execution_count="1">
+<div id="2a6ef937" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/1500_tweets_con_toxicity.csv"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="eda"><span class="header-section-number">2</span> 1. EDA</h2>
-<div id="7d234391" class="cell" data-execution_count="2">
+<div id="21831d93" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -455,7 +455,7 @@ dtypes: bool(3), float64(3), int64(9), object(12)
 memory usage: 285.8+ KB</code></pre>
 </div>
 </div>
-<div id="18f9b551" class="cell" data-execution_count="3">
+<div id="d92ee88b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar tipos de columnas</span></span>
@@ -518,13 +518,13 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="46537c75" class="cell" data-execution_count="4">
+<div id="a289ed87" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">"number"</span>).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
@@ -681,7 +681,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="b23849d5" class="cell" data-execution_count="5">
+<div id="ecd374c0" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>])</span>
@@ -704,13 +704,13 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="d1423c5e" class="cell" data-execution_count="6">
+<div id="59c36e84" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen categórico</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df.select_dtypes(exclude<span class="op">=</span><span class="st">"number"</span>).nunique().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>tweetUrl               1500
 content                1491
 createdAt              1460
@@ -729,7 +729,7 @@ authorVerified            1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="032cd038" class="cell" data-execution_count="7">
+<div id="2d9e786e" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nulos y duplicados</span></span>
@@ -737,7 +737,7 @@ dtype: int64</code></pre>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>missing[<span class="st">"pct"</span>] <span class="op">=</span> (df.isna().mean()<span class="op">*</span><span class="dv">100</span>).sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>missing.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -806,7 +806,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="89d0dcd9" class="cell" data-execution_count="8">
+<div id="7ae64f8c" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución toxicity_score</span></span>
@@ -824,7 +824,7 @@ dtype: int64</code></pre>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>count    1347.000000
 mean        0.253879
 std         0.243942
@@ -839,7 +839,7 @@ max         0.939145
 Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="6d2a9ceb" class="cell" data-execution_count="9">
+<div id="eb07bb9d" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
@@ -859,7 +859,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="325f3c39" class="cell" data-execution_count="10">
+<div id="cf4a4464" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots de numéricas clave</span></span>
@@ -875,7 +875,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="7856240e" class="cell" data-execution_count="11">
+<div id="d7710000" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top hashtags y menciones</span></span>
@@ -1111,7 +1111,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="e1ce7bbf" class="cell" data-execution_count="12">
+<div id="fe40e684" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de Variables categóricas</span></span>
@@ -1169,7 +1169,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="27acba82" class="cell" data-execution_count="13">
+<div id="b5b3587a" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar variable de texto</span></span>
@@ -1287,7 +1287,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="436a4ea4" class="cell" data-execution_count="14">
+<div id="4a747544" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlación de las variables numéricas</span></span>
@@ -1332,7 +1332,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Hallazgos clave (EDA):</strong></p>
-<div id="5a61a5e9" class="cell" data-execution_count="15">
+<div id="558aa0b4" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DISTRIBUCIÓN DE LOS DATOS:"</span>)</span>
@@ -1368,7 +1368,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 </section>
 <section id="preprocesamiento-y-codificación" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="preprocesamiento-y-codificación"><span class="header-section-number">3</span> 2. Preprocesamiento y codificación</h2>
-<div id="5760db41" class="cell" data-execution_count="16">
+<div id="f074eb62" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_procesado <span class="op">=</span> df[[<span class="st">'content'</span>, <span class="st">'toxicity_score'</span>]].copy()</span>
@@ -1450,7 +1450,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 [1347 rows x 4 columns]</code></pre>
 </div>
 </div>
-<div id="42e43327" class="cell" data-execution_count="17">
+<div id="b5ce7040" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"text_processed"</span></span>
@@ -1483,8 +1483,8 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 <span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>preprocessor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<style>#sk-container-id-2 {
+<div class="cell-output cell-output-display" data-execution_count="17">
+<style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1515,15 +1515,15 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
   }
 }
 
-#sk-container-id-2 {
+#sk-container-id-1 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 pre {
+#sk-container-id-1 pre {
   padding: 0;
 }
 
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-1 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1535,7 +1535,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
   width: 1px;
 }
 
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-1 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1543,7 +1543,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 div.sk-container {
+#sk-container-id-1 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1553,7 +1553,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
   position: relative;
 }
 
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-1 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1569,14 +1569,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-1 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-1 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1584,28 +1584,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-1 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-1 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1623,14 +1623,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-1 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-1 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1643,13 +1643,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-2 label.sk-toggleable__label .caption {
+#sk-container-id-1 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1657,25 +1657,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-2 div.sk-toggleable__content {
+#sk-container-id-1 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-1 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-1 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1683,79 +1683,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-1 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-1 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-1 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1765,18 +1765,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-1 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-1 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-1 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1864,7 +1864,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-1 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1879,21 +1879,21 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-1 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-1 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -1961,7 +1961,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     height: 14px;
     cursor: pointer;
 }
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('text',
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[('text',
                                  TfidfVectorizer(max_df=0.9, min_df=5,
                                                  ngram_range=(1, 2),
                                                  strip_accents='unicode'),
@@ -1973,7 +1973,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                   'mentions_count', 'hashtags_count',
                                   'content_length', 'sentiment_polarity']),
                                 ('cat', OneHotEncoder(handle_unknown='ignore'),
-                                 ['source', 'has_profile_picture'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>ColumnTransformer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></div></label><div class="sk-toggleable__content " data-param-prefix="">
+                                 ['source', 'has_profile_picture'])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>ColumnTransformer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for ColumnTransformer</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></div></label><div class="sk-toggleable__content " data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2025,7 +2025,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
             </details>
         </div>
-    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>text</div></div></label><div class="sk-toggleable__content " data-param-prefix="text__"><pre>text_processed</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="text__">
+    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>text</div></div></label><div class="sk-toggleable__content " data-param-prefix="text__"><pre>text_processed</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>TfidfVectorizer</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">?<span>Documentation for TfidfVectorizer</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="text__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2142,7 +2142,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
             </details>
         </div>
-    </div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content " data-param-prefix="num__"><pre>['authorFollowers', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'sentiment_polarity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="num__scaler__">
+    </div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content " data-param-prefix="num__"><pre>['authorFollowers', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'sentiment_polarity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="num__scaler__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2169,7 +2169,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
             </details>
         </div>
-    </div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content " data-param-prefix="cat__"><pre>['source', 'has_profile_picture']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="cat__">
+    </div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content " data-param-prefix="cat__"><pre>['source', 'has_profile_picture']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label  sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content " data-param-prefix="cat__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2269,46 +2269,80 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clasificación" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">4</span> 3. Clasificación</h2>
-<div id="ad5d7704" class="cell" data-execution_count="18">
+<div id="71fe7968" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario con umbral 0.5 (puedes justificar 0.5 vs 0.7 en el informe)</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>y_bin <span class="op">=</span> (y_cont <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y_bin, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y_bin)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>pipe_clf <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor),</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">"clf"</span>, RandomForestClassifier(</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                         n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                         random_state<span class="op">=</span><span class="dv">42</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                       </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                     ))])</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>pipe_clf.fit(X_train, y_train)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipe_clf.predict(X_test)</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> pipe_clf.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Candidatos de umbral </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>candidate_thresholds <span class="op">=</span> np.array([<span class="fl">0.30</span>, <span class="fl">0.40</span>, <span class="fl">0.50</span>, <span class="fl">0.60</span>, <span class="fl">0.70</span>])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de balance por umbral elección de target binario</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>balance_rows <span class="op">=</span> []</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> candidate_thresholds:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    y_tmp <span class="op">=</span> (y_cont <span class="op">&gt;=</span> t).astype(<span class="bu">int</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> <span class="bu">int</span>(y_tmp.<span class="bu">sum</span>())</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    neg <span class="op">=</span> <span class="bu">int</span>((<span class="dv">1</span> <span class="op">-</span> y_tmp).<span class="bu">sum</span>())</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    pos_pct <span class="op">=</span> <span class="bu">float</span>(y_tmp.mean()) <span class="op">*</span> <span class="fl">100.0</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    balance_rows.append({<span class="st">"threshold"</span>: t, <span class="st">"positivos"</span>: pos, <span class="st">"negativos"</span>: neg, <span class="st">"pct_positivos"</span>: <span class="bu">round</span>(pos_pct, <span class="dv">2</span>)})</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> pd.DataFrame(balance_rows).sort_values(<span class="st">"threshold"</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Balance por umbral (para justificar la decisión):"</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> {</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, y_pred),</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"roc_auc"</span>: roc_auc_score(y_test, y_proba),</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Criterio simple de selección: tasa objetivo de positivos ≈ 20%</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>target_pos_rate <span class="op">=</span> <span class="fl">0.20</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>best_threshold <span class="op">=</span> <span class="bu">min</span>(candidate_thresholds, key<span class="op">=</span><span class="kw">lambda</span> t: <span class="bu">abs</span>(((y_cont <span class="op">&gt;=</span> t).mean()) <span class="op">-</span> target_pos_rate))</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Umbral sugerido por balance de clases (~</span><span class="sc">{</span><span class="bu">int</span>(target_pos_rate<span class="op">*</span><span class="dv">100</span>)<span class="sc">}</span><span class="ss">% positivos): </span><span class="sc">{</span>best_threshold<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------------------------</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario usando el umbral seleccionado</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>y_bin <span class="op">=</span> (y_cont <span class="op">&gt;=</span> best_threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Split y entrenamiento</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y_bin, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y_bin)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>pipe_clf <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor),</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">"clf"</span>, RandomForestClassifier(</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>                         n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>                         random_state<span class="op">=</span><span class="dv">42</span>))])</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>pipe_clf.fit(X_train, y_train)</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipe_clf.predict(X_test)</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> pipe_clf.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>metrics <span class="op">=</span> {</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"threshold_usado"</span>: <span class="bu">float</span>(best_threshold),</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, y_pred),</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, y_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"roc_auc"</span>: roc_auc_score(y_test, y_proba),</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>{'accuracy': 0.8405797101449275,
+<div class="cell-output cell-output-stdout">
+<pre><code>Balance por umbral (para justificar la decisión):
+ threshold  positivos  negativos  pct_positivos
+       0.3        524        853          38.05
+       0.4        375       1002          27.23
+       0.5        243       1134          17.65
+       0.6        150       1227          10.89
+       0.7         82       1295           5.95
+
+Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>{'threshold_usado': 0.5,
+ 'accuracy': 0.8405797101449275,
  'precision': 0.631578947368421,
  'recall': 0.24489795918367346,
  'f1': 0.35294117647058826,
  'roc_auc': 0.7173873954868292}</code></pre>
 </div>
 </div>
-<div id="06a1b00a" class="cell" data-execution_count="19">
+<div id="913c0ec0" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Matriz de confusión - Clasificación"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Matriz de confusión - Clasificación"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2321,35 +2355,35 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="regresión" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="regresión"><span class="header-section-number">5</span> 4. Regresión</h2>
-<div id="bf9e795a" class="cell" data-execution_count="20">
+<div id="d2898ada" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>pipe_reg <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor), (<span class="st">"reg"</span>, LinearRegression())])</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>pipe_reg.fit(X_train_r, y_train_r)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>y_pred_r <span class="op">=</span> pipe_reg.predict(X_test_r)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>reg_metrics <span class="op">=</span> {</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAE"</span>: mean_absolute_error(y_test_r, y_pred_r),</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSE"</span>: mean_squared_error(y_test_r, y_pred_r),</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R2"</span>: r2_score(y_test_r, y_pred_r),</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reg_metrics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pipe_reg <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor), (<span class="st">"reg"</span>, LinearRegression())])</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>pipe_reg.fit(X_train_r, y_train_r)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>y_pred_r <span class="op">=</span> pipe_reg.predict(X_test_r)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>reg_metrics <span class="op">=</span> {</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAE"</span>: mean_absolute_error(y_test_r, y_pred_r),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSE"</span>: mean_squared_error(y_test_r, y_pred_r),</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R2"</span>: r2_score(y_test_r, y_pred_r),</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reg_metrics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'MAE': 0.16806338609617444, 'RMSE': 0.049797216940050744, 'R2': 0.12122430945578111}</code></pre>
 </div>
 </div>
-<div id="0e83cacc" class="cell" data-execution_count="21">
+<div id="d73e9407" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Real vs. Predicho (Regresión)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Real"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicho"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> y_test_r <span class="op">-</span> y_pred_r</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_pred_r, res, alpha<span class="op">=</span><span class="fl">0.6</span>)<span class="op">;</span> plt.axhline(<span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuales vs. Predicción"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Predicción"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Real vs. Predicho (Regresión)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Real"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicho"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> y_test_r <span class="op">-</span> y_pred_r</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_pred_r, res, alpha<span class="op">=</span><span class="fl">0.6</span>)<span class="op">;</span> plt.axhline(<span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuales vs. Predicción"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Predicción"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2369,26 +2403,26 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clustering" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="clustering"><span class="header-section-number">6</span> 5. Clustering</h2>
-<div id="121415dd" class="cell" data-execution_count="22">
+<div id="1865abe1" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[num_cols_cluster].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>sil_scores <span class="op">=</span> {}</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>}</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">7</span>):</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([(<span class="st">"scaler"</span>, StandardScaler()), (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))])</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.fit_predict(dfc)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(dfc, labels)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    sil_scores[k] <span class="op">=</span> sil</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>sil_scores, best[<span class="st">"k"</span>], best[<span class="st">"score"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[num_cols_cluster].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>sil_scores <span class="op">=</span> {}</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>}</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">7</span>):</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([(<span class="st">"scaler"</span>, StandardScaler()), (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))])</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.fit_predict(dfc)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(dfc, labels)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    sil_scores[k] <span class="op">=</span> sil</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>sil_scores, best[<span class="st">"k"</span>], best[<span class="st">"score"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>({2: 0.9985810886175137,
   3: 0.026805141053596757,
   4: 0.3169276806296067,
@@ -2398,20 +2432,20 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
  0.9985810886175137)</code></pre>
 </div>
 </div>
-<div id="1e05b663" class="cell" data-execution_count="23">
+<div id="b2a01388" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>]<span class="op">==</span>cl]</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"sentiment_polarity"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span> plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"sentiment_polarity"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación con target binario (0.5)</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>ct.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>]<span class="op">==</span>cl]</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"sentiment_polarity"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span> plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"sentiment_polarity"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación con target binario (0.5)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>ct.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2420,7 +2454,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 

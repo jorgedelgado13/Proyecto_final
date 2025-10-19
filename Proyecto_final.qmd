@@ -337,22 +337,44 @@ preprocessor
 ## 3. Clasificación
 
 ```{python}
-# Target binario con umbral 0.5 (puedes justificar 0.5 vs 0.7 en el informe)
-y_bin = (y_cont >= 0.5).astype(int)
+# Candidatos de umbral 
+candidate_thresholds = np.array([0.30, 0.40, 0.50, 0.60, 0.70])
+
+# Tabla de balance por umbral elección de target binario
+balance_rows = []
+for t in candidate_thresholds:
+    y_tmp = (y_cont >= t).astype(int)
+    pos = int(y_tmp.sum())
+    neg = int((1 - y_tmp).sum())
+    pos_pct = float(y_tmp.mean()) * 100.0
+    balance_rows.append({"threshold": t, "positivos": pos, "negativos": neg, "pct_positivos": round(pos_pct, 2)})
+balance_df = pd.DataFrame(balance_rows).sort_values("threshold")
+print("Balance por umbral (para justificar la decisión):")
+print(balance_df.to_string(index=False))
+
+# Criterio simple de selección: tasa objetivo de positivos ≈ 20%
+target_pos_rate = 0.20
+best_threshold = min(candidate_thresholds, key=lambda t: abs(((y_cont >= t).mean()) - target_pos_rate))
+print(f"\nUmbral sugerido por balance de clases (~{int(target_pos_rate*100)}% positivos): {best_threshold:.2f}")
+
+# -----------------------------------------------------------------
+# Target binario usando el umbral seleccionado
+y_bin = (y_cont >= best_threshold).astype(int)
+
+# Split y entrenamiento
 X_train, X_test, y_train, y_test = train_test_split(X, y_bin, test_size=0.2, random_state=42, stratify=y_bin)
 
 pipe_clf = Pipeline([("preprocess", preprocessor),
                      ("clf", RandomForestClassifier(
                          n_estimators=300,
-                         random_state=42,
-                       
-                     ))])
+                         random_state=42))])
 
 pipe_clf.fit(X_train, y_train)
 y_pred = pipe_clf.predict(X_test)
 y_proba = pipe_clf.predict_proba(X_test)[:, 1]
 
 metrics = {
+    "threshold_usado": float(best_threshold),
     "accuracy": accuracy_score(y_test, y_pred),
     "precision": precision_score(y_test, y_pred, zero_division=0),
     "recall": recall_score(y_test, y_pred, zero_division=0),

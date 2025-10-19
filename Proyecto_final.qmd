@@ -46,8 +46,8 @@ from sklearn.metrics import (
     silhouette_score
 )
 
-from sklearn.cluster import KMeans
-
+from sklearn.cluster import KMeans, AgglomerativeClustering
+from sklearn.decomposition import PCA
 # Ruta al CSV (deja el archivo en la misma carpeta que este .qmd)
 df = pd.read_csv("data/1500_tweets_con_toxicity.csv", encoding="utf-8")
 df.head()
@@ -532,38 +532,125 @@ plt.xlabel("Predicción"); plt.ylabel("Residual"); plt.tight_layout(); plt.show(
 ```
 
 ## 5. Clustering
+# Selección de k (Codo +  Silhouette)
 
 ```{python}
-num_cols_cluster = ["authorFollowers", "account_age_days", "mentions_count", "hashtags_count", "content_length", "sentiment_polarity", "toxicity_score"]
+
+num_cols_cluster = ["authorFollowers", "account_age_days", "mentions_count",
+                    "hashtags_count", "content_length", "toxicity_score"]  # sin sentiment_polarity
 dfc = df[num_cols_cluster].apply(pd.to_numeric, errors="coerce").dropna().reset_index(drop=True)
 
-sil_scores = {}
-best = {"k": None, "score": -1, "labels": None}
+k_range = range(2, 11)
+inertias = []
+silhouette_scores = []
+best = {"k": None, "score": -1, "labels": None, "model": None}
 
-for k in range(2,7):
-    pipe_km = Pipeline([("scaler", StandardScaler()), ("km", KMeans(n_clusters=k, n_init=10, random_state=42))])
-    labels = pipe_km.fit_predict(dfc)
-    sil = silhouette_score(dfc, labels)
-    sil_scores[k] = sil
+for k in k_range:
+    pipe_km = Pipeline([
+        ("scaler", StandardScaler()),
+        ("km", KMeans(n_clusters=k, n_init=10, random_state=42))
+    ])
+    pipe_km.fit(dfc)
+    labels = pipe_km.named_steps["km"].labels_
+    Xs = pipe_km.named_steps["scaler"].transform(dfc)      # silhouette en espacio escalado
+    inertia = pipe_km.named_steps["km"].inertia_
+    sil = silhouette_score(Xs, labels)
+
+    inertias.append(inertia)
+    silhouette_scores.append(sil)
+
     if sil > best["score"]:
         best = {"k": k, "score": sil, "labels": labels, "model": pipe_km}
 
-sil_scores, best["k"], best["score"]
+print("Silhouette por k:", dict(zip(k_range, np.round(silhouette_scores, 4))))
+print(f"Mejor k (Silhouette): {best['k']}  |  Silhouette={best['score']:.4f}")
+
+# Gráficos: Codo e Silhouette
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+axes[0].plot(list(k_range), inertias, "o-")
+axes[0].set_title("Método del Codo (Inercia)")
+axes[0].set_xlabel("k"); axes[0].set_ylabel("Inercia (WCSS)")
+for i, v in enumerate(inertias):
+    axes[0].text(list(k_range)[i], v, f"{v:.0f}", ha="center", va="bottom", fontsize=8)
+
+axes[1].plot(list(k_range), silhouette_scores, "o-r")
+axes[1].set_title("Silhouette vs k")
+axes[1].set_xlabel("k"); axes[1].set_ylabel("Silhouette")
+for i, v in enumerate(silhouette_scores):
+    axes[1].text(list(k_range)[i], v+0.01, f"{v:.3f}", ha="center", va="bottom", fontsize=8)
+
+plt.tight_layout(); plt.show()
 ```
 
+# Visualización y relación con el target binario
+
 ```{python}
+# --- Visualización básica y relación con target binario (0.5) ---
 dfvis = dfc.copy()
 dfvis["cluster"] = best["labels"]
+
+# Distribución de clusters
+counts = dfvis["cluster"].value_counts().sort_index()
+for cl, cnt in counts.items():
+    pct = cnt / len(dfvis) * 100
+    print(f"Cluster {cl}: {cnt} registros ({pct:.1f}%)")
+
+# Scatter 2D con variables interpretables (sin sentiment_polarity)
 for cl in sorted(dfvis["cluster"].unique()):
-    part = dfvis[dfvis["cluster"]==cl]
-    plt.scatter(part["sentiment_polarity"], part["toxicity_score"], alpha=0.6, label=f"Cluster {cl}")
-plt.legend(); plt.title(f"Clusters KMeans (k={best['k']})"); plt.xlabel("sentiment_polarity"); plt.ylabel("toxicity_score"); plt.tight_layout(); plt.show()
+    part = dfvis[dfvis["cluster"] == cl]
+    plt.scatter(part["content_length"], part["toxicity_score"], alpha=0.6, label=f"Cluster {cl}")
+plt.legend()
+plt.title(f"Clusters KMeans (k={best['k']})")
+plt.xlabel("content_length"); plt.ylabel("toxicity_score")
+plt.tight_layout(); plt.show()
 
 # Relación con target binario (0.5)
 y_bin_all = (dfvis["toxicity_score"] >= 0.5).astype(int)
-ct = pd.crosstab(dfvis["cluster"], y_bin_all, normalize="index")*100
-ct.round(1)
+ct = pd.crosstab(dfvis["cluster"], y_bin_all, normalize="index") * 100
+print("\n% de tóxicos por cluster (umbral 0.5):")
+print(ct.round(1))
 ```
+# Comparación con Agglomerative + PCA
+
+```{python}
+
+Xs = best["model"].named_steps["scaler"].transform(dfc)
+
+agg = AgglomerativeClustering(n_clusters=best["k"])
+labels_agg = agg.fit_predict(Xs)
+sil_agg = silhouette_score(Xs, labels_agg)
+
+print(f"\nComparación de Silhouette:")
+print(f"- KMeans (k={best['k']}): {best['score']:.4f}")
+print(f"- Agglomerative (k={best['k']}): {sil_agg:.4f}")
+
+# PCA 2D para visualización (sin sentiment_polarity en las features)
+pca = PCA(n_components=2, random_state=42)
+Xp = pca.fit_transform(Xs)
+
+fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
+axes[0].scatter(Xp[:, 0], Xp[:, 1], c=best["labels"], cmap="tab10", alpha=0.7, s=30)
+axes[0].set_title(f"K-Means (k={best['k']})")
+axes[0].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+axes[0].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+
+axes[1].scatter(Xp[:, 0], Xp[:, 1], c=labels_agg, cmap="tab10", alpha=0.7, s=30)
+axes[1].set_title("Agglomerative")
+axes[1].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+axes[1].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+
+toxbin = (dfc["toxicity_score"] >= 0.5).astype(int).values
+sc = axes[2].scatter(Xp[:, 0], Xp[:, 1], c=toxbin, cmap="RdYlBu", alpha=0.7, s=30)
+axes[2].set_title("Clases verdaderas (Tóxico binario 0/1)")
+axes[2].set_xlabel(f"PC1 ({pca.explained_variance_ratio_[0]*100:.1f}%)")
+axes[2].set_ylabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}%)")
+cbar = plt.colorbar(sc, ax=axes[2]); cbar.set_label("Toxicidad (0=No, 1=Sí)")
+
+plt.tight_layout(); plt.show()
+```
+
 
 ## 6. Conclusiones y próximos pasos
 

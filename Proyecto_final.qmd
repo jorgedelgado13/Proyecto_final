@@ -470,7 +470,7 @@ reg_metrics_lr = {
 }
 print({"LinearRegression": reg_metrics_lr})
 
-# Mejora: Ridge con búsqueda simple de alpha (sin paralelismo para evitar TerminatedWorkerError)
+# Mejora: Ridge con búsqueda simple de alpha para comparar mejor modelo para usar entre Regresión Lineal y Ridge
 pipe_reg_ridge = Pipeline([("preprocess", preprocessor), ("reg", Ridge())])
 param_grid = {"reg__alpha": [0.1, 1.0, 3.0, 10.0]}
 
@@ -507,7 +507,7 @@ except Exception as e:
     }
     print({"Ridge": {"best_alpha": 1.0, **reg_metrics_ridge}})
 
-# Elegimos el mejor por RMSE (puedes cambiar a MAE o R2)
+# Elegimos el mejor por RMSE
 best_name = "Ridge" if reg_metrics_ridge["RMSE"] < reg_metrics_lr["RMSE"] else "LinearRegression"
 y_pred_r = y_pred_ridge if best_name == "Ridge" else y_pred_lr
 print({"mejor_modelo": best_name})

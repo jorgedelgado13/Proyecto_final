@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preparación" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="preparación"><span class="header-section-number">1</span> 0. Preparación</h2>
-<div id="2a6ef937" class="cell" data-execution_count="1">
+<div id="3331bc3c" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="eda"><span class="header-section-number">2</span> 1. EDA</h2>
-<div id="21831d93" class="cell" data-execution_count="2">
+<div id="b1513479" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -455,7 +455,7 @@ dtypes: bool(3), float64(3), int64(9), object(12)
 memory usage: 285.8+ KB</code></pre>
 </div>
 </div>
-<div id="d92ee88b" class="cell" data-execution_count="3">
+<div id="c66cc8d2" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar tipos de columnas</span></span>
@@ -518,7 +518,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="a289ed87" class="cell" data-execution_count="4">
+<div id="9d834e09" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico</span></span>
@@ -681,7 +681,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="ecd374c0" class="cell" data-execution_count="5">
+<div id="cda8c612" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>num_df <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>])</span>
@@ -704,7 +704,7 @@ Variables de texto (3): ['tweetUrl', 'content', 'authorProfilePic']</code></pre>
 </div>
 </div>
 </div>
-<div id="59c36e84" class="cell" data-execution_count="6">
+<div id="a1e1f9c3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen categórico</span></span>
@@ -729,7 +729,7 @@ authorVerified            1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="2d9e786e" class="cell" data-execution_count="7">
+<div id="bf33590f" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nulos y duplicados</span></span>
@@ -806,7 +806,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="7ae64f8c" class="cell" data-execution_count="8">
+<div id="2049cf50" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución toxicity_score</span></span>
@@ -839,7 +839,7 @@ max         0.939145
 Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
-<div id="eb07bb9d" class="cell" data-execution_count="9">
+<div id="a1ec0252" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
@@ -859,7 +859,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cf4a4464" class="cell" data-execution_count="10">
+<div id="7fffc017" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplots de numéricas clave</span></span>
@@ -875,7 +875,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="d7710000" class="cell" data-execution_count="11">
+<div id="d28e6445" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top hashtags y menciones</span></span>
@@ -1111,7 +1111,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="fe40e684" class="cell" data-execution_count="12">
+<div id="e107e944" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de Variables categóricas</span></span>
@@ -1169,7 +1169,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="b5b3587a" class="cell" data-execution_count="13">
+<div id="0958d6ac" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detectar variable de texto</span></span>
@@ -1287,7 +1287,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="4a747544" class="cell" data-execution_count="14">
+<div id="17438599" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlación de las variables numéricas</span></span>
@@ -1332,7 +1332,7 @@ Name: toxicity_score, dtype: float64</code></pre>
 </div>
 </div>
 <p><strong>Hallazgos clave (EDA):</strong></p>
-<div id="558aa0b4" class="cell" data-execution_count="15">
+<div id="1d6bbf38" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DISTRIBUCIÓN DE LOS DATOS:"</span>)</span>
@@ -1368,7 +1368,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 </section>
 <section id="preprocesamiento-y-codificación" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="preprocesamiento-y-codificación"><span class="header-section-number">3</span> 2. Preprocesamiento y codificación</h2>
-<div id="f074eb62" class="cell" data-execution_count="16">
+<div id="e05ee69e" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_procesado <span class="op">=</span> df[[<span class="st">'content'</span>, <span class="st">'toxicity_score'</span>]].copy()</span>
@@ -1450,7 +1450,7 @@ Concentración de polaridad y relación preliminar con la toxicidad.</code></pre
 [1347 rows x 4 columns]</code></pre>
 </div>
 </div>
-<div id="b5ce7040" class="cell" data-execution_count="17">
+<div id="dd7ee37b" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>text_col <span class="op">=</span> <span class="st">"text_processed"</span></span>
@@ -2269,7 +2269,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="clasificación" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="clasificación"><span class="header-section-number">4</span> 3. Clasificación</h2>
-<div id="71fe7968" class="cell" data-execution_count="18">
+<div id="67ca221a" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Candidatos de umbral </span></span>
@@ -2284,7 +2284,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    pos_pct <span class="op">=</span> <span class="bu">float</span>(y_tmp.mean()) <span class="op">*</span> <span class="fl">100.0</span></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    balance_rows.append({<span class="st">"threshold"</span>: t, <span class="st">"positivos"</span>: pos, <span class="st">"negativos"</span>: neg, <span class="st">"pct_positivos"</span>: <span class="bu">round</span>(pos_pct, <span class="dv">2</span>)})</span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>balance_df <span class="op">=</span> pd.DataFrame(balance_rows).sort_values(<span class="st">"threshold"</span>)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Balance por umbral (para justificar la decisión):"</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Balance por umbral :"</span>)</span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
 <span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Criterio simple de selección: tasa objetivo de positivos ≈ 20%</span></span>
@@ -2319,7 +2319,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>metrics</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Balance por umbral (para justificar la decisión):
+<pre><code>Balance por umbral :
  threshold  positivos  negativos  pct_positivos
        0.3        524        853          38.05
        0.4        375       1002          27.23
@@ -2338,16 +2338,86 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
  'roc_auc': 0.7173873954868292}</code></pre>
 </div>
 </div>
-<div id="913c0ec0" class="cell" data-execution_count="19">
+<div id="42a2dced" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Matriz de confusión - Clasificación"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Target binario con umbral 0.5 solo para el split (estratificación estable)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y_bin_split <span class="op">=</span> (y_cont <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y_bin_split, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y_bin_split)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>pipe_clf <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">"clf"</span>, RandomForestClassifier(</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                         n_estimators<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                         random_state<span class="op">=</span><span class="dv">42</span>))])</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>pipe_clf.fit(X_train, y_train)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilidades en test</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> pipe_clf.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Búsqueda de umbral por F1 ---</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, precision_score, recall_score, f1_score, roc_auc_score</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.linspace(<span class="fl">0.20</span>, <span class="fl">0.80</span>, <span class="dv">61</span>)  <span class="co"># explora 0.20..0.80</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> thresholds:</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    y_pred_t <span class="op">=</span> (y_proba <span class="op">&gt;=</span> t).astype(<span class="bu">int</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    rows.append({</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"threshold"</span>: <span class="bu">float</span>(t),</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"accuracy"</span>: accuracy_score(y_test, y_pred_t),</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"precision"</span>: precision_score(y_test, y_pred_t, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"recall"</span>: recall_score(y_test, y_pred_t, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"f1"</span>: f1_score(y_test, y_pred_t, zero_division<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>thr_df <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>best_row <span class="op">=</span> thr_df.loc[thr_df[<span class="st">"f1"</span>].idxmax()]</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>best_threshold <span class="op">=</span> <span class="bu">float</span>(best_row[<span class="st">"threshold"</span>])</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Métricas con umbral óptimo (F1) vs 0.5</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>y_pred_best <span class="op">=</span> (y_proba <span class="op">&gt;=</span> best_threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>y_pred_05   <span class="op">=</span> (y_proba <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>metrics_best <span class="op">=</span> {</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"threshold_usado"</span>: best_threshold,</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, y_pred_best),</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, y_pred_best, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, y_pred_best, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, y_pred_best, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"roc_auc"</span>: roc_auc_score(y_test, y_proba)  <span class="co"># AUC no depende del umbral</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>metrics_05 <span class="op">=</span> {</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"threshold_usado"</span>: <span class="fl">0.5</span>,</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, y_pred_05),</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, y_pred_05, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, y_pred_05, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, y_pred_05, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"roc_auc"</span>: roc_auc_score(y_test, y_proba)</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Métricas con umbral óptimo (F1):"</span>, metrics_best)</span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Métricas con umbral 0.5:"</span>, metrics_05)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Métricas con umbral óptimo (F1): {'threshold_usado': 0.22000000000000003, 'accuracy': 0.7789855072463768, 'precision': 0.4, 'recall': 0.4897959183673469, 'f1': 0.44036697247706424, 'roc_auc': 0.7173873954868292}
+Métricas con umbral 0.5: {'threshold_usado': 0.5, 'accuracy': 0.8405797101449275, 'precision': 0.631578947368421, 'recall': 0.24489795918367346, 'f1': 0.35294117647058826, 'roc_auc': 0.7173873954868292}</code></pre>
+</div>
+</div>
+<div id="eeb098dc" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, y_pred)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Matriz de confusión - Clasificación"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-20-output-1.png" width="532" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-21-output-1.png" width="532" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2355,47 +2425,47 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
 </section>
 <section id="regresión" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="regresión"><span class="header-section-number">5</span> 4. Regresión</h2>
-<div id="d2898ada" class="cell" data-execution_count="20">
+<div id="cbf3b1f9" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pipe_reg <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor), (<span class="st">"reg"</span>, LinearRegression())])</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>pipe_reg.fit(X_train_r, y_train_r)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>y_pred_r <span class="op">=</span> pipe_reg.predict(X_test_r)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>reg_metrics <span class="op">=</span> {</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAE"</span>: mean_absolute_error(y_test_r, y_pred_r),</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSE"</span>: mean_squared_error(y_test_r, y_pred_r),</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R2"</span>: r2_score(y_test_r, y_pred_r),</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reg_metrics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>X_train_r, X_test_r, y_train_r, y_test_r <span class="op">=</span> train_test_split(X, y_cont, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>pipe_reg <span class="op">=</span> Pipeline([(<span class="st">"preprocess"</span>, preprocessor), (<span class="st">"reg"</span>, LinearRegression())])</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>pipe_reg.fit(X_train_r, y_train_r)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>y_pred_r <span class="op">=</span> pipe_reg.predict(X_test_r)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>reg_metrics <span class="op">=</span> {</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAE"</span>: mean_absolute_error(y_test_r, y_pred_r),</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSE"</span>: mean_squared_error(y_test_r, y_pred_r),</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R2"</span>: r2_score(y_test_r, y_pred_r),</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reg_metrics)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'MAE': 0.16806338609617444, 'RMSE': 0.049797216940050744, 'R2': 0.12122430945578111}</code></pre>
 </div>
 </div>
-<div id="d73e9407" class="cell" data-execution_count="21">
+<div id="0372376f" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Real vs. Predicho (Regresión)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Real"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicho"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> y_test_r <span class="op">-</span> y_pred_r</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_pred_r, res, alpha<span class="op">=</span><span class="fl">0.6</span>)<span class="op">;</span> plt.axhline(<span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuales vs. Predicción"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Predicción"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test_r, y_pred_r, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Real vs. Predicho (Regresión)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Real"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicho"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> y_test_r <span class="op">-</span> y_pred_r</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_pred_r, res, alpha<span class="op">=</span><span class="fl">0.6</span>)<span class="op">;</span> plt.axhline(<span class="dv">0</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuales vs. Predicción"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Predicción"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-22-output-1.png" width="662" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-23-output-1.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-22-output-2.png" width="662" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-23-output-2.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2403,26 +2473,26 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
 </section>
 <section id="clustering" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="clustering"><span class="header-section-number">6</span> 5. Clustering</h2>
-<div id="1865abe1" class="cell" data-execution_count="22">
+<div id="75a710cb" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[num_cols_cluster].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>sil_scores <span class="op">=</span> {}</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>}</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">7</span>):</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([(<span class="st">"scaler"</span>, StandardScaler()), (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))])</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.fit_predict(dfc)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(dfc, labels)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    sil_scores[k] <span class="op">=</span> sil</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>sil_scores, best[<span class="st">"k"</span>], best[<span class="st">"score"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>num_cols_cluster <span class="op">=</span> [<span class="st">"authorFollowers"</span>, <span class="st">"account_age_days"</span>, <span class="st">"mentions_count"</span>, <span class="st">"hashtags_count"</span>, <span class="st">"content_length"</span>, <span class="st">"sentiment_polarity"</span>, <span class="st">"toxicity_score"</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dfc <span class="op">=</span> df[num_cols_cluster].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>sil_scores <span class="op">=</span> {}</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> {<span class="st">"k"</span>: <span class="va">None</span>, <span class="st">"score"</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">"labels"</span>: <span class="va">None</span>}</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">7</span>):</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    pipe_km <span class="op">=</span> Pipeline([(<span class="st">"scaler"</span>, StandardScaler()), (<span class="st">"km"</span>, KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>))])</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> pipe_km.fit_predict(dfc)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    sil <span class="op">=</span> silhouette_score(dfc, labels)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    sil_scores[k] <span class="op">=</span> sil</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sil <span class="op">&gt;</span> best[<span class="st">"score"</span>]:</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>        best <span class="op">=</span> {<span class="st">"k"</span>: k, <span class="st">"score"</span>: sil, <span class="st">"labels"</span>: labels, <span class="st">"model"</span>: pipe_km}</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>sil_scores, best[<span class="st">"k"</span>], best[<span class="st">"score"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>({2: 0.9985810886175137,
   3: 0.026805141053596757,
   4: 0.3169276806296067,
@@ -2432,29 +2502,29 @@ Umbral sugerido por balance de clases (~20% positivos): 0.50</code></pre>
  0.9985810886175137)</code></pre>
 </div>
 </div>
-<div id="b2a01388" class="cell" data-execution_count="23">
+<div id="824cadd7" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>]<span class="op">==</span>cl]</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"sentiment_polarity"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span> plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"sentiment_polarity"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación con target binario (0.5)</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>)<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>ct.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dfvis <span class="op">=</span> dfc.copy()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dfvis[<span class="st">"cluster"</span>] <span class="op">=</span> best[<span class="st">"labels"</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl <span class="kw">in</span> <span class="bu">sorted</span>(dfvis[<span class="st">"cluster"</span>].unique()):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    part <span class="op">=</span> dfvis[dfvis[<span class="st">"cluster"</span>]<span class="op">==</span>cl]</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    plt.scatter(part[<span class="st">"sentiment_polarity"</span>], part[<span class="st">"toxicity_score"</span>], alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cl<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span> plt.title(<span class="ss">f"Clusters KMeans (k=</span><span class="sc">{</span>best[<span class="st">'k'</span>]<span class="sc">}</span><span class="ss">)"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"sentiment_polarity"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"toxicity_score"</span>)<span class="op">;</span> plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación con target binario (0.5)</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>y_bin_all <span class="op">=</span> (dfvis[<span class="st">"toxicity_score"</span>] <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(dfvis[<span class="st">"cluster"</span>], y_bin_all, normalize<span class="op">=</span><span class="st">"index"</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>ct.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Proyecto_final_files/figure-html/cell-24-output-1.png" width="662" height="470" class="figure-img"></p>
+<p><img src="Proyecto_final_files/figure-html/cell-25-output-1.png" width="662" height="470" class="figure-img"></p>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 

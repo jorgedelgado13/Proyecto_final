@@ -349,7 +349,7 @@ for t in candidate_thresholds:
     pos_pct = float(y_tmp.mean()) * 100.0
     balance_rows.append({"threshold": t, "positivos": pos, "negativos": neg, "pct_positivos": round(pos_pct, 2)})
 balance_df = pd.DataFrame(balance_rows).sort_values("threshold")
-print("Balance por umbral (para justificar la decisión):")
+print("Balance por umbral :")
 print(balance_df.to_string(index=False))
 
 # Criterio simple de selección: tasa objetivo de positivos ≈ 20%
@@ -382,6 +382,70 @@ metrics = {
     "roc_auc": roc_auc_score(y_test, y_proba),
 }
 metrics
+```
+
+```{python}
+# Target binario con umbral 0.5 solo para el split (estratificación estable)
+y_bin_split = (y_cont >= 0.5).astype(int)
+X_train, X_test, y_train, y_test = train_test_split(X, y_bin_split, test_size=0.2, random_state=42, stratify=y_bin_split)
+
+from sklearn.ensemble import RandomForestClassifier
+
+pipe_clf = Pipeline([("preprocess", preprocessor),
+                     ("clf", RandomForestClassifier(
+                         n_estimators=300,
+                         random_state=42))])
+
+pipe_clf.fit(X_train, y_train)
+
+# Probabilidades en test
+y_proba = pipe_clf.predict_proba(X_test)[:, 1]
+
+# --- Búsqueda de umbral por F1 ---
+import numpy as np
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+thresholds = np.linspace(0.20, 0.80, 61)  # explora 0.20..0.80
+rows = []
+for t in thresholds:
+    y_pred_t = (y_proba >= t).astype(int)
+    rows.append({
+        "threshold": float(t),
+        "accuracy": accuracy_score(y_test, y_pred_t),
+        "precision": precision_score(y_test, y_pred_t, zero_division=0),
+        "recall": recall_score(y_test, y_pred_t, zero_division=0),
+        "f1": f1_score(y_test, y_pred_t, zero_division=0)
+    })
+
+import pandas as pd
+thr_df = pd.DataFrame(rows)
+best_row = thr_df.loc[thr_df["f1"].idxmax()]
+best_threshold = float(best_row["threshold"])
+
+# Métricas con umbral óptimo (F1) vs 0.5
+y_pred_best = (y_proba >= best_threshold).astype(int)
+y_pred_05   = (y_proba >= 0.5).astype(int)
+
+metrics_best = {
+    "threshold_usado": best_threshold,
+    "accuracy": accuracy_score(y_test, y_pred_best),
+    "precision": precision_score(y_test, y_pred_best, zero_division=0),
+    "recall": recall_score(y_test, y_pred_best, zero_division=0),
+    "f1": f1_score(y_test, y_pred_best, zero_division=0),
+    "roc_auc": roc_auc_score(y_test, y_proba)  # AUC no depende del umbral
+}
+
+metrics_05 = {
+    "threshold_usado": 0.5,
+    "accuracy": accuracy_score(y_test, y_pred_05),
+    "precision": precision_score(y_test, y_pred_05, zero_division=0),
+    "recall": recall_score(y_test, y_pred_05, zero_division=0),
+    "f1": f1_score(y_test, y_pred_05, zero_division=0),
+    "roc_auc": roc_auc_score(y_test, y_proba)
+}
+
+print("Métricas con umbral óptimo (F1):", metrics_best)
+print("Métricas con umbral 0.5:", metrics_05)
 ```
 
 ```{python}
